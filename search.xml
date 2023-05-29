@@ -79,6 +79,36 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux安装Redis</title>
+    <url>/2023/05/29/15-32-46/</url>
+    <content><![CDATA[<h1 id="Linux下安装Redis"><a href="#Linux下安装Redis" class="headerlink" title="Linux下安装Redis"></a>Linux下安装Redis</h1><h2 id="1、下载Redis安装包"><a href="#1、下载Redis安装包" class="headerlink" title="1、下载Redis安装包"></a>1、下载Redis安装包</h2><p><strong>下载链接：<a href="https://redis.io/download/">下载 |雷迪斯 (redis.io)</a></strong></p>
+<span id="more"></span>
+
+<p>选择下载的版本，这里以最新版为例。默认下载就是linux下的安装包。</p>
+<img src="/2023/05/29/15-32-46/redis.png" style="zoom:25%;">
+
+<h2 id="2、上传到linux下"><a href="#2、上传到linux下" class="headerlink" title="2、上传到linux下"></a>2、上传到linux下</h2><p>上传到linux下的usr&#x2F;local&#x2F;bin目录。这里使用FinalShell，直接从本地文件拖到目录下即可。</p>
+<img src="/2023/05/29/15-32-46/redis2.png" style="zoom:45%;">
+
+<h2 id="3、解压Redis"><a href="#3、解压Redis" class="headerlink" title="3、解压Redis"></a>3、解压Redis</h2><p>执行命令<code>tar -zxvf redis-7.0.11.tar.gz</code></p>
+<h2 id="4、安装环境依赖"><a href="#4、安装环境依赖" class="headerlink" title="4、安装环境依赖"></a>4、安装环境依赖</h2><p>因为redis需要c++的依赖支持，所以先安装依赖。</p>
+<p>在&#x2F;usr&#x2F;local&#x2F;bin目录下执行命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装依赖</span></span><br><span class="line">yum install gcc-c++</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看依赖安装是否成功gcc-v 最后一行出现gcc版本号即是安装成功</span></span><br><span class="line">gcc -v</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置所有文件</span></span><br><span class="line">make</span><br><span class="line">make PREFIX=/usr/local/bin install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="5、启动redis"><a href="#5、启动redis" class="headerlink" title="5、启动redis"></a>5、启动redis</h2><p>进入redis目录下的src下执行命令<code>redis-server</code>即可启动Redis。</p>
+<h2 id="6、设置密码"><a href="#6、设置密码" class="headerlink" title="6、设置密码"></a>6、设置密码</h2><p>修改Redis目录下的redis.conf文件<code>ctrl+f</code>查找requirepass。</p>
+<p>将requirepass取消注释，设置自己的密码，比如<code>requirepass  root</code></p>
+<h2 id="7、设置后台启动"><a href="#7、设置后台启动" class="headerlink" title="7、设置后台启动"></a>7、设置后台启动</h2><p>修改Redis目录下的redis.conf文件ctrl+f查找daemonize。</p>
+<p>将<code>daemonize no</code> 改为<code>daemonize yes</code></p>
+<h2 id="8、根据配置文件启动Redis"><a href="#8、根据配置文件启动Redis" class="headerlink" title="8、根据配置文件启动Redis"></a>8、根据配置文件启动Redis</h2><p>定位到Redis目录下的src目录下,执行<code>redis-server ../redis.conf</code></p>
+<h2 id="9、启动redis-cli"><a href="#9、启动redis-cli" class="headerlink" title="9、启动redis.cli"></a>9、启动redis.cli</h2><p>定位到Redis目录下的src目录下,执行<code>redis-cli</code></p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>InterView</title>
     <url>/2023/05/28/14-22-46/</url>
     <content><![CDATA[<h1 id="Java面试题整理"><a href="#Java面试题整理" class="headerlink" title="Java面试题整理"></a>Java面试题整理</h1><span id="more"></span>
@@ -206,6 +236,77 @@
       </tags>
   </entry>
   <entry>
+    <title>My First Post</title>
+    <url>/2023/05/25/14-22-46/</url>
+    <content><![CDATA[<h1 id="Hexo-GitHub搭建个人博客"><a href="#Hexo-GitHub搭建个人博客" class="headerlink" title="Hexo+GitHub搭建个人博客"></a>Hexo+GitHub搭建个人博客</h1><span id="more"></span>
+
+<h2 id="1、下载安装Node-js"><a href="#1、下载安装Node-js" class="headerlink" title="1、下载安装Node.js"></a>1、下载安装Node.js</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/1W157gtz4EAMA7yqB2jxNyw?pwd=tskj </span><br><span class="line">提取码：tskj</span><br></pre></td></tr></table></figure>
+
+<p>测试安装完成：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">win+r 输入cmd 进入命令行</span></span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、下载Git"><a href="#2、下载Git" class="headerlink" title="2、下载Git"></a>2、下载Git</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/1k2Um8-ls4vPdwS7kTH98IA?pwd=tskj </span><br><span class="line">提取码：tskj</span><br></pre></td></tr></table></figure>
+
+<p>测试安装完成：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">win+r 输入cmd进入命令行</span></span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、创建Github账号"><a href="#3、创建Github账号" class="headerlink" title="3、创建Github账号"></a>3、创建Github账号</h2><p>github账号创建较为简单，不再赘述。</p>
+<h2 id="4、连接GitHub"><a href="#4、连接GitHub" class="headerlink" title="4、连接GitHub"></a>4、连接GitHub</h2><ul>
+<li><p>设置用户名和邮箱</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">右击桌面 选择git bash here</span></span><br><span class="line">git config --global user.name &#x27;你的Github名&#x27;</span><br><span class="line">git config --global user.email &#x27;github邮箱&#x27;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成ssh密钥</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">右击桌面 选择git bash here</span></span><br><span class="line">ssh-keygen -t rsa -C &#x27;github邮箱&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">一路回车</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加密钥</p>
+<p>进入[C:\Users\用户名\ .ssh]目录(记得勾选显示隐藏文件)，用记事本打开id_rsa.pub文件并复制所有内容。</p>
+<p>登录github在setting种找到SSH and GPG keys，点击new SSH key。title随便取名，把剪切板内容粘贴到key种，点击Add SSH key完成。</p>
+</li>
+</ul>
+<h2 id="5、验证连接"><a href="#5、验证连接" class="headerlink" title="5、验证连接"></a>5、验证连接</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">桌面右击git bash here</span> </span><br><span class="line">ssh -T git@github.com</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">出现Are you sure 。。。输入<span class="built_in">yes</span>同意</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示Hi xxx！You are Successful。。代表成功</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6、创建GitHub-Page"><a href="#6、创建GitHub-Page" class="headerlink" title="6、创建GitHub Page"></a>6、创建GitHub Page</h2><p>GitHub主页右上角加号选择New repository</p>
+<ul>
+<li>Repository name中输入 用户名.github.io</li>
+<li>勾选 “Initialize this repository with a README”</li>
+<li>点击Create repository</li>
+</ul>
+<p>此时博客地址为https:&#x2F;&#x2F;用户名.github.io</p>
+<h2 id="7、本地安装Hexo"><a href="#7、本地安装Hexo" class="headerlink" title="7、本地安装Hexo"></a>7、本地安装Hexo</h2><h3 id="7-1安装Hexo"><a href="#7-1安装Hexo" class="headerlink" title="7.1安装Hexo"></a>7.1安装Hexo</h3><p>在本地创建文件夹后进入cmd</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-2初始化"><a href="#7-2初始化" class="headerlink" title="7.2初始化"></a>7.2初始化</h3><p>在hexo目录进入cmd</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">初始化并安装所需组件</span></span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后依次输入命令，启动本地服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo g # 生成页面</span><br><span class="line">hexo s # 启动预览</span><br></pre></td></tr></table></figure>
+
+<p>访问<a href="http://localhost:4000，出现Hexo默认页面，本地博客安装完成。（加载不出来可能是端口被占用了，Ctrl+C关闭服务，重新启动```hexo">http://localhost:4000，出现Hexo默认页面，本地博客安装完成。（加载不出来可能是端口被占用了，Ctrl+C关闭服务，重新启动```hexo</a> server -p 5000&#96;&#96;&#96;）</p>
+<p>Hexo的目录结构为：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">|- _config.yml  #网站的配置信息</span><br><span class="line">|- package.json #应用程序的信息</span><br><span class="line">|- scaffolds    #模板文件夹</span><br><span class="line">|- source       #存放用户的博客文件，markdown格式</span><br><span class="line">	|- _posts</span><br><span class="line">|- theme        #主题文件夹</span><br><span class="line">|- public       #网站文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="8、部署Hexo到GitHub-Pages"><a href="#8、部署Hexo到GitHub-Pages" class="headerlink" title="8、部署Hexo到GitHub Pages"></a>8、部署Hexo到GitHub Pages</h2><p>本地博客测试成功后，我们可以尝试上传到GitHub进行部署。</p>
+<h3 id="8-1安装hexo-deployer-git"><a href="#8-1安装hexo-deployer-git" class="headerlink" title="8.1安装hexo-deployer-git"></a>8.1安装hexo-deployer-git</h3><p>进入hexo所在目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-2修改-config-yml文件"><a href="#8-2修改-config-yml文件" class="headerlink" title="8.2修改_config.yml文件"></a>8.2修改_config.yml文件</h3><p>修改Hexo目录下的_config.yml文件，在文件末尾添加</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">	type: git</span><br><span class="line">	repository: git@github.com:用户名/用户名.github.io.git</span><br><span class="line">	branch: master</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-3上传部署"><a href="#8-3上传部署" class="headerlink" title="8.3上传部署"></a>8.3上传部署</h3><figure class="highlight plaintext"><figcaption><span>d```将网站上传到GitHub　Pages</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">此时我们通过https://用户名.github.io就可以访问了</span><br><span class="line"></span><br><span class="line">## 9、绑定域名</span><br><span class="line"></span><br><span class="line">### 9.1域名注册与解析</span><br><span class="line"></span><br><span class="line">我这里是通过腾讯云购买的域名，购买完成后在我的域名下可以通过解析进行域名解析。</span><br><span class="line"></span><br><span class="line">### 9.3域名解析</span><br><span class="line"></span><br><span class="line">输入cmd打开命令行，输入```ping 用户名.github.io```得到主机地址.</span><br><span class="line"></span><br><span class="line">![](./My-First-Post/QQ截图20230525152245.png)</span><br><span class="line"></span><br><span class="line">在域名解析中添加记录，主机记录为@,记录类型为A，记录值为主机地址，点击确认。</span><br><span class="line"></span><br><span class="line">再添加一条主机地址为www,记录类型为CNAME，记录值为```用户名.github.io```点击确认。</span><br><span class="line"></span><br><span class="line">- 再进入你的GitHub Pages</span><br><span class="line">- 点击settings</span><br><span class="line">- 点击pages</span><br><span class="line">- 找到Custom domain 输入你的域名地址不带www（比如abc.cn）</span><br><span class="line">- 将下方的Enforce HTTPS勾选</span><br><span class="line">- 在你的Hexo文件目录下的source下创建文本文件，名为CNAME保存为全部类型（不带.txt）。该文件内容为你的域名地址如：https://abc.cn</span><br><span class="line"></span><br><span class="line">## 10、使用</span><br><span class="line"></span><br><span class="line">### 10.1 发布文章</span><br><span class="line"></span><br><span class="line">进入博客目录所在</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line"># 创建博文</span><br><span class="line">hexo new &quot;My first text&quot;</span><br></pre></td></tr></table></figure>
+
+<p>完成后会在source目录下生成一个md文件</p>
+<p>写完后可以通过命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo g # 生成页面</span><br><span class="line">hexo d # 部署发布</span><br></pre></td></tr></table></figure>
+
+<p>当然也可以使用自己的md文件，只需要在文件开头加入Front-matter即可</p>
+<p>完成后的提交命令同上。</p>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nginx</title>
     <url>/2023/05/28/14-22-46/</url>
     <content><![CDATA[<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><span id="more"></span>
@@ -277,77 +378,6 @@
         <tag>Nginx</tag>
         <tag>反向代理</tag>
         <tag>负载均衡</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>My First Post</title>
-    <url>/2023/05/25/14-22-46/</url>
-    <content><![CDATA[<h1 id="Hexo-GitHub搭建个人博客"><a href="#Hexo-GitHub搭建个人博客" class="headerlink" title="Hexo+GitHub搭建个人博客"></a>Hexo+GitHub搭建个人博客</h1><span id="more"></span>
-
-<h2 id="1、下载安装Node-js"><a href="#1、下载安装Node-js" class="headerlink" title="1、下载安装Node.js"></a>1、下载安装Node.js</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/1W157gtz4EAMA7yqB2jxNyw?pwd=tskj </span><br><span class="line">提取码：tskj</span><br></pre></td></tr></table></figure>
-
-<p>测试安装完成：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">win+r 输入cmd 进入命令行</span></span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、下载Git"><a href="#2、下载Git" class="headerlink" title="2、下载Git"></a>2、下载Git</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/1k2Um8-ls4vPdwS7kTH98IA?pwd=tskj </span><br><span class="line">提取码：tskj</span><br></pre></td></tr></table></figure>
-
-<p>测试安装完成：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">win+r 输入cmd进入命令行</span></span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、创建Github账号"><a href="#3、创建Github账号" class="headerlink" title="3、创建Github账号"></a>3、创建Github账号</h2><p>github账号创建较为简单，不再赘述。</p>
-<h2 id="4、连接GitHub"><a href="#4、连接GitHub" class="headerlink" title="4、连接GitHub"></a>4、连接GitHub</h2><ul>
-<li><p>设置用户名和邮箱</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">右击桌面 选择git bash here</span></span><br><span class="line">git config --global user.name &#x27;你的Github名&#x27;</span><br><span class="line">git config --global user.email &#x27;github邮箱&#x27;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>生成ssh密钥</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">右击桌面 选择git bash here</span></span><br><span class="line">ssh-keygen -t rsa -C &#x27;github邮箱&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">一路回车</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加密钥</p>
-<p>进入[C:\Users\用户名\ .ssh]目录(记得勾选显示隐藏文件)，用记事本打开id_rsa.pub文件并复制所有内容。</p>
-<p>登录github在setting种找到SSH and GPG keys，点击new SSH key。title随便取名，把剪切板内容粘贴到key种，点击Add SSH key完成。</p>
-</li>
-</ul>
-<h2 id="5、验证连接"><a href="#5、验证连接" class="headerlink" title="5、验证连接"></a>5、验证连接</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">桌面右击git bash here</span> </span><br><span class="line">ssh -T git@github.com</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">出现Are you sure 。。。输入<span class="built_in">yes</span>同意</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示Hi xxx！You are Successful。。代表成功</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="6、创建GitHub-Page"><a href="#6、创建GitHub-Page" class="headerlink" title="6、创建GitHub Page"></a>6、创建GitHub Page</h2><p>GitHub主页右上角加号选择New repository</p>
-<ul>
-<li>Repository name中输入 用户名.github.io</li>
-<li>勾选 “Initialize this repository with a README”</li>
-<li>点击Create repository</li>
-</ul>
-<p>此时博客地址为https:&#x2F;&#x2F;用户名.github.io</p>
-<h2 id="7、本地安装Hexo"><a href="#7、本地安装Hexo" class="headerlink" title="7、本地安装Hexo"></a>7、本地安装Hexo</h2><h3 id="7-1安装Hexo"><a href="#7-1安装Hexo" class="headerlink" title="7.1安装Hexo"></a>7.1安装Hexo</h3><p>在本地创建文件夹后进入cmd</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<h3 id="7-2初始化"><a href="#7-2初始化" class="headerlink" title="7.2初始化"></a>7.2初始化</h3><p>在hexo目录进入cmd</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">初始化并安装所需组件</span></span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-<p>安装完成后依次输入命令，启动本地服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo g # 生成页面</span><br><span class="line">hexo s # 启动预览</span><br></pre></td></tr></table></figure>
-
-<p>访问<a href="http://localhost:4000，出现Hexo默认页面，本地博客安装完成。（加载不出来可能是端口被占用了，Ctrl+C关闭服务，重新启动```hexo">http://localhost:4000，出现Hexo默认页面，本地博客安装完成。（加载不出来可能是端口被占用了，Ctrl+C关闭服务，重新启动```hexo</a> server -p 5000&#96;&#96;&#96;）</p>
-<p>Hexo的目录结构为：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">|- _config.yml  #网站的配置信息</span><br><span class="line">|- package.json #应用程序的信息</span><br><span class="line">|- scaffolds    #模板文件夹</span><br><span class="line">|- source       #存放用户的博客文件，markdown格式</span><br><span class="line">	|- _posts</span><br><span class="line">|- theme        #主题文件夹</span><br><span class="line">|- public       #网站文件</span><br></pre></td></tr></table></figure>
-
-<h2 id="8、部署Hexo到GitHub-Pages"><a href="#8、部署Hexo到GitHub-Pages" class="headerlink" title="8、部署Hexo到GitHub Pages"></a>8、部署Hexo到GitHub Pages</h2><p>本地博客测试成功后，我们可以尝试上传到GitHub进行部署。</p>
-<h3 id="8-1安装hexo-deployer-git"><a href="#8-1安装hexo-deployer-git" class="headerlink" title="8.1安装hexo-deployer-git"></a>8.1安装hexo-deployer-git</h3><p>进入hexo所在目录</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<h3 id="8-2修改-config-yml文件"><a href="#8-2修改-config-yml文件" class="headerlink" title="8.2修改_config.yml文件"></a>8.2修改_config.yml文件</h3><p>修改Hexo目录下的_config.yml文件，在文件末尾添加</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">	type: git</span><br><span class="line">	repository: git@github.com:用户名/用户名.github.io.git</span><br><span class="line">	branch: master</span><br></pre></td></tr></table></figure>
-
-<h3 id="8-3上传部署"><a href="#8-3上传部署" class="headerlink" title="8.3上传部署"></a>8.3上传部署</h3><figure class="highlight plaintext"><figcaption><span>d```将网站上传到GitHub　Pages</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">此时我们通过https://用户名.github.io就可以访问了</span><br><span class="line"></span><br><span class="line">## 9、绑定域名</span><br><span class="line"></span><br><span class="line">### 9.1域名注册与解析</span><br><span class="line"></span><br><span class="line">我这里是通过腾讯云购买的域名，购买完成后在我的域名下可以通过解析进行域名解析。</span><br><span class="line"></span><br><span class="line">### 9.3域名解析</span><br><span class="line"></span><br><span class="line">输入cmd打开命令行，输入```ping 用户名.github.io```得到主机地址.</span><br><span class="line"></span><br><span class="line">![](./My-First-Post/QQ截图20230525152245.png)</span><br><span class="line"></span><br><span class="line">在域名解析中添加记录，主机记录为@,记录类型为A，记录值为主机地址，点击确认。</span><br><span class="line"></span><br><span class="line">再添加一条主机地址为www,记录类型为CNAME，记录值为```用户名.github.io```点击确认。</span><br><span class="line"></span><br><span class="line">- 再进入你的GitHub Pages</span><br><span class="line">- 点击settings</span><br><span class="line">- 点击pages</span><br><span class="line">- 找到Custom domain 输入你的域名地址不带www（比如abc.cn）</span><br><span class="line">- 将下方的Enforce HTTPS勾选</span><br><span class="line">- 在你的Hexo文件目录下的source下创建文本文件，名为CNAME保存为全部类型（不带.txt）。该文件内容为你的域名地址如：https://abc.cn</span><br><span class="line"></span><br><span class="line">## 10、使用</span><br><span class="line"></span><br><span class="line">### 10.1 发布文章</span><br><span class="line"></span><br><span class="line">进入博客目录所在</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line"># 创建博文</span><br><span class="line">hexo new &quot;My first text&quot;</span><br></pre></td></tr></table></figure>
-
-<p>完成后会在source目录下生成一个md文件</p>
-<p>写完后可以通过命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo g # 生成页面</span><br><span class="line">hexo d # 部署发布</span><br></pre></td></tr></table></figure>
-
-<p>当然也可以使用自己的md文件，只需要在文件开头加入Front-matter即可</p>
-<p>完成后的提交命令同上。</p>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>博客搭建</tag>
       </tags>
   </entry>
   <entry>
@@ -501,22 +531,74 @@
       </tags>
   </entry>
   <entry>
-    <title>TencentSMS</title>
-    <url>/2023/05/28/14-22-46/</url>
-    <content><![CDATA[<h1 id="腾讯云短信服务"><a href="#腾讯云短信服务" class="headerlink" title="腾讯云短信服务"></a>腾讯云短信服务</h1><span id="more"></span>
+    <title>Redis学习笔记</title>
+    <url>/2023/05/29/15-33-46/</url>
+    <content><![CDATA[<h1 id="Redis从入门到放弃"><a href="#Redis从入门到放弃" class="headerlink" title="Redis从入门到放弃"></a>Redis从入门到放弃</h1><h2 id="1、初识Redis"><a href="#1、初识Redis" class="headerlink" title="1、初识Redis"></a>1、初识Redis</h2><span id="more"></span>
 
-<ol>
-<li><p>maven依赖</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.tencentcloudapi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tencentcloud-sdk-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.0.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>发送验证码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">getSms</span><span class="params">(String phone)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">/* 必要步骤：</span></span><br><span class="line"><span class="comment">             * 实例化一个认证对象，入参需要传入腾讯云账户密钥对secretId，secretKey。</span></span><br><span class="line"><span class="comment">             * 这里采用的是从环境变量读取的方式，需要在环境变量中先设置这两个值。</span></span><br><span class="line"><span class="comment">             * 你也可以直接在代码中写死密钥对，但是小心不要将代码复制、上传或者分享给他人，</span></span><br><span class="line"><span class="comment">             * 以免泄露密钥对危及你的财产安全。</span></span><br><span class="line"><span class="comment">             * SecretId、SecretKey 查询: https://console.cloud.tencent.com/cam/capi */</span></span><br><span class="line">            <span class="type">Credential</span> <span class="variable">cred</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Credential</span>(secretId, secretKey);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 实例化一个http选项，可选，没有特殊需求可以跳过</span></span><br><span class="line">            <span class="type">HttpProfile</span> <span class="variable">httpProfile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HttpProfile</span>();</span><br><span class="line">            <span class="comment">// 设置代理（无需要直接忽略）</span></span><br><span class="line">            <span class="comment">// httpProfile.setProxyHost(&quot;真实代理ip&quot;);</span></span><br><span class="line">            <span class="comment">// httpProfile.setProxyPort(真实代理端口);</span></span><br><span class="line">            <span class="comment">/* SDK默认使用POST方法。</span></span><br><span class="line"><span class="comment">             * 如果你一定要使用GET方法，可以在这里设置。GET方法无法处理一些较大的请求 */</span></span><br><span class="line">            httpProfile.setReqMethod(<span class="string">&quot;POST&quot;</span>);</span><br><span class="line">            <span class="comment">/* SDK有默认的超时时间，非必要请不要进行调整</span></span><br><span class="line"><span class="comment">             * 如有需要请在代码中查阅以获取最新的默认值 */</span></span><br><span class="line">            httpProfile.setConnTimeout(<span class="number">60</span>);</span><br><span class="line">            <span class="comment">/* 指定接入地域域名，默认就近地域接入域名为 sms.tencentcloudapi.com ，也支持指定地域域名访问，例如广州地域的域名为 sms.ap-guangzhou.tencentcloudapi.com */</span></span><br><span class="line">            httpProfile.setEndpoint(<span class="string">&quot;sms.tencentcloudapi.com&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 非必要步骤:</span></span><br><span class="line"><span class="comment">             * 实例化一个客户端配置对象，可以指定超时时间等配置 */</span></span><br><span class="line">            <span class="type">ClientProfile</span> <span class="variable">clientProfile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClientProfile</span>();</span><br><span class="line">            <span class="comment">/* SDK默认用TC3-HMAC-SHA256进行签名</span></span><br><span class="line"><span class="comment">             * 非必要请不要修改这个字段 */</span></span><br><span class="line">            clientProfile.setSignMethod(<span class="string">&quot;HmacSHA256&quot;</span>);</span><br><span class="line">            clientProfile.setHttpProfile(httpProfile);</span><br><span class="line">            <span class="comment">/* 实例化要请求产品(以sms为例)的client对象</span></span><br><span class="line"><span class="comment">             * 第二个参数是地域信息，可以直接填写字符串ap-guangzhou，支持的地域列表参考 https://cloud.tencent.com/document/api/382/52071#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8 */</span></span><br><span class="line">            <span class="type">SmsClient</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SmsClient</span>(cred, <span class="string">&quot;ap-guangzhou&quot;</span>, clientProfile);</span><br><span class="line">            <span class="comment">/* 实例化一个请求对象，根据调用的接口和实际情况，可以进一步设置请求参数</span></span><br><span class="line"><span class="comment">             * 你可以直接查询SDK源码确定接口有哪些属性可以设置</span></span><br><span class="line"><span class="comment">             * 属性可能是基本类型，也可能引用了另一个数据结构</span></span><br><span class="line"><span class="comment">             * 推荐使用IDE进行开发，可以方便的跳转查阅各个接口和数据结构的文档说明 */</span></span><br><span class="line">            <span class="type">SendSmsRequest</span> <span class="variable">req</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SendSmsRequest</span>();</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 填充请求参数,这里request对象的成员变量即对应接口的入参</span></span><br><span class="line"><span class="comment">             * 你可以通过官网接口文档或跳转到request对象的定义处查看请求参数的定义</span></span><br><span class="line"><span class="comment">             * 基本类型的设置:</span></span><br><span class="line"><span class="comment">             * 帮助链接：</span></span><br><span class="line"><span class="comment">             * 短信控制台: https://console.cloud.tencent.com/smsv2</span></span><br><span class="line"><span class="comment">             * 腾讯云短信小助手: https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81 */</span></span><br><span class="line">            <span class="comment">/* 短信应用ID: 短信SdkAppId在 [短信控制台] 添加应用后生成的实际SdkAppId，示例如1400006666 */</span></span><br><span class="line">            <span class="comment">// 应用 ID 可前往 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage) 查看</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">sdkAppId</span> <span class="operator">=</span> <span class="string">&quot;1400811386&quot;</span>;</span><br><span class="line">            req.setSmsSdkAppid(sdkAppId);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 短信签名内容: 使用 UTF-8 编码，必须填写已审核通过的签名 */</span></span><br><span class="line">            <span class="comment">// 签名信息可前往 [国内短信](https://console.cloud.tencent.com/smsv2/csms-sign) 或 [国际/港澳台短信](https://console.cloud.tencent.com/smsv2/isms-sign) 的签名管理查看</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">signName</span> <span class="operator">=</span> <span class="string">&quot;韶华不为少年留公众号&quot;</span>;</span><br><span class="line">            req.setSign(signName);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 模板 ID: 必须填写已审核通过的模板 ID */</span></span><br><span class="line">            <span class="comment">// 模板 ID 可前往 [国内短信](https://console.cloud.tencent.com/smsv2/csms-template) 或 [国际/港澳台短信](https://console.cloud.tencent.com/smsv2/isms-template) 的正文模板管理查看</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">templateId</span> <span class="operator">=</span> <span class="string">&quot;1762054&quot;</span>;</span><br><span class="line">            req.setTemplateID(templateId);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 模板参数: 模板参数的个数需要与 TemplateId 对应模板的变量个数保持一致，若无模板参数，则设置为空 */</span></span><br><span class="line">            String[] templateParamSet = &#123;RandomUtils.getFourBitRandom()&#125;;</span><br><span class="line">            req.setTemplateParamSet(templateParamSet);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 下发手机号码，采用 E.164 标准，+[国家或地区码][手机号]</span></span><br><span class="line"><span class="comment">             * 示例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号，最多不要超过200个手机号 */</span></span><br><span class="line">            String[] phoneNumberSet = &#123;<span class="string">&quot;+86&quot;</span> + phone&#125;;</span><br><span class="line">            req.setPhoneNumberSet(phoneNumberSet);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 用户的 session 内容（无需要可忽略）: 可以携带用户侧 ID 等上下文信息，server 会原样返回 */</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">sessionContext</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">            req.setSessionContext(sessionContext);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 短信码号扩展号（无需要可忽略）: 默认未开通，如需开通请联系 [腾讯云短信小助手] */</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">extendCode</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">            req.setExtendCode(extendCode);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 国际/港澳台短信 SenderId（无需要可忽略）: 国内短信填空，默认未开通，如需开通请联系 [腾讯云短信小助手] */</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">senderid</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">            req.setSenderId(senderid);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 通过 client 对象调用 SendSms 方法发起请求。注意请求方法名与请求对象是对应的</span></span><br><span class="line"><span class="comment">             * 返回的 res 是一个 SendSmsResponse 类的实例，与请求对象对应 */</span></span><br><span class="line">            <span class="type">SendSmsResponse</span> <span class="variable">res</span> <span class="operator">=</span> client.SendSms(req);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 输出json格式的字符串回包</span></span><br><span class="line">            System.out.println(SendSmsResponse.toJsonString(res));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 也可以取出单个值，你可以通过官网接口文档或跳转到response对象的定义处查看返回字段的定义</span></span><br><span class="line">            <span class="comment">// System.out.println(res.getRequestId());</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 当出现以下错误码时，快速解决方案参考</span></span><br><span class="line"><span class="comment">             * [FailedOperation.SignatureIncorrectOrUnapproved](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Afailedoperation.signatureincorrectorunapproved-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)</span></span><br><span class="line"><span class="comment">             * [FailedOperation.TemplateIncorrectOrUnapproved](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Afailedoperation.templateincorrectorunapproved-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)</span></span><br><span class="line"><span class="comment">             * [UnauthorizedOperation.SmsSdkAppIdVerifyFail](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Aunauthorizedoperation.smssdkappidverifyfail-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)</span></span><br><span class="line"><span class="comment">             * [UnsupportedOperation.ContainDomesticAndInternationalPhoneNumber](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Aunsupportedoperation.containdomesticandinternationalphonenumber-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)</span></span><br><span class="line"><span class="comment">             * 更多错误，可咨询[腾讯云助手](https://tccc.qcloud.com/web/im/index.html#/chat?webAppId=8fa15978f85cb41f7e2ea36920cb3ae1&amp;title=Sms)</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (TencentCloudSDKException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
+<h3 id="1-1、SQL和NoSql区别"><a href="#1-1、SQL和NoSql区别" class="headerlink" title="1.1、SQL和NoSql区别"></a>1.1、SQL和NoSql区别</h3><p>SQL：关系型数据库</p>
+<p>NOSQL：非关系型数据库</p>
+<p>区别：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>SQL</th>
+<th>NOSQL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据结构</td>
+<td>结构化</td>
+<td>非结构化</td>
+</tr>
+<tr>
+<td>数据关联</td>
+<td>关联</td>
+<td>非关联</td>
+</tr>
+<tr>
+<td>查询方式</td>
+<td>SQL查询</td>
+<td>非SQL</td>
+</tr>
+<tr>
+<td>事务特性</td>
+<td>ACID</td>
+<td>BASE</td>
+</tr>
+<tr>
+<td>存储方式</td>
+<td>磁盘</td>
+<td>内存</td>
+</tr>
+<tr>
+<td>扩展性</td>
+<td>垂直</td>
+<td>水平</td>
+</tr>
+<tr>
+<td>使用场景</td>
+<td>1、数据结构固定<br>2、相对业务对数据安全性、一致性要求较高</td>
+<td>1、数据结构不固定<br>2、对一致性、安全性要求不高<br>3、对性能要求高</td>
+</tr>
+</tbody></table>
+<p>结构化：比如字段约束，约束后只能遵循约束规则存储</p>
+<p>非结构化：对存储的内容约束没那么多要求</p>
+<h3 id="1-2、认识Redis"><a href="#1-2、认识Redis" class="headerlink" title="1.2、认识Redis"></a>1.2、认识Redis</h3><p>Redis诞生于2009年，全称是Remote Dictionary Server，远程词典服务器，是一个基于内存的键值型NOSQL数据库。</p>
+<p>特征：</p>
+<ul>
+<li>键值(key-value)型：value支持多种不同数据结构，功能服务。</li>
+<li>单线程：每个命令具备原子性</li>
+<li>低延迟，速度快：基于内存，IO多路复用，良好的编码</li>
+<li>支持数据持久化：定期将数据从内存持久化到磁盘。</li>
+<li>支持主从集群、分片集群</li>
+<li>支持多语言客户端</li>
+</ul>
+<h3 id="1-3、安装Redis"><a href="#1-3、安装Redis" class="headerlink" title="1.3、安装Redis"></a>1.3、安装Redis</h3><h4 id="1-3-1"><a href="#1-3-1" class="headerlink" title="1.3.1"></a>1.3.1</h4>]]></content>
       <tags>
-        <tag>Java</tag>
-        <tag>腾讯云</tag>
-        <tag>短信服务</tag>
+        <tag>Redis</tag>
+        <tag>学习笔记</tag>
+        <tag>坚持</tag>
       </tags>
   </entry>
   <entry>
@@ -2219,6 +2301,25 @@
       <tags>
         <tag>Java</tag>
         <tag>Spring Cloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TencentSMS</title>
+    <url>/2023/05/28/14-22-46/</url>
+    <content><![CDATA[<h1 id="腾讯云短信服务"><a href="#腾讯云短信服务" class="headerlink" title="腾讯云短信服务"></a>腾讯云短信服务</h1><span id="more"></span>
+
+<ol>
+<li><p>maven依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.tencentcloudapi<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tencentcloud-sdk-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.0.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>发送验证码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">getSms</span><span class="params">(String phone)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">/* 必要步骤：</span></span><br><span class="line"><span class="comment">             * 实例化一个认证对象，入参需要传入腾讯云账户密钥对secretId，secretKey。</span></span><br><span class="line"><span class="comment">             * 这里采用的是从环境变量读取的方式，需要在环境变量中先设置这两个值。</span></span><br><span class="line"><span class="comment">             * 你也可以直接在代码中写死密钥对，但是小心不要将代码复制、上传或者分享给他人，</span></span><br><span class="line"><span class="comment">             * 以免泄露密钥对危及你的财产安全。</span></span><br><span class="line"><span class="comment">             * SecretId、SecretKey 查询: https://console.cloud.tencent.com/cam/capi */</span></span><br><span class="line">            <span class="type">Credential</span> <span class="variable">cred</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Credential</span>(secretId, secretKey);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 实例化一个http选项，可选，没有特殊需求可以跳过</span></span><br><span class="line">            <span class="type">HttpProfile</span> <span class="variable">httpProfile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HttpProfile</span>();</span><br><span class="line">            <span class="comment">// 设置代理（无需要直接忽略）</span></span><br><span class="line">            <span class="comment">// httpProfile.setProxyHost(&quot;真实代理ip&quot;);</span></span><br><span class="line">            <span class="comment">// httpProfile.setProxyPort(真实代理端口);</span></span><br><span class="line">            <span class="comment">/* SDK默认使用POST方法。</span></span><br><span class="line"><span class="comment">             * 如果你一定要使用GET方法，可以在这里设置。GET方法无法处理一些较大的请求 */</span></span><br><span class="line">            httpProfile.setReqMethod(<span class="string">&quot;POST&quot;</span>);</span><br><span class="line">            <span class="comment">/* SDK有默认的超时时间，非必要请不要进行调整</span></span><br><span class="line"><span class="comment">             * 如有需要请在代码中查阅以获取最新的默认值 */</span></span><br><span class="line">            httpProfile.setConnTimeout(<span class="number">60</span>);</span><br><span class="line">            <span class="comment">/* 指定接入地域域名，默认就近地域接入域名为 sms.tencentcloudapi.com ，也支持指定地域域名访问，例如广州地域的域名为 sms.ap-guangzhou.tencentcloudapi.com */</span></span><br><span class="line">            httpProfile.setEndpoint(<span class="string">&quot;sms.tencentcloudapi.com&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 非必要步骤:</span></span><br><span class="line"><span class="comment">             * 实例化一个客户端配置对象，可以指定超时时间等配置 */</span></span><br><span class="line">            <span class="type">ClientProfile</span> <span class="variable">clientProfile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClientProfile</span>();</span><br><span class="line">            <span class="comment">/* SDK默认用TC3-HMAC-SHA256进行签名</span></span><br><span class="line"><span class="comment">             * 非必要请不要修改这个字段 */</span></span><br><span class="line">            clientProfile.setSignMethod(<span class="string">&quot;HmacSHA256&quot;</span>);</span><br><span class="line">            clientProfile.setHttpProfile(httpProfile);</span><br><span class="line">            <span class="comment">/* 实例化要请求产品(以sms为例)的client对象</span></span><br><span class="line"><span class="comment">             * 第二个参数是地域信息，可以直接填写字符串ap-guangzhou，支持的地域列表参考 https://cloud.tencent.com/document/api/382/52071#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8 */</span></span><br><span class="line">            <span class="type">SmsClient</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SmsClient</span>(cred, <span class="string">&quot;ap-guangzhou&quot;</span>, clientProfile);</span><br><span class="line">            <span class="comment">/* 实例化一个请求对象，根据调用的接口和实际情况，可以进一步设置请求参数</span></span><br><span class="line"><span class="comment">             * 你可以直接查询SDK源码确定接口有哪些属性可以设置</span></span><br><span class="line"><span class="comment">             * 属性可能是基本类型，也可能引用了另一个数据结构</span></span><br><span class="line"><span class="comment">             * 推荐使用IDE进行开发，可以方便的跳转查阅各个接口和数据结构的文档说明 */</span></span><br><span class="line">            <span class="type">SendSmsRequest</span> <span class="variable">req</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SendSmsRequest</span>();</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 填充请求参数,这里request对象的成员变量即对应接口的入参</span></span><br><span class="line"><span class="comment">             * 你可以通过官网接口文档或跳转到request对象的定义处查看请求参数的定义</span></span><br><span class="line"><span class="comment">             * 基本类型的设置:</span></span><br><span class="line"><span class="comment">             * 帮助链接：</span></span><br><span class="line"><span class="comment">             * 短信控制台: https://console.cloud.tencent.com/smsv2</span></span><br><span class="line"><span class="comment">             * 腾讯云短信小助手: https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81 */</span></span><br><span class="line">            <span class="comment">/* 短信应用ID: 短信SdkAppId在 [短信控制台] 添加应用后生成的实际SdkAppId，示例如1400006666 */</span></span><br><span class="line">            <span class="comment">// 应用 ID 可前往 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage) 查看</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">sdkAppId</span> <span class="operator">=</span> <span class="string">&quot;1400811386&quot;</span>;</span><br><span class="line">            req.setSmsSdkAppid(sdkAppId);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 短信签名内容: 使用 UTF-8 编码，必须填写已审核通过的签名 */</span></span><br><span class="line">            <span class="comment">// 签名信息可前往 [国内短信](https://console.cloud.tencent.com/smsv2/csms-sign) 或 [国际/港澳台短信](https://console.cloud.tencent.com/smsv2/isms-sign) 的签名管理查看</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">signName</span> <span class="operator">=</span> <span class="string">&quot;韶华不为少年留公众号&quot;</span>;</span><br><span class="line">            req.setSign(signName);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 模板 ID: 必须填写已审核通过的模板 ID */</span></span><br><span class="line">            <span class="comment">// 模板 ID 可前往 [国内短信](https://console.cloud.tencent.com/smsv2/csms-template) 或 [国际/港澳台短信](https://console.cloud.tencent.com/smsv2/isms-template) 的正文模板管理查看</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">templateId</span> <span class="operator">=</span> <span class="string">&quot;1762054&quot;</span>;</span><br><span class="line">            req.setTemplateID(templateId);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 模板参数: 模板参数的个数需要与 TemplateId 对应模板的变量个数保持一致，若无模板参数，则设置为空 */</span></span><br><span class="line">            String[] templateParamSet = &#123;RandomUtils.getFourBitRandom()&#125;;</span><br><span class="line">            req.setTemplateParamSet(templateParamSet);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 下发手机号码，采用 E.164 标准，+[国家或地区码][手机号]</span></span><br><span class="line"><span class="comment">             * 示例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号，最多不要超过200个手机号 */</span></span><br><span class="line">            String[] phoneNumberSet = &#123;<span class="string">&quot;+86&quot;</span> + phone&#125;;</span><br><span class="line">            req.setPhoneNumberSet(phoneNumberSet);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 用户的 session 内容（无需要可忽略）: 可以携带用户侧 ID 等上下文信息，server 会原样返回 */</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">sessionContext</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">            req.setSessionContext(sessionContext);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 短信码号扩展号（无需要可忽略）: 默认未开通，如需开通请联系 [腾讯云短信小助手] */</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">extendCode</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">            req.setExtendCode(extendCode);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 国际/港澳台短信 SenderId（无需要可忽略）: 国内短信填空，默认未开通，如需开通请联系 [腾讯云短信小助手] */</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">senderid</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">            req.setSenderId(senderid);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 通过 client 对象调用 SendSms 方法发起请求。注意请求方法名与请求对象是对应的</span></span><br><span class="line"><span class="comment">             * 返回的 res 是一个 SendSmsResponse 类的实例，与请求对象对应 */</span></span><br><span class="line">            <span class="type">SendSmsResponse</span> <span class="variable">res</span> <span class="operator">=</span> client.SendSms(req);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 输出json格式的字符串回包</span></span><br><span class="line">            System.out.println(SendSmsResponse.toJsonString(res));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 也可以取出单个值，你可以通过官网接口文档或跳转到response对象的定义处查看返回字段的定义</span></span><br><span class="line">            <span class="comment">// System.out.println(res.getRequestId());</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 当出现以下错误码时，快速解决方案参考</span></span><br><span class="line"><span class="comment">             * [FailedOperation.SignatureIncorrectOrUnapproved](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Afailedoperation.signatureincorrectorunapproved-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)</span></span><br><span class="line"><span class="comment">             * [FailedOperation.TemplateIncorrectOrUnapproved](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Afailedoperation.templateincorrectorunapproved-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)</span></span><br><span class="line"><span class="comment">             * [UnauthorizedOperation.SmsSdkAppIdVerifyFail](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Aunauthorizedoperation.smssdkappidverifyfail-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)</span></span><br><span class="line"><span class="comment">             * [UnsupportedOperation.ContainDomesticAndInternationalPhoneNumber](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Aunsupportedoperation.containdomesticandinternationalphonenumber-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)</span></span><br><span class="line"><span class="comment">             * 更多错误，可咨询[腾讯云助手](https://tccc.qcloud.com/web/im/index.html#/chat?webAppId=8fa15978f85cb41f7e2ea36920cb3ae1&amp;title=Sms)</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (TencentCloudSDKException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>腾讯云</tag>
+        <tag>短信服务</tag>
       </tags>
   </entry>
 </search>
