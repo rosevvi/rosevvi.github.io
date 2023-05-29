@@ -1,8 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Docker</title>
+    <url>/2023/05/28/14-22-50/</url>
+    <content><![CDATA[<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><span id="more"></span>
+
+
+<p>Docker是一个开源的引用容器引擎</p>
+<h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><p>Docker可以运行在mac、windows、centos、等操作系统中，这里以centos为例</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#1、yum包更新到最新</span><br><span class="line">yum update</span><br><span class="line">#2、安装需要的软件包，yum-util提供yum-config-manager功能，另外两个是devicemapper驱动依赖的</span><br><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">#3、设置yum源</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">#4、安装docker，出现输入的界面都按y</span><br><span class="line">yum install -y docker -ce</span><br><span class="line">#5、查看docker版本，验证是否安装成功</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="配置Docker镜像加速器"><a href="#配置Docker镜像加速器" class="headerlink" title="配置Docker镜像加速器"></a>配置Docker镜像加速器</h2><p>默认情况下将从dockerhub（<a href="https://hub.docker.com）上下载docker镜像，太慢。一般都会配置镜像加速器：">https://hub.docker.com）上下载docker镜像，太慢。一般都会配置镜像加速器：</a></p>
+<ul>
+<li><p>USTC：中科大镜像加速器</p>
+</li>
+<li><p>阿里云</p>
+</li>
+<li><p>网易云</p>
+</li>
+<li><p>腾讯云</p>
+<p>在阿里云控制台找镜像配置文件</p>
+</li>
+</ul>
+<h2 id="Docker命令"><a href="#Docker命令" class="headerlink" title="Docker命令"></a>Docker命令</h2><h3 id="Docker服务相关命令"><a href="#Docker服务相关命令" class="headerlink" title="Docker服务相关命令"></a>Docker服务相关命令</h3><ul>
+<li><p>启动docker服务		   systemctl start docker</p>
+</li>
+<li><p>停止docker服务           systemctl stop docker</p>
+</li>
+<li><p>重启docker服务           systemctl restart docker</p>
+</li>
+<li><p>查看docker服务状态  systemctl status  docker</p>
+</li>
+<li><p>开机启动kocker服务   systemctl enable docker</p>
+</li>
+</ul>
+<h3 id="Docker镜像相关命令"><a href="#Docker镜像相关命令" class="headerlink" title="Docker镜像相关命令"></a>Docker镜像相关命令</h3><ul>
+<li><p>查看镜像     docker images</p>
+</li>
+<li><p>搜索镜像     docker search redis</p>
+</li>
+<li><p>拉取镜像     docker pull redis:版本号  冒号后面为版本号不写默认官方</p>
+</li>
+<li><p>删除镜像     docker rmi  id    id为查看镜像中的id，也可以通过名字：版本来删</p>
+</li>
+<li><p>删除所有镜像  docker rmi <code>docker images -q</code></p>
+</li>
+</ul>
+<h3 id="Docker容器相关命令"><a href="#Docker容器相关命令" class="headerlink" title="Docker容器相关命令"></a>Docker容器相关命令</h3><ul>
+<li><p>查看容器            docker ps  -a</p>
+<p>-a：查看所有容器  不屑就只看正在运行的容器</p>
+</li>
+<li><p>创建容器            docker run -it –name &#x3D; c1  &#x2F;bin&#x2F;bash</p>
+<p>-i：一直运行  -t：给容器分配伪终端来可以输入命令  –name&#x3D;名字  -d:后端创建容器（不直接进入容器，需要命令来进入容器）</p>
+</li>
+<li><p>进入容器            docker exec -it c2   &#x2F;bin&#x2F;bash</p>
+</li>
+<li><p>启动容器            docker start c2</p>
+</li>
+<li><p>停止容器             docker stop c2</p>
+</li>
+<li><p>删除容器             docker rm  c1</p>
+</li>
+<li><p>查看容器信息    docker inspect</p>
+</li>
+</ul>
+<h2 id="Docker容器的数据卷"><a href="#Docker容器的数据卷" class="headerlink" title="Docker容器的数据卷"></a>Docker容器的数据卷</h2><p>数据卷：数据卷是宿主机中的一个目录或文，当容器目录和数据卷的目录绑定后，对方的修改会立即同步，一个数据卷可以被多个容器同时挂载，一个容器也可以被挂在多个数据卷</p>
+<h3 id="配饰数据卷"><a href="#配饰数据卷" class="headerlink" title="配饰数据卷"></a>配饰数据卷</h3><ul>
+<li><p>创建启动容器时，使用-v参数设置数据卷</p>
+<p>docker run    -v 宿主机目录: 容器内目录</p>
+<p>tip:目录必须是绝对路径，如果目录不存在，会自动创建，可以挂在多个数据卷</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Docker</tag>
+        <tag>Java</tag>
+        <tag>容器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>InterView</title>
-    <url>/2023/05/28/14-22-46/</url>
+    <url>/2023/05/28/14-22-49/</url>
     <content><![CDATA[<h1 id="Java面试题整理"><a href="#Java面试题整理" class="headerlink" title="Java面试题整理"></a>Java面试题整理</h1><span id="more"></span>
 
 <h1 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h1><h2 id="1、Java-中有哪-8-种基本数据类型？它们的默认值和占⽤的空间⼤⼩知道不？-说说这-8-种基本数据类型对应-的包装类型。"><a href="#1、Java-中有哪-8-种基本数据类型？它们的默认值和占⽤的空间⼤⼩知道不？-说说这-8-种基本数据类型对应-的包装类型。" class="headerlink" title="1、Java 中有哪 8 种基本数据类型？它们的默认值和占⽤的空间⼤⼩知道不？ 说说这 8 种基本数据类型对应 的包装类型。"></a>1、Java 中有哪 8 种基本数据类型？它们的默认值和占⽤的空间⼤⼩知道不？ 说说这 8 种基本数据类型对应 的包装类型。</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">*</span> 6种基本类型：byte、short、int、long、double、float</span><br><span class="line"><span class="bullet">*</span> 1种布尔类型：boolean</span><br><span class="line"><span class="bullet">*</span> 1种字符类型：char</span><br><span class="line">** 包装类</span><br><span class="line">byte : Byte</span><br><span class="line">int : Integer</span><br><span class="line">short : Short</span><br><span class="line">long : Long</span><br><span class="line">float : Float</span><br><span class="line">double : Double</span><br><span class="line">char : Charater</span><br><span class="line">boolean : Boolean</span><br><span class="line">** 默认值</span><br><span class="line">byte = 0</span><br><span class="line">short = 0</span><br><span class="line">int = 0</span><br><span class="line">lang = 0L</span><br><span class="line">float = 0.0f</span><br><span class="line">double = 0.0d</span><br><span class="line">boolean = false</span><br><span class="line">char = null</span><br><span class="line">** 空间大小</span><br><span class="line">byte : 1</span><br><span class="line">short : 2</span><br><span class="line">int : 4</span><br><span class="line">lang : 8</span><br><span class="line">float : 4</span><br><span class="line">double :8</span><br><span class="line">char : 2</span><br></pre></td></tr></table></figure>
@@ -121,101 +199,23 @@
 
 ]]></content>
       <tags>
-        <tag>面试题</tag>
         <tag>Java</tag>
+        <tag>面试题</tag>
         <tag>面试</tag>
         <tag>八股文</tag>
       </tags>
   </entry>
   <entry>
-    <title>Docker</title>
-    <url>/2023/05/28/14-22-46/</url>
-    <content><![CDATA[<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><span id="more"></span>
-
-
-<p>Docker是一个开源的引用容器引擎</p>
-<h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><p>Docker可以运行在mac、windows、centos、等操作系统中，这里以centos为例</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#1、yum包更新到最新</span><br><span class="line">yum update</span><br><span class="line">#2、安装需要的软件包，yum-util提供yum-config-manager功能，另外两个是devicemapper驱动依赖的</span><br><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">#3、设置yum源</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">#4、安装docker，出现输入的界面都按y</span><br><span class="line">yum install -y docker -ce</span><br><span class="line">#5、查看docker版本，验证是否安装成功</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="配置Docker镜像加速器"><a href="#配置Docker镜像加速器" class="headerlink" title="配置Docker镜像加速器"></a>配置Docker镜像加速器</h2><p>默认情况下将从dockerhub（<a href="https://hub.docker.com）上下载docker镜像，太慢。一般都会配置镜像加速器：">https://hub.docker.com）上下载docker镜像，太慢。一般都会配置镜像加速器：</a></p>
-<ul>
-<li><p>USTC：中科大镜像加速器</p>
-</li>
-<li><p>阿里云</p>
-</li>
-<li><p>网易云</p>
-</li>
-<li><p>腾讯云</p>
-<p>在阿里云控制台找镜像配置文件</p>
-</li>
-</ul>
-<h2 id="Docker命令"><a href="#Docker命令" class="headerlink" title="Docker命令"></a>Docker命令</h2><h3 id="Docker服务相关命令"><a href="#Docker服务相关命令" class="headerlink" title="Docker服务相关命令"></a>Docker服务相关命令</h3><ul>
-<li><p>启动docker服务		   systemctl start docker</p>
-</li>
-<li><p>停止docker服务           systemctl stop docker</p>
-</li>
-<li><p>重启docker服务           systemctl restart docker</p>
-</li>
-<li><p>查看docker服务状态  systemctl status  docker</p>
-</li>
-<li><p>开机启动kocker服务   systemctl enable docker</p>
-</li>
-</ul>
-<h3 id="Docker镜像相关命令"><a href="#Docker镜像相关命令" class="headerlink" title="Docker镜像相关命令"></a>Docker镜像相关命令</h3><ul>
-<li><p>查看镜像     docker images</p>
-</li>
-<li><p>搜索镜像     docker search redis</p>
-</li>
-<li><p>拉取镜像     docker pull redis:版本号  冒号后面为版本号不写默认官方</p>
-</li>
-<li><p>删除镜像     docker rmi  id    id为查看镜像中的id，也可以通过名字：版本来删</p>
-</li>
-<li><p>删除所有镜像  docker rmi <code>docker images -q</code></p>
-</li>
-</ul>
-<h3 id="Docker容器相关命令"><a href="#Docker容器相关命令" class="headerlink" title="Docker容器相关命令"></a>Docker容器相关命令</h3><ul>
-<li><p>查看容器            docker ps  -a</p>
-<p>-a：查看所有容器  不屑就只看正在运行的容器</p>
-</li>
-<li><p>创建容器            docker run -it –name &#x3D; c1  &#x2F;bin&#x2F;bash</p>
-<p>-i：一直运行  -t：给容器分配伪终端来可以输入命令  –name&#x3D;名字  -d:后端创建容器（不直接进入容器，需要命令来进入容器）</p>
-</li>
-<li><p>进入容器            docker exec -it c2   &#x2F;bin&#x2F;bash</p>
-</li>
-<li><p>启动容器            docker start c2</p>
-</li>
-<li><p>停止容器             docker stop c2</p>
-</li>
-<li><p>删除容器             docker rm  c1</p>
-</li>
-<li><p>查看容器信息    docker inspect</p>
-</li>
-</ul>
-<h2 id="Docker容器的数据卷"><a href="#Docker容器的数据卷" class="headerlink" title="Docker容器的数据卷"></a>Docker容器的数据卷</h2><p>数据卷：数据卷是宿主机中的一个目录或文，当容器目录和数据卷的目录绑定后，对方的修改会立即同步，一个数据卷可以被多个容器同时挂载，一个容器也可以被挂在多个数据卷</p>
-<h3 id="配饰数据卷"><a href="#配饰数据卷" class="headerlink" title="配饰数据卷"></a>配饰数据卷</h3><ul>
-<li><p>创建启动容器时，使用-v参数设置数据卷</p>
-<p>docker run    -v 宿主机目录: 容器内目录</p>
-<p>tip:目录必须是绝对路径，如果目录不存在，会自动创建，可以挂在多个数据卷</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-        <tag>Docker</tag>
-        <tag>容器</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux安装Redis</title>
-    <url>/2023/05/29/15-32-46/</url>
+    <url>/2023/05/29/15-32-51/</url>
     <content><![CDATA[<h1 id="Linux下安装Redis"><a href="#Linux下安装Redis" class="headerlink" title="Linux下安装Redis"></a>Linux下安装Redis</h1><h2 id="1、下载Redis安装包"><a href="#1、下载Redis安装包" class="headerlink" title="1、下载Redis安装包"></a>1、下载Redis安装包</h2><p><strong>下载链接：<a href="https://redis.io/download/">下载 |雷迪斯 (redis.io)</a></strong></p>
 <span id="more"></span>
 
 <p>选择下载的版本，这里以最新版为例。默认下载就是linux下的安装包。</p>
-<img src="/2023/05/29/15-32-46/redis.png" style="zoom:25%;">
+<img src="/2023/05/29/15-32-51/redis.png" style="zoom:25%;">
 
 <h2 id="2、上传到linux下"><a href="#2、上传到linux下" class="headerlink" title="2、上传到linux下"></a>2、上传到linux下</h2><p>上传到linux下的usr&#x2F;local&#x2F;bin目录。这里使用FinalShell，直接从本地文件拖到目录下即可。</p>
-<img src="/2023/05/29/15-32-46/redis2.png" style="zoom:45%;">
+<img src="/2023/05/29/15-32-51/redis2.png" style="zoom:45%;">
 
 <h2 id="3、解压Redis"><a href="#3、解压Redis" class="headerlink" title="3、解压Redis"></a>3、解压Redis</h2><p>执行命令<code>tar -zxvf redis-7.0.11.tar.gz</code></p>
 <h2 id="4、安装环境依赖"><a href="#4、安装环境依赖" class="headerlink" title="4、安装环境依赖"></a>4、安装环境依赖</h2><p>因为redis需要c++的依赖支持，所以先安装依赖。</p>
@@ -236,7 +236,7 @@
       </tags>
   </entry>
   <entry>
-    <title>My First Post</title>
+    <title>Hexo+Github搭建个人博客</title>
     <url>/2023/05/25/14-22-46/</url>
     <content><![CDATA[<h1 id="Hexo-GitHub搭建个人博客"><a href="#Hexo-GitHub搭建个人博客" class="headerlink" title="Hexo+GitHub搭建个人博客"></a>Hexo+GitHub搭建个人博客</h1><span id="more"></span>
 
@@ -308,7 +308,7 @@
   </entry>
   <entry>
     <title>Nginx</title>
-    <url>/2023/05/28/14-22-46/</url>
+    <url>/2023/05/28/14-22-38/</url>
     <content><![CDATA[<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><span id="more"></span>
 
 <h2 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h2><p>​	nginx是一款轻量级的web服务器&#x2F;反向代理服务器及电子邮件代理服务器，其特点是占有内存少，并发能力强，事实上nginx的并发能力在同类型的网页服务器中表现较好。</p>
@@ -382,7 +382,7 @@
   </entry>
   <entry>
     <title>Redis</title>
-    <url>/2023/05/28/14-22-46/</url>
+    <url>/2023/05/28/14-22-22/</url>
     <content><![CDATA[<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><span id="more"></span>
 
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Redis是一个基于内存的key—value结构数据库</p>
@@ -532,7 +532,7 @@
   </entry>
   <entry>
     <title>Redis学习笔记</title>
-    <url>/2023/05/29/15-33-46/</url>
+    <url>/2023/05/29/15-33-02/</url>
     <content><![CDATA[<h1 id="Redis从入门到放弃"><a href="#Redis从入门到放弃" class="headerlink" title="Redis从入门到放弃"></a>Redis从入门到放弃</h1><h2 id="1、初识Redis"><a href="#1、初识Redis" class="headerlink" title="1、初识Redis"></a>1、初识Redis</h2><span id="more"></span>
 
 <h3 id="1-1、SQL和NoSql区别"><a href="#1-1、SQL和NoSql区别" class="headerlink" title="1.1、SQL和NoSql区别"></a>1.1、SQL和NoSql区别</h3><p>SQL：关系型数据库</p>
@@ -596,10 +596,10 @@
 </ul>
 <h3 id="1-3、安装Redis"><a href="#1-3、安装Redis" class="headerlink" title="1.3、安装Redis"></a>1.3、安装Redis</h3><h4 id="1-3-1、下载Redis安装包"><a href="#1-3-1、下载Redis安装包" class="headerlink" title="1.3.1、下载Redis安装包"></a>1.3.1、下载Redis安装包</h4><p><strong>下载链接：<a href="https://redis.io/download/">下载 |雷迪斯 (redis.io)</a></strong></p>
 <p>选择下载的版本，这里以最新版为例。默认下载就是linux下的安装包。</p>
-<img src="/2023/05/29/15-33-46/redis.png" style="zoom:25%;">
+<img src="/2023/05/29/15-33-02/redis.png" style="zoom:25%;">
 
 <h4 id="1-3-2、上传到linux下"><a href="#1-3-2、上传到linux下" class="headerlink" title="1.3.2、上传到linux下"></a>1.3.2、上传到linux下</h4><p>上传到linux下的usr&#x2F;local&#x2F;bin目录。这里使用FinalShell，直接从本地文件拖到目录下即可。</p>
-<img src="/2023/05/29/15-33-46/redis2.png" style="zoom:45%;">
+<img src="/2023/05/29/15-33-02/redis2.png" style="zoom:45%;">
 
 <h4 id="1-3-3、解压Redis"><a href="#1-3-3、解压Redis" class="headerlink" title="1.3.3、解压Redis"></a>1.3.3、解压Redis</h4><p>执行命令<code>tar -zxvf redis-7.0.11.tar.gz</code></p>
 <h4 id="1-3-4、安装环境依赖"><a href="#1-3-4、安装环境依赖" class="headerlink" title="1.3.4、安装环境依赖"></a>1.3.4、安装环境依赖</h4><p>因为redis需要c++的依赖支持，所以先安装依赖。</p>
@@ -624,7 +624,7 @@
   </entry>
   <entry>
     <title>TencentSMS</title>
-    <url>/2023/05/28/14-22-46/</url>
+    <url>/2023/05/28/14-21-33/</url>
     <content><![CDATA[<h1 id="腾讯云短信服务"><a href="#腾讯云短信服务" class="headerlink" title="腾讯云短信服务"></a>腾讯云短信服务</h1><span id="more"></span>
 
 <ol>
@@ -643,7 +643,7 @@
   </entry>
   <entry>
     <title>Spring Cloud</title>
-    <url>/2023/05/28/14-22-46/</url>
+    <url>/2023/05/28/14-22-08/</url>
     <content><![CDATA[<h1 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h1><span id="more"></span>
 
 <h2 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h2><h3 id="什么是微服务？"><a href="#什么是微服务？" class="headerlink" title="什么是微服务？"></a>什么是微服务？</h3><p>微服务不等于springcloud，微服务是一种经过良好架构设计的分布架构方案，微服务架构特征：</p>

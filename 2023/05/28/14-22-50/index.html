@@ -19,32 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"rosevvi.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.16.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Linux下安装Redis1、下载Redis安装包下载链接：下载 |雷迪斯 (redis.io)">
+    <meta name="description" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux安装Redis">
-<meta property="og:url" content="http://rosevvi.cn/2023/05/29/15-32-46/index.html">
+<meta property="og:title" content="Docker">
+<meta property="og:url" content="http://rosevvi.cn/2023/05/28/14-22-50/index.html">
 <meta property="og:site_name" content="Rosevvi">
-<meta property="og:description" content="Linux下安装Redis1、下载Redis安装包下载链接：下载 |雷迪斯 (redis.io)">
+<meta property="og:description" content="Docker">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://rosevvi.cn/2023/05/29/15-32-46/redis.png">
-<meta property="og:image" content="http://rosevvi.cn/2023/05/29/15-32-46/redis2.png">
-<meta property="article:published_time" content="2023-05-29T07:32:46.000Z">
-<meta property="article:modified_time" content="2023-05-29T07:38:41.421Z">
+<meta property="article:published_time" content="2023-05-28T06:22:50.000Z">
+<meta property="article:modified_time" content="2023-05-29T12:16:55.507Z">
 <meta property="article:author" content="rosevvi">
-<meta property="article:tag" content="Linux">
-<meta property="article:tag" content="Redis">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="容器">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://rosevvi.cn/2023/05/29/15-32-46/redis.png">
 
 
-<link rel="canonical" href="http://rosevvi.cn/2023/05/29/15-32-46/">
+<link rel="canonical" href="http://rosevvi.cn/2023/05/28/14-22-50/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://rosevvi.cn/2023/05/29/15-32-46/","path":"2023/05/29/15-32-46/","title":"Linux安装Redis"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://rosevvi.cn/2023/05/28/14-22-50/","path":"2023/05/28/14-22-50/","title":"Docker"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Linux安装Redis | Rosevvi</title>
+<title>Docker | Rosevvi</title>
   
 
 
@@ -144,7 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux%E4%B8%8B%E5%AE%89%E8%A3%85Redis"><span class="nav-number">1.</span> <span class="nav-text">Linux下安装Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E4%B8%8B%E8%BD%BDRedis%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-number">1.1.</span> <span class="nav-text">1、下载Redis安装包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E4%B8%8A%E4%BC%A0%E5%88%B0linux%E4%B8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">2、上传到linux下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E8%A7%A3%E5%8E%8BRedis"><span class="nav-number">1.3.</span> <span class="nav-text">3、解压Redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83%E4%BE%9D%E8%B5%96"><span class="nav-number">1.4.</span> <span class="nav-text">4、安装环境依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E5%90%AF%E5%8A%A8redis"><span class="nav-number">1.5.</span> <span class="nav-text">5、启动redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81%E8%AE%BE%E7%BD%AE%E5%AF%86%E7%A0%81"><span class="nav-number">1.6.</span> <span class="nav-text">6、设置密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81%E8%AE%BE%E7%BD%AE%E5%90%8E%E5%8F%B0%E5%90%AF%E5%8A%A8"><span class="nav-number">1.7.</span> <span class="nav-text">7、设置后台启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8%E3%80%81%E6%A0%B9%E6%8D%AE%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%90%AF%E5%8A%A8Redis"><span class="nav-number">1.8.</span> <span class="nav-text">8、根据配置文件启动Redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9%E3%80%81%E5%90%AF%E5%8A%A8redis-cli"><span class="nav-number">1.9.</span> <span class="nav-text">9、启动redis.cli</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker"><span class="nav-number">1.</span> <span class="nav-text">Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Docker"><span class="nav-number">1.1.</span> <span class="nav-text">安装Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEDocker%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8"><span class="nav-number">1.2.</span> <span class="nav-text">配置Docker镜像加速器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E5%91%BD%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">Docker命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-number">1.3.1.</span> <span class="nav-text">Docker服务相关命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E9%95%9C%E5%83%8F%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-number">1.3.2.</span> <span class="nav-text">Docker镜像相关命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-number">1.3.3.</span> <span class="nav-text">Docker容器相关命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E5%AE%B9%E5%99%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="nav-number">1.4.</span> <span class="nav-text">Docker容器的数据卷</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E9%A5%B0%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="nav-number">1.4.1.</span> <span class="nav-text">配饰数据卷</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -200,7 +198,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://rosevvi.cn/2023/05/29/15-32-46/">
+    <link itemprop="mainEntityOfPage" href="http://rosevvi.cn/2023/05/28/14-22-50/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/gzh.jpg">
@@ -213,12 +211,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Linux安装Redis | Rosevvi">
+      <meta itemprop="name" content="Docker | Rosevvi">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Linux安装Redis
+          Docker
         </h1>
 
         <div class="post-meta-container">
@@ -228,9 +226,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-05-29 15:32:46 / 修改时间：15:38:41" itemprop="dateCreated datePublished" datetime="2023-05-29T15:32:46+08:00">2023-05-29</time>
+      <time title="创建时间：2023-05-28 14:22:50" itemprop="dateCreated datePublished" datetime="2023-05-28T14:22:50+08:00">2023-05-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-29 20:16:55" itemprop="dateModified" datetime="2023-05-29T20:16:55+08:00">2023-05-29</time>
     </span>
 
   
@@ -240,14 +244,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>700</span>
+      <span>1.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -257,27 +261,74 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="Linux下安装Redis"><a href="#Linux下安装Redis" class="headerlink" title="Linux下安装Redis"></a>Linux下安装Redis</h1><h2 id="1、下载Redis安装包"><a href="#1、下载Redis安装包" class="headerlink" title="1、下载Redis安装包"></a>1、下载Redis安装包</h2><p><strong>下载链接：<a target="_blank" rel="noopener" href="https://redis.io/download/">下载 |雷迪斯 (redis.io)</a></strong></p>
-<span id="more"></span>
+    <div class="post-body" itemprop="articleBody"><h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><span id="more"></span>
 
-<p>选择下载的版本，这里以最新版为例。默认下载就是linux下的安装包。</p>
-<img src="/2023/05/29/15-32-46/redis.png" style="zoom:25%;">
 
-<h2 id="2、上传到linux下"><a href="#2、上传到linux下" class="headerlink" title="2、上传到linux下"></a>2、上传到linux下</h2><p>上传到linux下的usr&#x2F;local&#x2F;bin目录。这里使用FinalShell，直接从本地文件拖到目录下即可。</p>
-<img src="/2023/05/29/15-32-46/redis2.png" style="zoom:45%;">
+<p>Docker是一个开源的引用容器引擎</p>
+<h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><p>Docker可以运行在mac、windows、centos、等操作系统中，这里以centos为例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#1、yum包更新到最新</span><br><span class="line">yum update</span><br><span class="line">#2、安装需要的软件包，yum-util提供yum-config-manager功能，另外两个是devicemapper驱动依赖的</span><br><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">#3、设置yum源</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">#4、安装docker，出现输入的界面都按y</span><br><span class="line">yum install -y docker -ce</span><br><span class="line">#5、查看docker版本，验证是否安装成功</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h2 id="3、解压Redis"><a href="#3、解压Redis" class="headerlink" title="3、解压Redis"></a>3、解压Redis</h2><p>执行命令<code>tar -zxvf redis-7.0.11.tar.gz</code></p>
-<h2 id="4、安装环境依赖"><a href="#4、安装环境依赖" class="headerlink" title="4、安装环境依赖"></a>4、安装环境依赖</h2><p>因为redis需要c++的依赖支持，所以先安装依赖。</p>
-<p>在&#x2F;usr&#x2F;local&#x2F;bin目录下执行命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装依赖</span></span><br><span class="line">yum install gcc-c++</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看依赖安装是否成功gcc-v 最后一行出现gcc版本号即是安装成功</span></span><br><span class="line">gcc -v</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置所有文件</span></span><br><span class="line">make</span><br><span class="line">make PREFIX=/usr/local/bin install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="5、启动redis"><a href="#5、启动redis" class="headerlink" title="5、启动redis"></a>5、启动redis</h2><p>进入redis目录下的src下执行命令<code>redis-server</code>即可启动Redis。</p>
-<h2 id="6、设置密码"><a href="#6、设置密码" class="headerlink" title="6、设置密码"></a>6、设置密码</h2><p>修改Redis目录下的redis.conf文件<code>ctrl+f</code>查找requirepass。</p>
-<p>将requirepass取消注释，设置自己的密码，比如<code>requirepass  root</code></p>
-<h2 id="7、设置后台启动"><a href="#7、设置后台启动" class="headerlink" title="7、设置后台启动"></a>7、设置后台启动</h2><p>修改Redis目录下的redis.conf文件ctrl+f查找daemonize。</p>
-<p>将<code>daemonize no</code> 改为<code>daemonize yes</code></p>
-<h2 id="8、根据配置文件启动Redis"><a href="#8、根据配置文件启动Redis" class="headerlink" title="8、根据配置文件启动Redis"></a>8、根据配置文件启动Redis</h2><p>定位到Redis目录下的src目录下,执行<code>redis-server ../redis.conf</code></p>
-<h2 id="9、启动redis-cli"><a href="#9、启动redis-cli" class="headerlink" title="9、启动redis.cli"></a>9、启动redis.cli</h2><p>定位到Redis目录下的src目录下,执行<code>redis-cli</code></p>
+<h2 id="配置Docker镜像加速器"><a href="#配置Docker镜像加速器" class="headerlink" title="配置Docker镜像加速器"></a>配置Docker镜像加速器</h2><p>默认情况下将从dockerhub（<a href="https://hub.docker.com）上下载docker镜像，太慢。一般都会配置镜像加速器：">https://hub.docker.com）上下载docker镜像，太慢。一般都会配置镜像加速器：</a></p>
+<ul>
+<li><p>USTC：中科大镜像加速器</p>
+</li>
+<li><p>阿里云</p>
+</li>
+<li><p>网易云</p>
+</li>
+<li><p>腾讯云</p>
+<p>在阿里云控制台找镜像配置文件</p>
+</li>
+</ul>
+<h2 id="Docker命令"><a href="#Docker命令" class="headerlink" title="Docker命令"></a>Docker命令</h2><h3 id="Docker服务相关命令"><a href="#Docker服务相关命令" class="headerlink" title="Docker服务相关命令"></a>Docker服务相关命令</h3><ul>
+<li><p>启动docker服务		   systemctl start docker</p>
+</li>
+<li><p>停止docker服务           systemctl stop docker</p>
+</li>
+<li><p>重启docker服务           systemctl restart docker</p>
+</li>
+<li><p>查看docker服务状态  systemctl status  docker</p>
+</li>
+<li><p>开机启动kocker服务   systemctl enable docker</p>
+</li>
+</ul>
+<h3 id="Docker镜像相关命令"><a href="#Docker镜像相关命令" class="headerlink" title="Docker镜像相关命令"></a>Docker镜像相关命令</h3><ul>
+<li><p>查看镜像     docker images</p>
+</li>
+<li><p>搜索镜像     docker search redis</p>
+</li>
+<li><p>拉取镜像     docker pull redis:版本号  冒号后面为版本号不写默认官方</p>
+</li>
+<li><p>删除镜像     docker rmi  id    id为查看镜像中的id，也可以通过名字：版本来删</p>
+</li>
+<li><p>删除所有镜像  docker rmi <code>docker images -q</code></p>
+</li>
+</ul>
+<h3 id="Docker容器相关命令"><a href="#Docker容器相关命令" class="headerlink" title="Docker容器相关命令"></a>Docker容器相关命令</h3><ul>
+<li><p>查看容器            docker ps  -a</p>
+<p>-a：查看所有容器  不屑就只看正在运行的容器</p>
+</li>
+<li><p>创建容器            docker run -it –name &#x3D; c1  &#x2F;bin&#x2F;bash</p>
+<p>-i：一直运行  -t：给容器分配伪终端来可以输入命令  –name&#x3D;名字  -d:后端创建容器（不直接进入容器，需要命令来进入容器）</p>
+</li>
+<li><p>进入容器            docker exec -it c2   &#x2F;bin&#x2F;bash</p>
+</li>
+<li><p>启动容器            docker start c2</p>
+</li>
+<li><p>停止容器             docker stop c2</p>
+</li>
+<li><p>删除容器             docker rm  c1</p>
+</li>
+<li><p>查看容器信息    docker inspect</p>
+</li>
+</ul>
+<h2 id="Docker容器的数据卷"><a href="#Docker容器的数据卷" class="headerlink" title="Docker容器的数据卷"></a>Docker容器的数据卷</h2><p>数据卷：数据卷是宿主机中的一个目录或文，当容器目录和数据卷的目录绑定后，对方的修改会立即同步，一个数据卷可以被多个容器同时挂载，一个容器也可以被挂在多个数据卷</p>
+<h3 id="配饰数据卷"><a href="#配饰数据卷" class="headerlink" title="配饰数据卷"></a>配饰数据卷</h3><ul>
+<li><p>创建启动容器时，使用-v参数设置数据卷</p>
+<p>docker run    -v 宿主机目录: 容器内目录</p>
+<p>tip:目录必须是绝对路径，如果目录不存在，会自动创建，可以挂在多个数据卷</p>
+</li>
+</ul>
 
     </div>
 
@@ -302,7 +353,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://rosevvi.cn/2023/05/29/15-32-46/" title="Linux安装Redis">http://rosevvi.cn/2023/05/29/15-32-46/</a>
+      <a href="http://rosevvi.cn/2023/05/28/14-22-50/" title="Docker">http://rosevvi.cn/2023/05/28/14-22-50/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -311,21 +362,22 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"># Linux</a>
-              <a href="/tags/Redis/" rel="tag"># Redis</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/%E5%AE%B9%E5%99%A8/" rel="tag"># 容器</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/05/28/14-22-46/" rel="prev" title="InterView">
+                <a href="/2023/05/28/14-22-49/" rel="prev" title="InterView">
                   <i class="fa fa-chevron-left"></i> InterView
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/05/29/15-33-46/" rel="next" title="Redis学习笔记">
-                  Redis学习笔记 <i class="fa fa-chevron-right"></i>
+                <a href="/2023/05/29/15-32-51/" rel="next" title="Linux安装Redis">
+                  Linux安装Redis <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
