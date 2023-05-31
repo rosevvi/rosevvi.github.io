@@ -381,98 +381,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Redis学习笔记</title>
-    <url>/2023/05/29/15-33-02/</url>
-    <content><![CDATA[<h1 id="Redis从入门到放弃"><a href="#Redis从入门到放弃" class="headerlink" title="Redis从入门到放弃"></a>Redis从入门到放弃</h1><h2 id="1、初识Redis"><a href="#1、初识Redis" class="headerlink" title="1、初识Redis"></a>1、初识Redis</h2><span id="more"></span>
-
-<h3 id="1-1、SQL和NoSql区别"><a href="#1-1、SQL和NoSql区别" class="headerlink" title="1.1、SQL和NoSql区别"></a>1.1、SQL和NoSql区别</h3><p>SQL：关系型数据库</p>
-<p>NOSQL：非关系型数据库</p>
-<p>区别：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>SQL</th>
-<th>NOSQL</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>数据结构</td>
-<td>结构化</td>
-<td>非结构化</td>
-</tr>
-<tr>
-<td>数据关联</td>
-<td>关联</td>
-<td>非关联</td>
-</tr>
-<tr>
-<td>查询方式</td>
-<td>SQL查询</td>
-<td>非SQL</td>
-</tr>
-<tr>
-<td>事务特性</td>
-<td>ACID</td>
-<td>BASE</td>
-</tr>
-<tr>
-<td>存储方式</td>
-<td>磁盘</td>
-<td>内存</td>
-</tr>
-<tr>
-<td>扩展性</td>
-<td>垂直</td>
-<td>水平</td>
-</tr>
-<tr>
-<td>使用场景</td>
-<td>1、数据结构固定<br>2、相对业务对数据安全性、一致性要求较高</td>
-<td>1、数据结构不固定<br>2、对一致性、安全性要求不高<br>3、对性能要求高</td>
-</tr>
-</tbody></table>
-<p>结构化：比如字段约束，约束后只能遵循约束规则存储</p>
-<p>非结构化：对存储的内容约束没那么多要求</p>
-<h3 id="1-2、认识Redis"><a href="#1-2、认识Redis" class="headerlink" title="1.2、认识Redis"></a>1.2、认识Redis</h3><p>Redis诞生于2009年，全称是Remote Dictionary Server，远程词典服务器，是一个基于内存的键值型NOSQL数据库。</p>
-<p>特征：</p>
-<ul>
-<li>键值(key-value)型：value支持多种不同数据结构，功能服务。</li>
-<li>单线程：每个命令具备原子性</li>
-<li>低延迟，速度快：基于内存，IO多路复用，良好的编码</li>
-<li>支持数据持久化：定期将数据从内存持久化到磁盘。</li>
-<li>支持主从集群、分片集群</li>
-<li>支持多语言客户端</li>
-</ul>
-<h3 id="1-3、安装Redis"><a href="#1-3、安装Redis" class="headerlink" title="1.3、安装Redis"></a>1.3、安装Redis</h3><h4 id="1-3-1、下载Redis安装包"><a href="#1-3-1、下载Redis安装包" class="headerlink" title="1.3.1、下载Redis安装包"></a>1.3.1、下载Redis安装包</h4><p><strong>下载链接：<a href="https://redis.io/download/">下载 |雷迪斯 (redis.io)</a></strong></p>
-<p>选择下载的版本，这里以最新版为例。默认下载就是linux下的安装包。</p>
-<img src="/2023/05/29/15-33-02/redis.png" style="zoom:25%;">
-
-<h4 id="1-3-2、上传到linux下"><a href="#1-3-2、上传到linux下" class="headerlink" title="1.3.2、上传到linux下"></a>1.3.2、上传到linux下</h4><p>上传到linux下的usr&#x2F;local&#x2F;bin目录。这里使用FinalShell，直接从本地文件拖到目录下即可。</p>
-<img src="/2023/05/29/15-33-02/redis2.png" style="zoom:45%;">
-
-<h4 id="1-3-3、解压Redis"><a href="#1-3-3、解压Redis" class="headerlink" title="1.3.3、解压Redis"></a>1.3.3、解压Redis</h4><p>执行命令<code>tar -zxvf redis-7.0.11.tar.gz</code></p>
-<h4 id="1-3-4、安装环境依赖"><a href="#1-3-4、安装环境依赖" class="headerlink" title="1.3.4、安装环境依赖"></a>1.3.4、安装环境依赖</h4><p>因为redis需要c++的依赖支持，所以先安装依赖。</p>
-<p>在&#x2F;usr&#x2F;local&#x2F;bin目录下执行命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装依赖</span></span><br><span class="line">yum install gcc-c++</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看依赖安装是否成功gcc-v 最后一行出现gcc版本号即是安装成功</span></span><br><span class="line">gcc -v</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置所有文件</span></span><br><span class="line">make</span><br><span class="line">make PREFIX=/usr/local/bin install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-3-5、启动redis"><a href="#1-3-5、启动redis" class="headerlink" title="1.3.5、启动redis"></a>1.3.5、启动redis</h4><p>进入redis目录下的src下执行命令<code>redis-server</code>即可启动Redis。</p>
-<h4 id="1-3-6、设置密码"><a href="#1-3-6、设置密码" class="headerlink" title="1.3.6、设置密码"></a>1.3.6、设置密码</h4><p>修改Redis目录下的redis.conf文件<code>ctrl+f</code>查找requirepass。</p>
-<p>将requirepass取消注释，设置自己的密码，比如<code>requirepass  root</code></p>
-<h4 id="1-3-7、设置后台启动"><a href="#1-3-7、设置后台启动" class="headerlink" title="1.3.7、设置后台启动"></a>1.3.7、设置后台启动</h4><p>修改Redis目录下的redis.conf文件ctrl+f查找daemonize。</p>
-<p>将<code>daemonize no</code> 改为<code>daemonize yes</code></p>
-<h4 id="1-3-8、根据配置文件启动Redis"><a href="#1-3-8、根据配置文件启动Redis" class="headerlink" title="1.3.8、根据配置文件启动Redis"></a>1.3.8、根据配置文件启动Redis</h4><p>定位到Redis目录下的src目录下,执行<code>redis-server ../redis.conf</code></p>
-<h4 id="1-3-9、启动redis-cli"><a href="#1-3-9、启动redis-cli" class="headerlink" title="1.3.9、启动redis.cli"></a>1.3.9、启动redis.cli</h4><p>定位到Redis目录下的src目录下,执行<code>redis-cli</code></p>
-<h4 id="1-3-10、Redis其他常见配置："><a href="#1-3-10、Redis其他常见配置：" class="headerlink" title="1.3.10、Redis其他常见配置："></a>1.3.10、Redis其他常见配置：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">监听的端口</span></span><br><span class="line">port 6379</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">工作目录，默认是当前目录，也就是运行redis-server时的命令，日志、持久化等文件会保存在这个目录</span></span><br><span class="line">dir .</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">数据库数量，设置为1，代表只使用1个库，默认有16个，编号0-15</span></span><br><span class="line">database 1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置redis能够使用的最大内存</span></span><br><span class="line">maxmemory 512mb</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">日志文件，默认为空，不记录日志，可以指定日志文件名</span></span><br><span class="line">logfile &quot;redis.log&quot;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>Redis</tag>
-        <tag>学习笔记</tag>
-        <tag>坚持</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Redis</title>
     <url>/2023/05/28/14-22-22/</url>
     <content><![CDATA[<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><span id="more"></span>
@@ -620,6 +528,485 @@
         <tag>Java</tag>
         <tag>Redis</tag>
         <tag>缓存</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis学习笔记</title>
+    <url>/2023/05/29/15-33-02/</url>
+    <content><![CDATA[<h1 id="Redis从入门到放弃"><a href="#Redis从入门到放弃" class="headerlink" title="Redis从入门到放弃"></a>Redis从入门到放弃</h1><p>引言：笔记为作者自学[黑马程序员Redis从入门到实战]课程笔记，记录学习Redis的过程。</p>
+<span id="more"></span>
+
+<p>资源:链接：<a href="https://pan.baidu.com/s/1S-twQ--MzJEPJlIq1lwP6w?pwd=tskj">https://pan.baidu.com/s/1S-twQ--MzJEPJlIq1lwP6w?pwd=tskj</a><br>         提取码：tskj</p>
+<p>资源只有代码及资料，没有课程视频。</p>
+<h2 id="1、初识Redis"><a href="#1、初识Redis" class="headerlink" title="1、初识Redis"></a>1、初识Redis</h2><h3 id="1-1、SQL和NoSql区别"><a href="#1-1、SQL和NoSql区别" class="headerlink" title="1.1、SQL和NoSql区别"></a>1.1、SQL和NoSql区别</h3><p>SQL：关系型数据库</p>
+<p>NOSQL：非关系型数据库</p>
+<p>区别：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>SQL</th>
+<th>NOSQL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据结构</td>
+<td>结构化</td>
+<td>非结构化</td>
+</tr>
+<tr>
+<td>数据关联</td>
+<td>关联</td>
+<td>非关联</td>
+</tr>
+<tr>
+<td>查询方式</td>
+<td>SQL查询</td>
+<td>非SQL</td>
+</tr>
+<tr>
+<td>事务特性</td>
+<td>ACID</td>
+<td>BASE</td>
+</tr>
+<tr>
+<td>存储方式</td>
+<td>磁盘</td>
+<td>内存</td>
+</tr>
+<tr>
+<td>扩展性</td>
+<td>垂直</td>
+<td>水平</td>
+</tr>
+<tr>
+<td>使用场景</td>
+<td>1、数据结构固定<br>2、相对业务对数据安全性、一致性要求较高</td>
+<td>1、数据结构不固定<br>2、对一致性、安全性要求不高<br>3、对性能要求高</td>
+</tr>
+</tbody></table>
+<p>结构化：比如字段约束，约束后只能遵循约束规则存储</p>
+<p>非结构化：对存储的内容约束没那么多要求</p>
+<h3 id="1-2、认识Redis"><a href="#1-2、认识Redis" class="headerlink" title="1.2、认识Redis"></a>1.2、认识Redis</h3><p>Redis诞生于2009年，全称是Remote Dictionary Server，远程词典服务器，是一个基于内存的键值型NOSQL数据库。</p>
+<p>特征：</p>
+<ul>
+<li>键值(key-value)型：value支持多种不同数据结构，功能服务。</li>
+<li>单线程：每个命令具备原子性</li>
+<li>低延迟，速度快：基于内存，IO多路复用，良好的编码</li>
+<li>支持数据持久化：定期将数据从内存持久化到磁盘。</li>
+<li>支持主从集群、分片集群</li>
+<li>支持多语言客户端</li>
+</ul>
+<h3 id="1-3、安装Redis"><a href="#1-3、安装Redis" class="headerlink" title="1.3、安装Redis"></a>1.3、安装Redis</h3><h4 id="1-3-1、下载Redis安装包"><a href="#1-3-1、下载Redis安装包" class="headerlink" title="1.3.1、下载Redis安装包"></a>1.3.1、下载Redis安装包</h4><p><strong>下载链接：<a href="https://redis.io/download/">下载 |雷迪斯 (redis.io)</a></strong></p>
+<p>选择下载的版本，这里以最新版为例。默认下载就是linux下的安装包。</p>
+<img src="/2023/05/29/15-33-02/redis.png" style="zoom:25%;">
+
+<h4 id="1-3-2、上传到linux下"><a href="#1-3-2、上传到linux下" class="headerlink" title="1.3.2、上传到linux下"></a>1.3.2、上传到linux下</h4><p>上传到linux下的usr&#x2F;local&#x2F;bin目录。这里使用FinalShell，直接从本地文件拖到目录下即可。</p>
+<img src="/2023/05/29/15-33-02/redis2.png" style="zoom:45%;">
+
+<h4 id="1-3-3、解压Redis"><a href="#1-3-3、解压Redis" class="headerlink" title="1.3.3、解压Redis"></a>1.3.3、解压Redis</h4><p>执行命令<code>tar -zxvf redis-7.0.11.tar.gz</code></p>
+<h4 id="1-3-4、安装环境依赖"><a href="#1-3-4、安装环境依赖" class="headerlink" title="1.3.4、安装环境依赖"></a>1.3.4、安装环境依赖</h4><p>因为redis需要c++的依赖支持，所以先安装依赖。</p>
+<p>在&#x2F;usr&#x2F;local&#x2F;bin目录下执行命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装依赖</span></span><br><span class="line">yum install gcc-c++</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看依赖安装是否成功gcc-v 最后一行出现gcc版本号即是安装成功</span></span><br><span class="line">gcc -v</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置所有文件</span></span><br><span class="line">make</span><br><span class="line">make PREFIX=/usr/local/bin install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-5、启动redis"><a href="#1-3-5、启动redis" class="headerlink" title="1.3.5、启动redis"></a>1.3.5、启动redis</h4><p>进入redis目录下的src下执行命令<code>redis-server</code>即可启动Redis。</p>
+<h4 id="1-3-6、设置密码"><a href="#1-3-6、设置密码" class="headerlink" title="1.3.6、设置密码"></a>1.3.6、设置密码</h4><p>修改Redis目录下的redis.conf文件<code>ctrl+f</code>查找requirepass。</p>
+<p>将requirepass取消注释，设置自己的密码，比如<code>requirepass  root</code></p>
+<h4 id="1-3-7、设置后台启动"><a href="#1-3-7、设置后台启动" class="headerlink" title="1.3.7、设置后台启动"></a>1.3.7、设置后台启动</h4><p>修改Redis目录下的redis.conf文件ctrl+f查找daemonize。</p>
+<p>将<code>daemonize no</code> 改为<code>daemonize yes</code></p>
+<h4 id="1-3-8、根据配置文件启动Redis"><a href="#1-3-8、根据配置文件启动Redis" class="headerlink" title="1.3.8、根据配置文件启动Redis"></a>1.3.8、根据配置文件启动Redis</h4><p>定位到Redis目录下的src目录下,执行<code>redis-server ../redis.conf</code></p>
+<h4 id="1-3-9、启动redis-cli"><a href="#1-3-9、启动redis-cli" class="headerlink" title="1.3.9、启动redis.cli"></a>1.3.9、启动redis.cli</h4><p>定位到Redis目录下的src目录下,执行<code>redis-cli</code></p>
+<h4 id="1-3-10、Redis其他常见配置："><a href="#1-3-10、Redis其他常见配置：" class="headerlink" title="1.3.10、Redis其他常见配置："></a>1.3.10、Redis其他常见配置：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">监听的端口</span></span><br><span class="line">port 6379</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">工作目录，默认是当前目录，也就是运行redis-server时的命令，日志、持久化等文件会保存在这个目录</span></span><br><span class="line">dir .</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">数据库数量，设置为1，代表只使用1个库，默认有16个，编号0-15</span></span><br><span class="line">database 1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置redis能够使用的最大内存</span></span><br><span class="line">maxmemory 512mb</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">日志文件，默认为空，不记录日志，可以指定日志文件名</span></span><br><span class="line">logfile &quot;redis.log&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-11、Redis命令行客户端"><a href="#1-3-11、Redis命令行客户端" class="headerlink" title="1.3.11、Redis命令行客户端"></a>1.3.11、Redis命令行客户端</h4><p>安装完成Redis，我们就可以操作Redis，实现数据的CRUD了。这需要用到Redis客户端，包括：</p>
+<ul>
+<li>命令行客户端</li>
+<li>图形化桌面客户端</li>
+<li>编程客户端</li>
+</ul>
+<p>Redis安装完成后自带了命令行客户端：redis-cli，使用方式如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在redis目录下的src下执行命令</span></span><br><span class="line">redis-cli [options] [commonds]</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">如果有密码，还需要执行下面的命令 root是密码</span></span><br><span class="line">auth root</span><br></pre></td></tr></table></figure>
+
+<p>其中常见的options有：</p>
+<ul>
+<li><code>-h 127.0.0.1</code>：执行要连接的redis节点的Ip地址，默认是127.0.0.1</li>
+<li><code>-p 6379</code> ：指定要连接的redis节点的端口，默认是6379</li>
+<li><code>-a 123321</code>: 指定redis的访问密码</li>
+</ul>
+<p>其中的commonds就是redis的操作命令，例如：</p>
+<ul>
+<li><code>ping</code>: 与redis服务端做心跳测试，服务端正常会返回<code>pong</code></li>
+</ul>
+<p>不指定commonds时，会进入<code>redis-cli</code>的交互控制台。</p>
+<h2 id="2、Redis常见命令"><a href="#2、Redis常见命令" class="headerlink" title="2、Redis常见命令"></a>2、Redis常见命令</h2><h3 id="2-1、Redis数据结构介绍"><a href="#2-1、Redis数据结构介绍" class="headerlink" title="2.1、Redis数据结构介绍"></a>2.1、Redis数据结构介绍</h3><p><strong>Redis数据结构介绍</strong><br>redis是一个key-value的数据结构，key一般是String类型，不过value的类型多种多样。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>结构</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>String</td>
+<td>hello world</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>{ name : “Jack”, age : 21}</td>
+</tr>
+<tr>
+<td>List</td>
+<td>[A -&gt; B -&gt; C]</td>
+</tr>
+<tr>
+<td>Set</td>
+<td>{A, B, C}</td>
+</tr>
+<tr>
+<td>SortedSet</td>
+<td>{A: 1, B: 2, C: 3}</td>
+</tr>
+<tr>
+<td>GEO</td>
+<td>{   A:   (120.3, 30.5)   }</td>
+</tr>
+<tr>
+<td>BitMap</td>
+<td>0110110101110101011</td>
+</tr>
+<tr>
+<td>HyperLog</td>
+<td>0110110101110101011</td>
+</tr>
+</tbody></table>
+<h3 id="2-2、Redis通用命令"><a href="#2-2、Redis通用命令" class="headerlink" title="2.2、Redis通用命令"></a>2.2、Redis通用命令</h3><p><strong>通用命令是指部分数据类型的，都可以使用的命令，常见的有：</strong></p>
+<ul>
+<li>Keys：查看复合模板的所有key，不建议在生产环境设备上使用</li>
+<li>Del：删除一个指定的key</li>
+<li>Exists：判断key是否存在</li>
+<li>Expire：给一个key设置有效期，有效期到期时该key会被自动删除</li>
+<li>TTL：查看一个key的剩余有效期</li>
+<li>通过<code>help[command]</code>可以查看一个命令的具体用法，例如 <code>help keys</code></li>
+</ul>
+<h3 id="2-3、String类型"><a href="#2-3、String类型" class="headerlink" title="2.3、String类型"></a>2.3、String类型</h3><p>String类型，也就是字符串类型，是Redis中最简单的存储类型。</p>
+<p>其value是字符串，不过根据字符串格式的不同，又可以分为3类：</p>
+<ul>
+<li>string：普通字符串</li>
+<li>int：整数类型，可以做自增、自减操作</li>
+<li>float：浮点类型，可以做自增、自减操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>KEY</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>msg</td>
+<td>hellp world</td>
+</tr>
+<tr>
+<td>num</td>
+<td>10</td>
+</tr>
+<tr>
+<td>score</td>
+<td>92.5</td>
+</tr>
+</tbody></table>
+<p><strong>不管是那种形式，底层都是字节数组形式存储，只不过是编码方式不同。字符串类型的最大存储空间不能超过512M</strong></p>
+<p>String的常见命令有：</p>
+<ul>
+<li>Set：添加或者修改已经存在的一个String类型的键值对</li>
+<li>Get：根据key获取String类型的value</li>
+<li>MSet：批量添加多个String类型的键值对 比如mset  k1 v1 k2 v2 k3 v3</li>
+<li>MGet：根据多个key获取多个String类型的value</li>
+<li>Incr：让一个整形的key自增1</li>
+<li>IncrBy：让一个整形的key自增并指定步长，例如：incrby num 2 让num值自增2</li>
+<li>IncrByFloat：让一个浮点类型的数字自增并指定步长，必须指定步长。</li>
+<li>SetNX：添加一个String类型的键值对，前提这个key不存在，否则不执行</li>
+<li>SetEX：添加一个String类型的键值对，并且指定有效期</li>
+</ul>
+<p><strong>Key的层级关系</strong></p>
+<p>思考：Redis中没有类似Mysql中的Table的概念，我们该如何区分不同类型的key呢？</p>
+<p>例如，需要存储用户、商品信息到redis，有一个用户id是1，有一个商品id恰好也是1.</p>
+<p><strong>解决方式：</strong></p>
+<p>Redis的key允许有多个单词形成层级结构，多个单词之间用’:’隔开，格式如下：</p>
+<p><code>项目名:业务名:类型:id</code></p>
+<p>这个格式并非固定，也可以根据自己的需求来删除或添加词条。</p>
+<p>例如我们的项目名叫rosevvi，有user和product两种不同类型的护具，我们可以这样定义key：</p>
+<ul>
+<li>user相关的key：<code>rosevvi:user:1</code></li>
+<li>product相关的key:<code>rosevvi:produce:1</code></li>
+</ul>
+<p>如果value是一个对象，例如一个user对象，则可以将对象序列化为json字符串后存储：</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rosevvi:user:1</td>
+<td>{“id”:1,”name”:”Rosevvi”,”age”:21}</td>
+</tr>
+<tr>
+<td>rosevvi:product:1</td>
+<td>{“id”:1,”name”:小米11”:”price”:1999}</td>
+</tr>
+</tbody></table>
+<h3 id="2-4、Hash类型"><a href="#2-4、Hash类型" class="headerlink" title="2.4、Hash类型"></a>2.4、Hash类型</h3><p>Hash类型，也叫做散列，其value是一个无序字典，类似于Java中的HashMap结构。</p>
+<p>String结构是将对象序列化为Json字符串后存储，当需要修改对象某个字段时很不方便：</p>
+<p>Hash结构可以将对象中的每个字段独立存储，可以针对单个字段做CRUD：</p>
+<table>
+<thead>
+<tr>
+<th align="left">key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"></td>
+<td>field           value</td>
+</tr>
+<tr>
+<td align="left">rosevvi:user:1</td>
+<td>name         Jack</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>age             21</td>
+</tr>
+<tr>
+<td align="left">rosevvi:user:2</td>
+<td>name          rosevvi</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>age              18</td>
+</tr>
+</tbody></table>
+<p><strong>Hash类型的常见命令：</strong></p>
+<ul>
+<li>HSet key field value：添加或者修改hash类型key的field的值</li>
+<li>HGet key field：获取一个hash类型的key的field的值</li>
+<li>HMSet：批量添加多个hash类型key的field的值</li>
+<li>HMGet：批量获取多个hash类型key的field的值</li>
+<li>HGetAll：获取一个hash类型的key中的所有的field和value</li>
+<li>HKeys：获取一个hash类型的key中所有的field</li>
+<li>Hvals：获取一个hash类型的key中的所有的value</li>
+<li>HincrBy：让一个hash类型key的字段值自增并指定步长</li>
+<li>HSetNx：添加一个hash类型的key的field值，前提时这个field不存在，否则不执行。</li>
+</ul>
+<h3 id="2-5、List类型"><a href="#2-5、List类型" class="headerlink" title="2.5、List类型"></a>2.5、List类型</h3><p>Redis中的List类型与Java中的LinkedList类似，可以看作是一个双向链表结构。既可以支持正向检索，也可以支持反向检索。</p>
+<p>特征业余LinkedList类似：</p>
+<ul>
+<li>有序</li>
+<li>元素可以重复</li>
+<li>插入和删除快</li>
+<li>查询速度一般</li>
+</ul>
+<p><strong>List的常见命令有：</strong></p>
+<ul>
+<li>LPush key element…：向列表左侧插入一个或多个元素</li>
+<li>LPop key：移除并返回列表左侧的第一个元素，没有则返回nil</li>
+<li>RPush key element…：向列表右侧插入一个或多个元素</li>
+<li>RPop key：移除并返回列表右侧的第一个元素</li>
+<li>LRange key star end：返回一段角标范围内的所有元素，角标是从零开始的</li>
+<li>BPop和BRpop：与LPop和RPop类似，只不过在没有元素时等待指定时间，而不是直接返回nil</li>
+</ul>
+<p>队列：先进先出，用list实现就是插入与取出用不同方向，比如LPush和RPop<br>栈：先进后出，用list时间就是插入与取出用同方向的，比如LPush和LPop<br>阻塞队列：先进先出但是阻塞，比如BLPush和BRPop</p>
+<h3 id="2-6、Set类型"><a href="#2-6、Set类型" class="headerlink" title="2.6、Set类型"></a>2.6、Set类型</h3><p>Redis的Set结构与Java中的HashSet类似，可以看作是一个value为null的HashMap。因为也是一个hash表，因此具备与HashSet类似的特征：</p>
+<ul>
+<li>无序</li>
+<li>元素不可重复</li>
+<li>查找快</li>
+<li>支持交集、并集、差集等功能</li>
+</ul>
+<p><strong>Set的常见命令有：</strong></p>
+<ul>
+<li>SAdd key member…：向set中添加一个或多个元素</li>
+<li>SRem key member…：移除set中的指定元素</li>
+<li>SCard key：返回set中元素的个数</li>
+<li>SIsMember key member：判断一个元素是否存在于set中</li>
+<li>SMembers：获取set中的所有元素</li>
+<li>SInter key1 key2…：求key1和key2的交集</li>
+<li>SDiff key1  key2….：求key1和key2的差集，key1有而key2没有的元素</li>
+<li>SUnion key1 key2 …：求key1和key2的并集</li>
+</ul>
+<h3 id="2-7、SortedSet类型"><a href="#2-7、SortedSet类型" class="headerlink" title="2.7、SortedSet类型"></a>2.7、SortedSet类型</h3><p>Redis的SortedSet是一个可排序的set集合，与Java中的TreeSet有些类似，但底层数据结构差别很大。SortedSet总的每一个元素都带有一个score属性，可以基于score属性对元素排序，底层的实现是一个跳表(SkipList)加hash表。</p>
+<p>SortedSet具备下列特性：</p>
+<ul>
+<li>可排序</li>
+<li>元素不重复</li>
+<li>查询速度快</li>
+</ul>
+<p>因为SortedSet的可排序特性，经常被用来实现排行榜这样的功能。</p>
+<p><strong>SortedSet的常见命令有：</strong></p>
+<ul>
+<li>ZAdd key score member：添加一个或多个元素到sortedset，如果已经存在则更新其score值</li>
+<li>ZRem key member：删除sortedset中的一个指定元素</li>
+<li>ZScore key member：获取sortedset中的指定元素的score值</li>
+<li>ZRank key member：获取sortedset中的指定元素的排名</li>
+<li>ZCard key：获取sortedset中的元素个数</li>
+<li>ZCound key min max：统计score值在给定范围内的所有元素个数</li>
+<li>ZIncrby key increment member：让sortedset中的指定元素自增，步长为指定的increment值</li>
+<li>ZRange key min max：按照score排序后，获取指定排名范围内的元素</li>
+<li>ZRangeByScore key min max：按照score排序后，获取指定score范围内的元素</li>
+<li>ZDiff、Zinter、Zunion：求差集、交集、并集</li>
+<li><strong>注意：</strong>所有的排名都是默认按照升序，如果要降序则在Z后面添加Rev即可</li>
+</ul>
+<h2 id="3、Redis的Java客户端"><a href="#3、Redis的Java客户端" class="headerlink" title="3、Redis的Java客户端"></a>3、Redis的Java客户端</h2><h3 id="3-1、客户端对比"><a href="#3-1、客户端对比" class="headerlink" title="3.1、客户端对比"></a>3.1、客户端对比</h3><p>在Redis官网中提供了各种语言的客户端，地址<a href="https://redis.io/clients">https://redis.io/clients</a></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Jedis</td>
+<td>以Redis命令作为方法名称，学习成本低，简单实用。但是Jedis实例是线程不安全的，多线程环境下需要基于连接池来实用</td>
+</tr>
+<tr>
+<td>Lettuce</td>
+<td>Lettuce是基于Netty实现的，支持同步、异步和响应式编程方式，但是是线程安全的。支持Redis的哨兵模式、集群模式和管道模式。</td>
+</tr>
+<tr>
+<td>Redisson</td>
+<td>Redusson是一个基于Redis实现的分布式、可伸缩的Java数据结构集合。包含了诸如Map、Queue、Lock、Semaphore、AtomicLong等强大功能。</td>
+</tr>
+</tbody></table>
+<h3 id="3-2、Jedis"><a href="#3-2、Jedis" class="headerlink" title="3.2、Jedis"></a>3.2、Jedis</h3><p>Jedis的官网地址:<a href="https://github.com/redis/jedis">https://github.com/redis/jedis</a></p>
+<p><strong>引入依赖：</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.7.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>建立连接：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> Jedis jedis;</span><br><span class="line"></span><br><span class="line"><span class="meta">@BeforEach</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">setUp</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="comment">//建立连接</span></span><br><span class="line">	jiedis = <span class="keyword">new</span> <span class="title class_">Jedis</span>(<span class="string">&quot;192.168.0.0.1&quot;</span>,<span class="number">6379</span>);</span><br><span class="line">	<span class="comment">//设置密码</span></span><br><span class="line">	jedis.auth(<span class="string">&quot;root&quot;</span>);</span><br><span class="line">	<span class="comment">//选择库 默认为0号库 共有16个</span></span><br><span class="line">	jedis.select(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">testString</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="comment">//插入数据，方法名称就是redis命令名称</span></span><br><span class="line">	<span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> jedis.set(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;张三&quot;</span>);</span><br><span class="line">	System.out.println(<span class="string">&quot;result = &quot;</span>+reult);</span><br><span class="line">	<span class="comment">//获取数据</span></span><br><span class="line">	<span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> jedis.get(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">	System.out.println(<span class="string">&quot;name = &quot;</span>+name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>释放资源：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@AfterEach</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">tearDown</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="comment">//释放资源</span></span><br><span class="line">	<span class="keyword">if</span>(jedis ! =<span class="literal">null</span>)&#123;</span><br><span class="line">		jedis.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3、Jedis连接池"><a href="#3-3、Jedis连接池" class="headerlink" title="3.3、Jedis连接池"></a>3.3、Jedis连接池</h3><p>Jedis本身是线程不安全的，并且频繁的创建和销毁线程连接会有性能的损耗，因此我们推荐大家实用Jedis连接池代替Jedis的直连方式。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JedisConnectionFactory</span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> JedisPool jedisPool;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		<span class="type">JedisoPoolConfig</span> <span class="variable">jedisPoolConfig</span> <span class="operator">=</span> <span class="keyword">new</span> </span><br><span class="line">            <span class="title class_">JedisPoolConfig</span>();</span><br><span class="line">		<span class="comment">//最大连接</span></span><br><span class="line">		jedisPoolConfig.setMaxTotal(<span class="number">8</span>);</span><br><span class="line">		<span class="comment">//最大空闲连接</span></span><br><span class="line">		jedisPoolConfig.setMaxIdle(<span class="number">8</span>);</span><br><span class="line">		<span class="comment">//最小空闲连接</span></span><br><span class="line">		jedisPoolConfig.setMinIdle(<span class="number">0</span>);</span><br><span class="line">		<span class="comment">//设置最长等待时间，ms</span></span><br><span class="line">		jedisPoolConfig.setMaxWaitMillis(<span class="number">200</span>);</span><br><span class="line">		jedisPool = <span class="keyword">new</span> <span class="title class_">JedisPool</span>(jedisPoolConfig</span><br><span class="line">		,<span class="string">&quot;192.168.0.0.1&quot;</span>,<span class="number">6379</span>,<span class="number">1000</span>,<span class="string">&quot;123321&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//获取Jedis对象</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> Jedis <span class="title function_">getJedis</span><span class="params">()</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> jedisPool.getResource();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4、SpringDataRedis"><a href="#3-4、SpringDataRedis" class="headerlink" title="3.4、SpringDataRedis"></a>3.4、SpringDataRedis</h3><p>SpringData是Spring中数据操作的模块，包含对各种数据库的集成，其中对Redis的集成模块就叫做SpringDataRedis，官网地址：<a href="https://spring.io/projects/spring-data-redis">https://spring.io/projects/spring-data-redis</a></p>
+<ul>
+<li>提供了对不同redis客户端的整合（Lettuce和Jedis）</li>
+<li>提供了RedisTemplate同一API来操作Redis</li>
+<li>支持Redis的发布订阅模型</li>
+<li>支持Redis哨兵和Redis 集群</li>
+<li>支持基于Lettuce的响应式编程</li>
+<li>支持基于jdk、json、字符串、Spring对象的数据序列化及反序列化</li>
+<li>支持基于redis的jdkCollection实现</li>
+</ul>
+<p><strong>SpringDataRedis中提供了RedisTemplate工具类，其中封装了各种对Redis的操作。并且将不同数据类型的操作API封装到了不同的类型中：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">API</th>
+<th align="center">返回值类型</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">redisTemplate.opsForValue()</td>
+<td align="center">ValueOperations</td>
+<td align="center">操作String类型的数据</td>
+</tr>
+<tr>
+<td align="center">redisTemplate.opsForHash()</td>
+<td align="center">HashOperations</td>
+<td align="center">操作Hash类型的数据</td>
+</tr>
+<tr>
+<td align="center">redisTemplate.opsForList()</td>
+<td align="center">ListOperations</td>
+<td align="center">操作List类型的数据</td>
+</tr>
+<tr>
+<td align="center">redisTemplate.opsForSet()</td>
+<td align="center">SetOperations</td>
+<td align="center">操作Set类型数据</td>
+</tr>
+<tr>
+<td align="center">redisTemplate.opsForZSet()</td>
+<td align="center">ZSetOperations</td>
+<td align="center">操作SortedSet类型数据</td>
+</tr>
+<tr>
+<td align="center">redisTemplate</td>
+<td align="center"></td>
+<td align="center">通用的命令</td>
+</tr>
+</tbody></table>
+<h3 id="3-5、SpringDataRedis快速入门"><a href="#3-5、SpringDataRedis快速入门" class="headerlink" title="3.5、SpringDataRedis快速入门"></a>3.5、SpringDataRedis快速入门</h3><p>Springboot已经提供了对SpringDataRedis的支持，使用非常简单：</p>
+<ol>
+<li><p>引入依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-pool2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置文件</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">	<span class="attr">redis:</span></span><br><span class="line">		<span class="attr">host:</span> <span class="number">192.168</span><span class="number">.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">		<span class="attr">port:</span> <span class="number">6379</span></span><br><span class="line">		<span class="attr">password:</span> <span class="string">root</span></span><br><span class="line">		<span class="attr">lettuce:</span></span><br><span class="line">			<span class="attr">pool:</span></span><br><span class="line">				<span class="attr">max-active:</span> <span class="number">8</span> <span class="comment">#最大连接</span></span><br><span class="line">				<span class="attr">max-idle:</span> <span class="number">8</span> <span class="comment">#最大空闲连接</span></span><br><span class="line">				<span class="attr">min-idle:</span> <span class="number">0</span> <span class="comment">#最小空闲连接</span></span><br><span class="line">				<span class="attr">max-wait:</span> <span class="number">100</span> <span class="comment">#连接等待时间</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注入RedisTemplate</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@AutoWired</span></span><br><span class="line"><span class="keyword">private</span> RedisTemplate redisTemplate;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写测试</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisTest</span>&#123;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> RedisTemplate redisTemplate;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="keyword">void</span> <span class="title function_">testString</span><span class="params">()</span>&#123;</span><br><span class="line">		<span class="comment">//插入一条string类型数据</span></span><br><span class="line">		redisTemplate.opsForValue().set(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;李四&quot;</span>);</span><br><span class="line">		<span class="comment">//读取一条string类型数据</span></span><br><span class="line">		<span class="type">Object</span> <span class="variable">name</span> <span class="operator">=</span> redisTemplate.opsForValue().get(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">		Syste,.out.println(<span class="string">&quot;name = &quot;</span>+name)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="3-6、SpringDataRedis的序列化方式"><a href="#3-6、SpringDataRedis的序列化方式" class="headerlink" title="3.6、SpringDataRedis的序列化方式"></a>3.6、<strong>SpringDataRedis的序列化方式</strong></h3><p>RedisTemplate可以接受任意Object作为值写入Redis，只不过写入前会把Object序列化为字节形式，默认是采用JDK序列化，但是可读性较差，内存占用也较大。</p>
+<p>我们可以自定义RedisTemplate的序列化方式，在配置类中添加bean，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> RedisTemplate&lt;String,Object&gt; <span class="title function_">redisTemplate</span><span class="params">(RedisConnectionFactory redisConnectionFactory)</span> <span class="keyword">throws</span> UnknownHostException&#123;</span><br><span class="line">	<span class="comment">// 创建连接工厂</span></span><br><span class="line">	RedisTemplate&lt;String,Object&gt; redisTemplate = <span class="keyword">new</span> <span class="title class_">RedisTemplate</span>&lt;&gt;();</span><br><span class="line">	<span class="comment">// 设置连接工厂</span></span><br><span class="line">	redisTemplate.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">	<span class="comment">// 设置序列化工具</span></span><br><span class="line">	<span class="type">GennericJackson2JsonRedisSerializer</span> <span class="variable">jsonRedisSerializer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">GennericJackson2JsonRedisSerializer</span>();</span><br><span class="line">	<span class="comment">// key和hashkey采用String序列化</span></span><br><span class="line">	redisTemplate.setKeySerializer(RedisSerializer.string());</span><br><span class="line">	redisTemplate.setHashKeySerializer(RedisSerializer.string());</span><br><span class="line">	<span class="comment">// value和ahshvalue采用json序列化</span></span><br><span class="line">	redisTemplate.setValueSerializer(jsonRedisSerializer);</span><br><span class="line">	redisTemplate.setHashValueSerializer(jsonRedisSerializer);</span><br><span class="line">	<span class="keyword">return</span> redisTemplate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尽管Json的序列化方式可以满足我们的需求，但依然存在一些问题</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;@class&quot;</span><span class="punctuation">:</span> <span class="string">&quot;com.rosevvi.redis.pojo.User&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;rosevvi&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;age&quot;</span><span class="punctuation">:</span> <span class="number">21</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>为了在反序列化时知道对象的类型，Json序列化器会将类的calss类型写入json结果中，存入Redis，会带来额外的内存开销。</p>
+<p>为了节省内存空间，我们并不会使用Json序列化器来处理value，而是同一使用String序列化器，要求只能存储String类型的key和value。当我们需要存储对象时，手动完成对象的序列化和反序列化。</p>
+<p>Spring默认提供了一个StringRedisTemplate类，它的key和value的序列化方式默认就是String方式。省去了我们自定义RedisTemplate的过程：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line"><span class="comment">// json工具</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> fianl <span class="type">ObjectMapper</span> <span class="variable">mapper</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">testStringTemplate</span><span class="params">()</span> <span class="keyword">throws</span> JsonProcessingException&#123;</span><br><span class="line">	<span class="comment">//准备对象</span></span><br><span class="line">	User user= <span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;虎哥&quot;</span>,<span class="number">18</span>);</span><br><span class="line">	<span class="comment">//手动序列化</span></span><br><span class="line">	<span class="type">String</span> <span class="variable">json</span> <span class="operator">=</span> mapper.writeValueAsString(user);</span><br><span class="line">	<span class="comment">//写入一条数据到redis</span></span><br><span class="line">	stringRedisTemplate.opsForValue().set(<span class="string">&quot;user:200&quot;</span>,json);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//读取数据</span></span><br><span class="line">	<span class="type">String</span> <span class="variable">val</span> <span class="operator">=</span> stringRedisTemplate.opsForValue.get(<span class="string">&quot;user:200&quot;</span>);</span><br><span class="line">	<span class="comment">//反序列化</span></span><br><span class="line">	User user1= mapper.readValue(val,User.class);</span><br><span class="line">	System.out.println(<span class="string">&quot;user1 = &quot;</span>+user1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、-实战-短信登录"><a href="#4、-实战-短信登录" class="headerlink" title="4、[实战]短信登录"></a>4、[实战]短信登录</h2><h3 id="4-1、项目导入"><a href="#4-1、项目导入" class="headerlink" title="4.1、项目导入"></a>4.1、项目导入</h3><p>链接：<a href="https://pan.baidu.com/s/1S-twQ--MzJEPJlIq1lwP6w?pwd=tskj">https://pan.baidu.com/s/1S-twQ--MzJEPJlIq1lwP6w?pwd=tskj</a><br>提取码：tskj</p>
+<h4 id="4-1-1、导入Sql文件"><a href="#4-1-1、导入Sql文件" class="headerlink" title="4.1.1、导入Sql文件"></a>4.1.1、导入Sql文件</h4><p>下载资源文件，解压后将其中实战篇的资料中的hmdp.sql文件导入到Navicat中。</p>
+<p>右击数据库选择运行sql文件，选择hmdp.sql点击开始。</p>
+<img src="/2023/05/29/15-33-02/Hexo-Blog\source\_posts\Redis学习\navicat.png" style="zoom:85%;">
+
+<h4 id="4-1-2、导入项目"><a href="#4-1-2、导入项目" class="headerlink" title="4.1.2、导入项目"></a>4.1.2、导入项目</h4><p>将资源文件实战篇中资料中的hm-dianping.zip解压并放到自己的idea项目目录中，用idea打开，修改yml配置文件中的数据库信息及redis数据库信息。</p>
+<img src="/2023/05/29/15-33-02/Hexo-Blog\source\_posts\Redis学习\yml.png" style="zoom:50%;">
+
+<h4 id="4-1-3、Nginx启动"><a href="#4-1-3、Nginx启动" class="headerlink" title="4.1.3、Nginx启动"></a>4.1.3、Nginx启动</h4><p>将实战篇资源目录中的nginx压缩包解压，并放到一个目录中，注意尽量不要带中文目录，进入nginx目录中，在当前目录进入cmd命令行输入<code>start nginx.exe</code>启动nginx。</p>
+<img src="/2023/05/29/15-33-02/Hexo-Blog\source\_posts\Redis学习\cmd.png" style="zoom:57%;">
+
+<p>本地浏览器输入:<code>localhost:8080</code>即可访问</p>
+<h3 id="4-2、发送验证码"><a href="#4-2、发送验证码" class="headerlink" title="4.2、发送验证码"></a>4.2、发送验证码</h3><p>从本地浏览器进入页面后点击我的，进入手机号快速登录页面输入手机号点击发送验证码。</p>
+<img src="/2023/05/29/15-33-02/Hexo-Blog\source\_posts\Redis学习\sms.png" style="zoom:70%;">
+
+<p>可以发现发送的请求方式为post，路径为user&#x2F;code参数为phone</p>
+<p>找到对应的UserController以及对应的方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 发送手机验证码</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="meta">@PostMapping(&quot;code&quot;)</span></span><br><span class="line"> <span class="keyword">public</span> Result <span class="title function_">sendCode</span><span class="params">(<span class="meta">@RequestParam(&quot;phone&quot;)</span> String phone, HttpSession session)</span> &#123;</span><br><span class="line">     <span class="comment">// TODO 发送短信验证码并保存验证码</span></span><br><span class="line">     <span class="keyword">return</span> userService.sendMessage(phone,session);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用service层方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Result <span class="title function_">sendMessage</span><span class="params">(String phone, HttpSession session)</span> &#123;</span><br><span class="line">        <span class="comment">// 1、 校验手机号</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">phoneInvalid</span> <span class="operator">=</span> RegexUtils.isPhoneInvalid(phone);</span><br><span class="line">        <span class="comment">// 2、不符合格式返回错误信息</span></span><br><span class="line">        <span class="keyword">if</span> (phoneInvalid)&#123;</span><br><span class="line">            <span class="keyword">return</span> Result.fail(<span class="string">&quot;手机号不存在&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 3、符合格式生成验证码</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> RandomUtil.randomString(<span class="number">6</span>);</span><br><span class="line">        <span class="comment">// 4、保存验证码到session</span></span><br><span class="line">        session.setAttribute(<span class="string">&quot;code&quot;</span>,s);</span><br><span class="line">        <span class="comment">//5、 发送验证码</span></span><br><span class="line">        log.debug(<span class="string">&quot;验证码为：&#123;&#125;&quot;</span>,s);</span><br><span class="line">        <span class="keyword">return</span> Result.ok();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>项目里面的检验手机号已经被封装为一个方法，可以在utils包下查看。由于发送验证码需要一些其他API，这里用log来代替。</p>
+<h3 id="4-3、短信验证码和登录"><a href="#4-3、短信验证码和登录" class="headerlink" title="4.3、短信验证码和登录"></a>4.3、短信验证码和登录</h3><p>点击登录查看请求可以发现请求为post，找到对应的controller编码</p>
+<img src="/2023/05/29/15-33-02/Hexo-Blog\source\_posts\Redis学习\login.png" style="zoom:67%;">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 登录功能</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> loginForm 登录参数，包含手机号、验证码；或者手机号、密码</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="meta">@PostMapping(&quot;/login&quot;)</span></span><br><span class="line"> <span class="keyword">public</span> Result <span class="title function_">login</span><span class="params">(<span class="meta">@RequestBody</span> LoginFormDTO loginForm, HttpSession session)</span>&#123;</span><br><span class="line">     <span class="comment">// TODO 实现登录功能</span></span><br><span class="line">     <span class="keyword">return</span> userService.login(loginForm,session);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用service层</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> Result <span class="title function_">login</span><span class="params">(LoginFormDTO loginForm, HttpSession session)</span> &#123;</span><br><span class="line">      <span class="type">String</span> <span class="variable">phone</span> <span class="operator">=</span> loginForm.getPhone();</span><br><span class="line">      <span class="comment">// 1、校验手机号</span></span><br><span class="line">      <span class="type">boolean</span> <span class="variable">phoneInvalid</span> <span class="operator">=</span> RegexUtils.isPhoneInvalid(phone);</span><br><span class="line">      <span class="keyword">if</span> (phoneInvalid)&#123;</span><br><span class="line">          <span class="keyword">return</span> Result.fail(<span class="string">&quot;手机号不存在&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 2、校验验证码</span></span><br><span class="line">      <span class="type">String</span> <span class="variable">code</span> <span class="operator">=</span> loginForm.getCode();</span><br><span class="line">      <span class="type">Object</span> <span class="variable">attribute</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;code&quot;</span>);</span><br><span class="line">      <span class="comment">// 3、不一致，报错</span></span><br><span class="line">      <span class="keyword">if</span> (attribute == <span class="literal">null</span> || !attribute.toString().equals(code))&#123;</span><br><span class="line">          <span class="keyword">return</span> Result.fail(<span class="string">&quot;验证码错误&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 4、一致，根据手机号查询用户</span></span><br><span class="line">      <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> query().eq(<span class="string">&quot;phone&quot;</span>, phone).one();</span><br><span class="line">      <span class="comment">// 5、判断用户是否存在</span></span><br><span class="line">      <span class="keyword">if</span> (user == <span class="literal">null</span>)&#123;</span><br><span class="line">          <span class="comment">// 6、不存在，创建新用户并保存</span></span><br><span class="line">          user = createUser(phone);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 7、保存用户信息到session中</span></span><br><span class="line">      session.setAttribute(<span class="string">&quot;user&quot;</span>,user);</span><br><span class="line"></span><br><span class="line">      log.debug(session.getAttribute(<span class="string">&quot;user&quot;</span>).toString());</span><br><span class="line">      <span class="keyword">return</span> Result.ok();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> User <span class="title function_">createUser</span><span class="params">(String phone)</span> &#123;</span><br><span class="line">      User user=<span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">      user.setPhone(phone);</span><br><span class="line">      user.setNickName(USER_NICK_NAME_PREFIX+RandomUtil.randomString(<span class="number">4</span>));</span><br><span class="line">      save(user);</span><br><span class="line">      <span class="keyword">return</span> user;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Redis</tag>
+        <tag>学习笔记</tag>
+        <tag>坚持</tag>
       </tags>
   </entry>
   <entry>
