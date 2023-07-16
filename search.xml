@@ -79,6 +79,36 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux安装Redis</title>
+    <url>/2023/05/29/15-32-51/</url>
+    <content><![CDATA[<h1 id="Linux下安装Redis"><a href="#Linux下安装Redis" class="headerlink" title="Linux下安装Redis"></a>Linux下安装Redis</h1><h2 id="1、下载Redis安装包"><a href="#1、下载Redis安装包" class="headerlink" title="1、下载Redis安装包"></a>1、下载Redis安装包</h2><p><strong>下载链接：<a href="https://redis.io/download/">下载 |雷迪斯 (redis.io)</a></strong></p>
+<span id="more"></span>
+
+<p>选择下载的版本，这里以最新版为例。默认下载就是linux下的安装包。</p>
+<img src="/2023/05/29/15-32-51/redis.png" style="zoom:25%;">
+
+<h2 id="2、上传到linux下"><a href="#2、上传到linux下" class="headerlink" title="2、上传到linux下"></a>2、上传到linux下</h2><p>上传到linux下的usr&#x2F;local&#x2F;bin目录。这里使用FinalShell，直接从本地文件拖到目录下即可。</p>
+<img src="/2023/05/29/15-32-51/redis2.png" style="zoom:45%;">
+
+<h2 id="3、解压Redis"><a href="#3、解压Redis" class="headerlink" title="3、解压Redis"></a>3、解压Redis</h2><p>执行命令<code>tar -zxvf redis-7.0.11.tar.gz</code></p>
+<h2 id="4、安装环境依赖"><a href="#4、安装环境依赖" class="headerlink" title="4、安装环境依赖"></a>4、安装环境依赖</h2><p>因为redis需要c++的依赖支持，所以先安装依赖。</p>
+<p>在&#x2F;usr&#x2F;local&#x2F;bin目录下执行命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装依赖</span></span><br><span class="line">yum install gcc-c++</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看依赖安装是否成功gcc-v 最后一行出现gcc版本号即是安装成功</span></span><br><span class="line">gcc -v</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置所有文件</span></span><br><span class="line">make</span><br><span class="line">make PREFIX=/usr/local/bin install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="5、启动redis"><a href="#5、启动redis" class="headerlink" title="5、启动redis"></a>5、启动redis</h2><p>进入redis目录下的src下执行命令<code>redis-server</code>即可启动Redis。</p>
+<h2 id="6、设置密码"><a href="#6、设置密码" class="headerlink" title="6、设置密码"></a>6、设置密码</h2><p>修改Redis目录下的redis.conf文件<code>ctrl+f</code>查找requirepass。</p>
+<p>将requirepass取消注释，设置自己的密码，比如<code>requirepass  root</code></p>
+<h2 id="7、设置后台启动"><a href="#7、设置后台启动" class="headerlink" title="7、设置后台启动"></a>7、设置后台启动</h2><p>修改Redis目录下的redis.conf文件ctrl+f查找daemonize。</p>
+<p>将<code>daemonize no</code> 改为<code>daemonize yes</code></p>
+<h2 id="8、根据配置文件启动Redis"><a href="#8、根据配置文件启动Redis" class="headerlink" title="8、根据配置文件启动Redis"></a>8、根据配置文件启动Redis</h2><p>定位到Redis目录下的src目录下,执行<code>redis-server ../redis.conf</code></p>
+<h2 id="9、启动redis-cli"><a href="#9、启动redis-cli" class="headerlink" title="9、启动redis.cli"></a>9、启动redis.cli</h2><p>定位到Redis目录下的src目录下,执行<code>redis-cli</code></p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>InterView</title>
     <url>/2023/05/28/14-22-49/</url>
     <content><![CDATA[<h1 id="Java面试题整理"><a href="#Java面试题整理" class="headerlink" title="Java面试题整理"></a>Java面试题整理</h1><span id="more"></span>
@@ -206,107 +236,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux安装Redis</title>
-    <url>/2023/05/29/15-32-51/</url>
-    <content><![CDATA[<h1 id="Linux下安装Redis"><a href="#Linux下安装Redis" class="headerlink" title="Linux下安装Redis"></a>Linux下安装Redis</h1><h2 id="1、下载Redis安装包"><a href="#1、下载Redis安装包" class="headerlink" title="1、下载Redis安装包"></a>1、下载Redis安装包</h2><p><strong>下载链接：<a href="https://redis.io/download/">下载 |雷迪斯 (redis.io)</a></strong></p>
-<span id="more"></span>
-
-<p>选择下载的版本，这里以最新版为例。默认下载就是linux下的安装包。</p>
-<img src="/2023/05/29/15-32-51/redis.png" style="zoom:25%;">
-
-<h2 id="2、上传到linux下"><a href="#2、上传到linux下" class="headerlink" title="2、上传到linux下"></a>2、上传到linux下</h2><p>上传到linux下的usr&#x2F;local&#x2F;bin目录。这里使用FinalShell，直接从本地文件拖到目录下即可。</p>
-<img src="/2023/05/29/15-32-51/redis2.png" style="zoom:45%;">
-
-<h2 id="3、解压Redis"><a href="#3、解压Redis" class="headerlink" title="3、解压Redis"></a>3、解压Redis</h2><p>执行命令<code>tar -zxvf redis-7.0.11.tar.gz</code></p>
-<h2 id="4、安装环境依赖"><a href="#4、安装环境依赖" class="headerlink" title="4、安装环境依赖"></a>4、安装环境依赖</h2><p>因为redis需要c++的依赖支持，所以先安装依赖。</p>
-<p>在&#x2F;usr&#x2F;local&#x2F;bin目录下执行命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装依赖</span></span><br><span class="line">yum install gcc-c++</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看依赖安装是否成功gcc-v 最后一行出现gcc版本号即是安装成功</span></span><br><span class="line">gcc -v</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置所有文件</span></span><br><span class="line">make</span><br><span class="line">make PREFIX=/usr/local/bin install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="5、启动redis"><a href="#5、启动redis" class="headerlink" title="5、启动redis"></a>5、启动redis</h2><p>进入redis目录下的src下执行命令<code>redis-server</code>即可启动Redis。</p>
-<h2 id="6、设置密码"><a href="#6、设置密码" class="headerlink" title="6、设置密码"></a>6、设置密码</h2><p>修改Redis目录下的redis.conf文件<code>ctrl+f</code>查找requirepass。</p>
-<p>将requirepass取消注释，设置自己的密码，比如<code>requirepass  root</code></p>
-<h2 id="7、设置后台启动"><a href="#7、设置后台启动" class="headerlink" title="7、设置后台启动"></a>7、设置后台启动</h2><p>修改Redis目录下的redis.conf文件ctrl+f查找daemonize。</p>
-<p>将<code>daemonize no</code> 改为<code>daemonize yes</code></p>
-<h2 id="8、根据配置文件启动Redis"><a href="#8、根据配置文件启动Redis" class="headerlink" title="8、根据配置文件启动Redis"></a>8、根据配置文件启动Redis</h2><p>定位到Redis目录下的src目录下,执行<code>redis-server ../redis.conf</code></p>
-<h2 id="9、启动redis-cli"><a href="#9、启动redis-cli" class="headerlink" title="9、启动redis.cli"></a>9、启动redis.cli</h2><p>定位到Redis目录下的src目录下,执行<code>redis-cli</code></p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo+Github搭建个人博客</title>
-    <url>/2023/05/25/14-22-46/</url>
-    <content><![CDATA[<h1 id="Hexo-GitHub搭建个人博客"><a href="#Hexo-GitHub搭建个人博客" class="headerlink" title="Hexo+GitHub搭建个人博客"></a>Hexo+GitHub搭建个人博客</h1><span id="more"></span>
-
-<h2 id="1、下载安装Node-js"><a href="#1、下载安装Node-js" class="headerlink" title="1、下载安装Node.js"></a>1、下载安装Node.js</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/1W157gtz4EAMA7yqB2jxNyw?pwd=tskj </span><br><span class="line">提取码：tskj</span><br></pre></td></tr></table></figure>
-
-<p>测试安装完成：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">win+r 输入cmd 进入命令行</span></span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、下载Git"><a href="#2、下载Git" class="headerlink" title="2、下载Git"></a>2、下载Git</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/1k2Um8-ls4vPdwS7kTH98IA?pwd=tskj </span><br><span class="line">提取码：tskj</span><br></pre></td></tr></table></figure>
-
-<p>测试安装完成：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">win+r 输入cmd进入命令行</span></span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、创建Github账号"><a href="#3、创建Github账号" class="headerlink" title="3、创建Github账号"></a>3、创建Github账号</h2><p>github账号创建较为简单，不再赘述。</p>
-<h2 id="4、连接GitHub"><a href="#4、连接GitHub" class="headerlink" title="4、连接GitHub"></a>4、连接GitHub</h2><ul>
-<li><p>设置用户名和邮箱</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">右击桌面 选择git bash here</span></span><br><span class="line">git config --global user.name &#x27;你的Github名&#x27;</span><br><span class="line">git config --global user.email &#x27;github邮箱&#x27;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>生成ssh密钥</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">右击桌面 选择git bash here</span></span><br><span class="line">ssh-keygen -t rsa -C &#x27;github邮箱&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">一路回车</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加密钥</p>
-<p>进入[C:\Users\用户名\ .ssh]目录(记得勾选显示隐藏文件)，用记事本打开id_rsa.pub文件并复制所有内容。</p>
-<p>登录github在setting种找到SSH and GPG keys，点击new SSH key。title随便取名，把剪切板内容粘贴到key种，点击Add SSH key完成。</p>
-</li>
-</ul>
-<h2 id="5、验证连接"><a href="#5、验证连接" class="headerlink" title="5、验证连接"></a>5、验证连接</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">桌面右击git bash here</span> </span><br><span class="line">ssh -T git@github.com</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">出现Are you sure 。。。输入<span class="built_in">yes</span>同意</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示Hi xxx！You are Successful。。代表成功</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="6、创建GitHub-Page"><a href="#6、创建GitHub-Page" class="headerlink" title="6、创建GitHub Page"></a>6、创建GitHub Page</h2><p>GitHub主页右上角加号选择New repository</p>
-<ul>
-<li>Repository name中输入 用户名.github.io</li>
-<li>勾选 “Initialize this repository with a README”</li>
-<li>点击Create repository</li>
-</ul>
-<p>此时博客地址为https:&#x2F;&#x2F;用户名.github.io</p>
-<h2 id="7、本地安装Hexo"><a href="#7、本地安装Hexo" class="headerlink" title="7、本地安装Hexo"></a>7、本地安装Hexo</h2><h3 id="7-1安装Hexo"><a href="#7-1安装Hexo" class="headerlink" title="7.1安装Hexo"></a>7.1安装Hexo</h3><p>在本地创建文件夹后进入cmd</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<h3 id="7-2初始化"><a href="#7-2初始化" class="headerlink" title="7.2初始化"></a>7.2初始化</h3><p>在hexo目录进入cmd</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">初始化并安装所需组件</span></span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-<p>安装完成后依次输入命令，启动本地服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo g # 生成页面</span><br><span class="line">hexo s # 启动预览</span><br></pre></td></tr></table></figure>
-
-<p>访问<a href="http://localhost:4000，出现Hexo默认页面，本地博客安装完成。（加载不出来可能是端口被占用了，Ctrl+C关闭服务，重新启动```hexo">http://localhost:4000，出现Hexo默认页面，本地博客安装完成。（加载不出来可能是端口被占用了，Ctrl+C关闭服务，重新启动```hexo</a> server -p 5000&#96;&#96;&#96;）</p>
-<p>Hexo的目录结构为：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">|- _config.yml  #网站的配置信息</span><br><span class="line">|- package.json #应用程序的信息</span><br><span class="line">|- scaffolds    #模板文件夹</span><br><span class="line">|- source       #存放用户的博客文件，markdown格式</span><br><span class="line">	|- _posts</span><br><span class="line">|- theme        #主题文件夹</span><br><span class="line">|- public       #网站文件</span><br></pre></td></tr></table></figure>
-
-<h2 id="8、部署Hexo到GitHub-Pages"><a href="#8、部署Hexo到GitHub-Pages" class="headerlink" title="8、部署Hexo到GitHub Pages"></a>8、部署Hexo到GitHub Pages</h2><p>本地博客测试成功后，我们可以尝试上传到GitHub进行部署。</p>
-<h3 id="8-1安装hexo-deployer-git"><a href="#8-1安装hexo-deployer-git" class="headerlink" title="8.1安装hexo-deployer-git"></a>8.1安装hexo-deployer-git</h3><p>进入hexo所在目录</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<h3 id="8-2修改-config-yml文件"><a href="#8-2修改-config-yml文件" class="headerlink" title="8.2修改_config.yml文件"></a>8.2修改_config.yml文件</h3><p>修改Hexo目录下的_config.yml文件，在文件末尾添加</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">	type: git</span><br><span class="line">	repository: git@github.com:用户名/用户名.github.io.git</span><br><span class="line">	branch: master</span><br></pre></td></tr></table></figure>
-
-<h3 id="8-3上传部署"><a href="#8-3上传部署" class="headerlink" title="8.3上传部署"></a>8.3上传部署</h3><figure class="highlight plaintext"><figcaption><span>d```将网站上传到GitHub　Pages</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">此时我们通过https://用户名.github.io就可以访问了</span><br><span class="line"></span><br><span class="line">## 9、绑定域名</span><br><span class="line"></span><br><span class="line">### 9.1域名注册与解析</span><br><span class="line"></span><br><span class="line">我这里是通过腾讯云购买的域名，购买完成后在我的域名下可以通过解析进行域名解析。</span><br><span class="line"></span><br><span class="line">### 9.3域名解析</span><br><span class="line"></span><br><span class="line">输入cmd打开命令行，输入```ping 用户名.github.io```得到主机地址.</span><br><span class="line"></span><br><span class="line">![](./My-First-Post/QQ截图20230525152245.png)</span><br><span class="line"></span><br><span class="line">在域名解析中添加记录，主机记录为@,记录类型为A，记录值为主机地址，点击确认。</span><br><span class="line"></span><br><span class="line">再添加一条主机地址为www,记录类型为CNAME，记录值为```用户名.github.io```点击确认。</span><br><span class="line"></span><br><span class="line">- 再进入你的GitHub Pages</span><br><span class="line">- 点击settings</span><br><span class="line">- 点击pages</span><br><span class="line">- 找到Custom domain 输入你的域名地址不带www（比如abc.cn）</span><br><span class="line">- 将下方的Enforce HTTPS勾选</span><br><span class="line">- 在你的Hexo文件目录下的source下创建文本文件，名为CNAME保存为全部类型（不带.txt）。该文件内容为你的域名地址如：https://abc.cn</span><br><span class="line"></span><br><span class="line">## 10、使用</span><br><span class="line"></span><br><span class="line">### 10.1 发布文章</span><br><span class="line"></span><br><span class="line">进入博客目录所在</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line"># 创建博文</span><br><span class="line">hexo new &quot;My first text&quot;</span><br></pre></td></tr></table></figure>
-
-<p>完成后会在source目录下生成一个md文件</p>
-<p>写完后可以通过命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo g # 生成页面</span><br><span class="line">hexo d # 部署发布</span><br></pre></td></tr></table></figure>
-
-<p>当然也可以使用自己的md文件，只需要在文件开头加入Front-matter即可</p>
-<p>完成后的提交命令同上。</p>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Nginx</title>
     <url>/2023/05/28/14-22-38/</url>
     <content><![CDATA[<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><span id="more"></span>
@@ -381,153 +310,74 @@
       </tags>
   </entry>
   <entry>
-    <title>Redis</title>
-    <url>/2023/05/28/14-22-22/</url>
-    <content><![CDATA[<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><span id="more"></span>
+    <title>Hexo+Github搭建个人博客</title>
+    <url>/2023/05/25/14-22-46/</url>
+    <content><![CDATA[<h1 id="Hexo-GitHub搭建个人博客"><a href="#Hexo-GitHub搭建个人博客" class="headerlink" title="Hexo+GitHub搭建个人博客"></a>Hexo+GitHub搭建个人博客</h1><span id="more"></span>
 
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Redis是一个基于内存的key—value结构数据库</p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
-<li>基于内存存储读写性能高</li>
-<li>适合存储热点数据（频繁访问、读取）</li>
-</ul>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
-<li>字符串string</li>
-<li>哈希hash</li>
-<li>列表list</li>
-<li>集合set</li>
-<li>有序集合sorted set</li>
-</ul>
-<h3 id="字符串（常用命令）"><a href="#字符串（常用命令）" class="headerlink" title="字符串（常用命令）"></a>字符串（常用命令）</h3><ol>
-<li><p>Set key value                               设置指定key的值</p>
-</li>
-<li><p>Get key                                         获取指定key的值</p>
-</li>
-<li><p>SETEX key seconds value        设置指定key的值，并将key的过期时间设为seconds秒</p>
-</li>
-<li><p>SETNX  key value                      只有在key不存在时设置key的值</p>
-</li>
-</ol>
-<h3 id="哈希hash"><a href="#哈希hash" class="headerlink" title="哈希hash"></a>哈希hash</h3><p>​			Redis hash 是一个string类型的field和value的映射表，hash			特别适合用于存储对象，注：它一个key对应的一个value中			又是一个field对应一个value常用命令：	</p>
-<ol>
-<li><p>​	HSET key field value    将哈希表key中的字段field的值设为value</p>
-</li>
-<li><p>​    HGET key field    获取存储在哈希表中指定字段的值</p>
-</li>
-<li><p>​    HDEL key field    删除存储在哈希表中的指定字段</p>
-</li>
-<li><p>​    HKEYS key           获取哈希表中所有字段</p>
-</li>
-<li><p>​    Hvals key              获取哈希表中所有值</p>
-</li>
-<li><p>​    HGETALL key      获取在哈希表中指定key的所有字段和值</p>
-</li>
-</ol>
-<h3 id="列表List"><a href="#列表List" class="headerlink" title="列表List"></a>列表List</h3><p>​			Redis列表是最简单的字符串列表，按照插入顺序排序，常用命令：</p>
-<ol>
-<li>LPUSH key value1 [value2]    将一个或多个值插入到列表头部</li>
-<li>LRANGE key start stop            获取列表指定范围内的元素</li>
-<li>RPOP key                                    移除并获取列表最后一个元素</li>
-<li>LLEN key                                     获取列表长度</li>
-<li>BRPOP key1 [key2] timeout    移出并获取列表最后一个元素，如果列表没有元素会阻塞列表直到等到超时或发现可以弹出元素为止</li>
-</ol>
-<h3 id="集合set"><a href="#集合set" class="headerlink" title="集合set"></a>集合set</h3><p>Redis set是string类型的无序集合，集合成员是唯一的，这就意味着集合中不能出现重复的数据，常用命令：</p>
-<ol>
-<li>SADD key member1 [member2]   向集合添加一个或多个成员</li>
-<li>SMEMNERS key                               返回集合中的所有成员</li>
-<li>SCARD key                                        获取集合的成员数</li>
-<li>SINTER  key1 [key2]                        返回给定所有集合的交集</li>
-<li>SUNION key1 [key2]                       返回所有给定集合的并集</li>
-<li>SDIFF key1 [key2]                            返回所有给定集合的差集</li>
-<li>SREM key member1 [member2]   移除集合中一个或多个成员</li>
-</ol>
-<h3 id="sorted-set有序集合"><a href="#sorted-set有序集合" class="headerlink" title="sorted set有序集合"></a>sorted set有序集合</h3><p>Redis sorted set有序集合是string类型元素的集合，且不允许重复的成员。每个元素都会关联一个double类型的分数score，redis正是通过分数来为集合中的成员进行从小到大排序，有序集合的成员是唯一的，但分数却可以重复，常用命令：</p>
-<ol>
-<li>ZADD key score1 member1 [score2 member2]  向有序集合添加一个或多个成员，或者更新已存在成员的分数</li>
-<li>ZRANGE  key start stop [WITHSCORES]             通过索引区间返回有序集合中指定区间内的成员</li>
-<li>ZINCRBY key increment member                        有序集合中对指定成员的分数加上增量 increment</li>
-<li>ZREM key member [member…]                             移除有序集合中的一个或多个成员</li>
-</ol>
-<h3 id="通用命令"><a href="#通用命令" class="headerlink" title="通用命令"></a>通用命令</h3><ol>
-<li>KEYS pattern     查找所有符合给定模式pattern的key</li>
-<li>EXISTS key         检查给定key是否存在</li>
-<li>TYPE  key           返回key所存储的值的类型</li>
-<li>TTL key               返回给定key的剩余生存时间（TTL，time to live），以秒为单位</li>
-<li>DEL key               该命令用于在key存在是删除key</li>
-<li>Select <bind>  切换到bind数据库</bind></li>
-</ol>
-<h3 id="spring-cache注解："><a href="#spring-cache注解：" class="headerlink" title="spring cache注解："></a>spring cache注解：</h3><p>cacheManger是spring提供的各种缓存技术抽象接口 可以用autowired自动注入</p>
-<p>注解可以用#result.id   或#p0.id   或 #user.id或#root.args[0].id    参数需要和参数名相同 如 #id</p>
-<p>yml文件中cache redis time to live可以设置缓存过期时间</p>
-<p>返回结果集需要实现序列化接口才可以被放到redis中</p>
-<ol>
-<li>@EnableCaching          开启注解功能，放在启动类上</li>
-<li>@Cacheable                       在方法执行前spring先查看缓存中是否有数据，如果有数据，则直接返回缓存数据；若没有数据，调用方法并将方法返回值放到缓存中</li>
-<li>@CachePut                    将方法的返回值放到缓存中</li>
-<li>@CacheEvict                 将一条或多条数据从缓存中删除</li>
-</ol>
-<h4 id="CachePut"><a href="#CachePut" class="headerlink" title="@CachePut:"></a>@CachePut:</h4><ol>
-<li><p>value:缓存的名字，每个缓存名称下面可以有多个key</p>
-</li>
-<li><p>key:缓存的key	</p>
-<p>​</p>
-</li>
-</ol>
-<p>	</p>
-<h4 id="CacheEvict"><a href="#CacheEvict" class="headerlink" title="@CacheEvict:"></a>@CacheEvict:</h4><p>​		注解中可以使用#result</p>
-<ol>
-<li>value:要删除value</li>
-<li>key:删除value下指定的key</li>
-<li>allEntries:true  删除value下的所有cache</li>
-<li>beforeInvocation:在方法执行前清除缓存</li>
-</ol>
-<h4 id="Cacheable"><a href="#Cacheable" class="headerlink" title="@Cacheable:"></a>@Cacheable:</h4><ol>
-<li><p>value:缓存的名字，每个缓存名称下面可以有多个key</p>
-</li>
-<li><p>key:缓存的key		</p>
-</li>
-<li><p>condition:当满足条件时缓存数据</p>
-</li>
-<li><p>unless:当满足条件时不缓存数据</p>
-</li>
-</ol>
-<h2 id="MySql主从复制"><a href="#MySql主从复制" class="headerlink" title="MySql主从复制"></a>MySql主从复制</h2><p>mysql主从复制是一个异步的复制过程，底层是基于mysql数据库自带的二进制日志功能。就是一台或多台mysql数据库（slave，即从库）从另一台mysql数据库（master，即主库）进行日志的复制然后再解析日志并应用到自身，最中实现从库和主库的数据保持一致。mysql’主从复制是mysql’数据库自带功能，无需借助第三方工具</p>
-<h3 id="配置-主库MMaster"><a href="#配置-主库MMaster" class="headerlink" title="配置-主库MMaster"></a>配置-主库MMaster</h3><p>​		第一步：修改msysql数据库的配置文件&#x2F;etc&#x2F;my.cnf</p>
-<p>​			[mysqld]</p>
-<p>​			log-bin &#x3D; mysql-bin    #[必须]启用二进制日志</p>
-<p>​			server-id&#x3D;100			#[必须]服务器唯一ID</p>
-<p>​		第二步：重启mysql服务</p>
-<p>​			systemctl restart mysqld</p>
-<p>​		第三步：登录mysql数据库，执行以下sql</p>
-<p>​			GRANT REPLICATION SLAVE ON  * . *  to ‘xiaoming‘@’%’ identified by 			‘Root@123456’</p>
-<p>​			注：上面sql的作用是创建一个用户xiaoming，密码为Root@123456，并且			给xiaoming用户授权PERLICATION SLAVE 权限。常用于建立复制时所需要			用到的用户权限，也就是slave必须被master授权具有该权限的用户，才能通			过该用户复制。密码需要数字，大小写，特殊字符长度8位</p>
-<p>​		第四步：登录mysql数据库，执行下面sql，记录结果中File和Position的值</p>
-<p>​			show master status</p>
-<p>​			注：上面sql的作用时查看master的状态，执行完此sql 后不要再执行任何操作</p>
-<h3 id="配置-从库Slave"><a href="#配置-从库Slave" class="headerlink" title="配置-从库Slave"></a>配置-从库Slave</h3><p>​			第一步：修改mysql数据库的配置文件&#x2F;etc&#x2F;my.cnf</p>
-<p>​				[mysqld]</p>
-<p>​				server-id&#x3D;101  #[必须]	服务器唯一ID</p>
-<p>​			第二步：重启mysql服务</p>
-<p>​				systemctl restart mysqld</p>
-<p>​			第三步：登录mysql数据库，执行下面sql</p>
-<p>​				change master to master_host&#x3D;’192.168.138.100’,master_user&#x3D;’xiaoming’,master_password&#x3D;‘Root@123456’,master_log_file&#x3D;’mysql-bin.000001’,master_log_pos&#x3D;439;</p>
-<p>​				start slave;</p>
-<p>​				注：master_host:主服务器IP地址，master_user：授权的用户名，master_password授权的用户的密码，master_log_file：master的状态中file的值，</p>
-<p>master_log_pos:mster的状态中position中的值</p>
-<p>​			第四步：登录mysql数据库，执行下面sql，查看从库状态</p>
-<p>​				show slave status;</p>
-<h2 id="Springboot拦截器使用redis"><a href="#Springboot拦截器使用redis" class="headerlink" title="Springboot拦截器使用redis"></a>Springboot拦截器使用redis</h2><p>pom依赖</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="1、下载安装Node-js"><a href="#1、下载安装Node-js" class="headerlink" title="1、下载安装Node.js"></a>1、下载安装Node.js</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/1W157gtz4EAMA7yqB2jxNyw?pwd=tskj </span><br><span class="line">提取码：tskj</span><br></pre></td></tr></table></figure>
 
-<ol>
-<li>拦截器实现HandlerInterceptor</li>
-<li>配置文件添加拦截器</li>
-<li>拦截器中的RedisTemplate不用@autowired注解用@Resource</li>
-</ol>
+<p>测试安装完成：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">win+r 输入cmd 进入命令行</span></span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、下载Git"><a href="#2、下载Git" class="headerlink" title="2、下载Git"></a>2、下载Git</h2><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/1k2Um8-ls4vPdwS7kTH98IA?pwd=tskj </span><br><span class="line">提取码：tskj</span><br></pre></td></tr></table></figure>
+
+<p>测试安装完成：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">win+r 输入cmd进入命令行</span></span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、创建Github账号"><a href="#3、创建Github账号" class="headerlink" title="3、创建Github账号"></a>3、创建Github账号</h2><p>github账号创建较为简单，不再赘述。</p>
+<h2 id="4、连接GitHub"><a href="#4、连接GitHub" class="headerlink" title="4、连接GitHub"></a>4、连接GitHub</h2><ul>
+<li><p>设置用户名和邮箱</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">右击桌面 选择git bash here</span></span><br><span class="line">git config --global user.name &#x27;你的Github名&#x27;</span><br><span class="line">git config --global user.email &#x27;github邮箱&#x27;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成ssh密钥</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">右击桌面 选择git bash here</span></span><br><span class="line">ssh-keygen -t rsa -C &#x27;github邮箱&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">一路回车</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加密钥</p>
+<p>进入[C:\Users\用户名\ .ssh]目录(记得勾选显示隐藏文件)，用记事本打开id_rsa.pub文件并复制所有内容。</p>
+<p>登录github在setting种找到SSH and GPG keys，点击new SSH key。title随便取名，把剪切板内容粘贴到key种，点击Add SSH key完成。</p>
+</li>
+</ul>
+<h2 id="5、验证连接"><a href="#5、验证连接" class="headerlink" title="5、验证连接"></a>5、验证连接</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">桌面右击git bash here</span> </span><br><span class="line">ssh -T git@github.com</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">出现Are you sure 。。。输入<span class="built_in">yes</span>同意</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示Hi xxx！You are Successful。。代表成功</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6、创建GitHub-Page"><a href="#6、创建GitHub-Page" class="headerlink" title="6、创建GitHub Page"></a>6、创建GitHub Page</h2><p>GitHub主页右上角加号选择New repository</p>
+<ul>
+<li>Repository name中输入 用户名.github.io</li>
+<li>勾选 “Initialize this repository with a README”</li>
+<li>点击Create repository</li>
+</ul>
+<p>此时博客地址为https:&#x2F;&#x2F;用户名.github.io</p>
+<h2 id="7、本地安装Hexo"><a href="#7、本地安装Hexo" class="headerlink" title="7、本地安装Hexo"></a>7、本地安装Hexo</h2><h3 id="7-1安装Hexo"><a href="#7-1安装Hexo" class="headerlink" title="7.1安装Hexo"></a>7.1安装Hexo</h3><p>在本地创建文件夹后进入cmd</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-2初始化"><a href="#7-2初始化" class="headerlink" title="7.2初始化"></a>7.2初始化</h3><p>在hexo目录进入cmd</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">初始化并安装所需组件</span></span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后依次输入命令，启动本地服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo g # 生成页面</span><br><span class="line">hexo s # 启动预览</span><br></pre></td></tr></table></figure>
+
+<p>访问<a href="http://localhost:4000，出现Hexo默认页面，本地博客安装完成。（加载不出来可能是端口被占用了，Ctrl+C关闭服务，重新启动```hexo">http://localhost:4000，出现Hexo默认页面，本地博客安装完成。（加载不出来可能是端口被占用了，Ctrl+C关闭服务，重新启动```hexo</a> server -p 5000&#96;&#96;&#96;）</p>
+<p>Hexo的目录结构为：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">|- _config.yml  #网站的配置信息</span><br><span class="line">|- package.json #应用程序的信息</span><br><span class="line">|- scaffolds    #模板文件夹</span><br><span class="line">|- source       #存放用户的博客文件，markdown格式</span><br><span class="line">	|- _posts</span><br><span class="line">|- theme        #主题文件夹</span><br><span class="line">|- public       #网站文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="8、部署Hexo到GitHub-Pages"><a href="#8、部署Hexo到GitHub-Pages" class="headerlink" title="8、部署Hexo到GitHub Pages"></a>8、部署Hexo到GitHub Pages</h2><p>本地博客测试成功后，我们可以尝试上传到GitHub进行部署。</p>
+<h3 id="8-1安装hexo-deployer-git"><a href="#8-1安装hexo-deployer-git" class="headerlink" title="8.1安装hexo-deployer-git"></a>8.1安装hexo-deployer-git</h3><p>进入hexo所在目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-2修改-config-yml文件"><a href="#8-2修改-config-yml文件" class="headerlink" title="8.2修改_config.yml文件"></a>8.2修改_config.yml文件</h3><p>修改Hexo目录下的_config.yml文件，在文件末尾添加</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">	type: git</span><br><span class="line">	repository: git@github.com:用户名/用户名.github.io.git</span><br><span class="line">	branch: master</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-3上传部署"><a href="#8-3上传部署" class="headerlink" title="8.3上传部署"></a>8.3上传部署</h3><figure class="highlight plaintext"><figcaption><span>d```将网站上传到GitHub　Pages</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">此时我们通过https://用户名.github.io就可以访问了</span><br><span class="line"></span><br><span class="line">## 9、绑定域名</span><br><span class="line"></span><br><span class="line">### 9.1域名注册与解析</span><br><span class="line"></span><br><span class="line">我这里是通过腾讯云购买的域名，购买完成后在我的域名下可以通过解析进行域名解析。</span><br><span class="line"></span><br><span class="line">### 9.3域名解析</span><br><span class="line"></span><br><span class="line">输入cmd打开命令行，输入```ping 用户名.github.io```得到主机地址.</span><br><span class="line"></span><br><span class="line">![](./My-First-Post/QQ截图20230525152245.png)</span><br><span class="line"></span><br><span class="line">在域名解析中添加记录，主机记录为@,记录类型为A，记录值为主机地址，点击确认。</span><br><span class="line"></span><br><span class="line">再添加一条主机地址为www,记录类型为CNAME，记录值为```用户名.github.io```点击确认。</span><br><span class="line"></span><br><span class="line">- 再进入你的GitHub Pages</span><br><span class="line">- 点击settings</span><br><span class="line">- 点击pages</span><br><span class="line">- 找到Custom domain 输入你的域名地址不带www（比如abc.cn）</span><br><span class="line">- 将下方的Enforce HTTPS勾选</span><br><span class="line">- 在你的Hexo文件目录下的source下创建文本文件，名为CNAME保存为全部类型（不带.txt）。该文件内容为你的域名地址如：https://abc.cn</span><br><span class="line"></span><br><span class="line">## 10、使用</span><br><span class="line"></span><br><span class="line">### 10.1 发布文章</span><br><span class="line"></span><br><span class="line">进入博客目录所在</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line"># 创建博文</span><br><span class="line">hexo new &quot;My first text&quot;</span><br></pre></td></tr></table></figure>
+
+<p>完成后会在source目录下生成一个md文件</p>
+<p>写完后可以通过命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo g # 生成页面</span><br><span class="line">hexo d # 部署发布</span><br></pre></td></tr></table></figure>
+
+<p>当然也可以使用自己的md文件，只需要在文件开头加入Front-matter即可</p>
+<p>完成后的提交命令同上。</p>
 ]]></content>
       <tags>
-        <tag>Java</tag>
-        <tag>Redis</tag>
-        <tag>缓存</tag>
+        <tag>Hexo</tag>
+        <tag>博客搭建</tag>
       </tags>
   </entry>
   <entry>
@@ -599,10 +449,10 @@
 </ul>
 <h3 id="1-3、安装Redis"><a href="#1-3、安装Redis" class="headerlink" title="1.3、安装Redis"></a>1.3、安装Redis</h3><h4 id="1-3-1、下载Redis安装包"><a href="#1-3-1、下载Redis安装包" class="headerlink" title="1.3.1、下载Redis安装包"></a>1.3.1、下载Redis安装包</h4><p><strong>下载链接：<a href="https://redis.io/download/">下载 |雷迪斯 (redis.io)</a></strong></p>
 <p>选择下载的版本，这里以最新版为例。默认下载就是linux下的安装包。</p>
-<img src="/2023/05/29/15-33-02/redis.png" style="zoom:25%;">
+<img src="/2023/05/29/15-33-02/redis.png" style="zoom:60%;">
 
 <h4 id="1-3-2、上传到linux下"><a href="#1-3-2、上传到linux下" class="headerlink" title="1.3.2、上传到linux下"></a>1.3.2、上传到linux下</h4><p>上传到linux下的usr&#x2F;local&#x2F;bin目录。这里使用FinalShell，直接从本地文件拖到目录下即可。</p>
-<img src="/2023/05/29/15-33-02/redis2.png" style="zoom:45%;">
+<img src="/2023/05/29/15-33-02/redis2.png" style="zoom:60%;">
 
 <h4 id="1-3-3、解压Redis"><a href="#1-3-3、解压Redis" class="headerlink" title="1.3.3、解压Redis"></a>1.3.3、解压Redis</h4><p>执行命令<code>tar -zxvf redis-7.0.11.tar.gz</code></p>
 <h4 id="1-3-4、安装环境依赖"><a href="#1-3-4、安装环境依赖" class="headerlink" title="1.3.4、安装环境依赖"></a>1.3.4、安装环境依赖</h4><p>因为redis需要c++的依赖支持，所以先安装依赖。</p>
@@ -1007,6 +857,156 @@
         <tag>Redis</tag>
         <tag>学习笔记</tag>
         <tag>坚持</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis</title>
+    <url>/2023/05/28/14-22-22/</url>
+    <content><![CDATA[<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><span id="more"></span>
+
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Redis是一个基于内存的key—value结构数据库</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>基于内存存储读写性能高</li>
+<li>适合存储热点数据（频繁访问、读取）</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
+<li>字符串string</li>
+<li>哈希hash</li>
+<li>列表list</li>
+<li>集合set</li>
+<li>有序集合sorted set</li>
+</ul>
+<h3 id="字符串（常用命令）"><a href="#字符串（常用命令）" class="headerlink" title="字符串（常用命令）"></a>字符串（常用命令）</h3><ol>
+<li><p>Set key value                               设置指定key的值</p>
+</li>
+<li><p>Get key                                         获取指定key的值</p>
+</li>
+<li><p>SETEX key seconds value        设置指定key的值，并将key的过期时间设为seconds秒</p>
+</li>
+<li><p>SETNX  key value                      只有在key不存在时设置key的值</p>
+</li>
+</ol>
+<h3 id="哈希hash"><a href="#哈希hash" class="headerlink" title="哈希hash"></a>哈希hash</h3><p>​			Redis hash 是一个string类型的field和value的映射表，hash			特别适合用于存储对象，注：它一个key对应的一个value中			又是一个field对应一个value常用命令：	</p>
+<ol>
+<li><p>​	HSET key field value    将哈希表key中的字段field的值设为value</p>
+</li>
+<li><p>​    HGET key field    获取存储在哈希表中指定字段的值</p>
+</li>
+<li><p>​    HDEL key field    删除存储在哈希表中的指定字段</p>
+</li>
+<li><p>​    HKEYS key           获取哈希表中所有字段</p>
+</li>
+<li><p>​    Hvals key              获取哈希表中所有值</p>
+</li>
+<li><p>​    HGETALL key      获取在哈希表中指定key的所有字段和值</p>
+</li>
+</ol>
+<h3 id="列表List"><a href="#列表List" class="headerlink" title="列表List"></a>列表List</h3><p>​			Redis列表是最简单的字符串列表，按照插入顺序排序，常用命令：</p>
+<ol>
+<li>LPUSH key value1 [value2]    将一个或多个值插入到列表头部</li>
+<li>LRANGE key start stop            获取列表指定范围内的元素</li>
+<li>RPOP key                                    移除并获取列表最后一个元素</li>
+<li>LLEN key                                     获取列表长度</li>
+<li>BRPOP key1 [key2] timeout    移出并获取列表最后一个元素，如果列表没有元素会阻塞列表直到等到超时或发现可以弹出元素为止</li>
+</ol>
+<h3 id="集合set"><a href="#集合set" class="headerlink" title="集合set"></a>集合set</h3><p>Redis set是string类型的无序集合，集合成员是唯一的，这就意味着集合中不能出现重复的数据，常用命令：</p>
+<ol>
+<li>SADD key member1 [member2]   向集合添加一个或多个成员</li>
+<li>SMEMNERS key                               返回集合中的所有成员</li>
+<li>SCARD key                                        获取集合的成员数</li>
+<li>SINTER  key1 [key2]                        返回给定所有集合的交集</li>
+<li>SUNION key1 [key2]                       返回所有给定集合的并集</li>
+<li>SDIFF key1 [key2]                            返回所有给定集合的差集</li>
+<li>SREM key member1 [member2]   移除集合中一个或多个成员</li>
+</ol>
+<h3 id="sorted-set有序集合"><a href="#sorted-set有序集合" class="headerlink" title="sorted set有序集合"></a>sorted set有序集合</h3><p>Redis sorted set有序集合是string类型元素的集合，且不允许重复的成员。每个元素都会关联一个double类型的分数score，redis正是通过分数来为集合中的成员进行从小到大排序，有序集合的成员是唯一的，但分数却可以重复，常用命令：</p>
+<ol>
+<li>ZADD key score1 member1 [score2 member2]  向有序集合添加一个或多个成员，或者更新已存在成员的分数</li>
+<li>ZRANGE  key start stop [WITHSCORES]             通过索引区间返回有序集合中指定区间内的成员</li>
+<li>ZINCRBY key increment member                        有序集合中对指定成员的分数加上增量 increment</li>
+<li>ZREM key member [member…]                             移除有序集合中的一个或多个成员</li>
+</ol>
+<h3 id="通用命令"><a href="#通用命令" class="headerlink" title="通用命令"></a>通用命令</h3><ol>
+<li>KEYS pattern     查找所有符合给定模式pattern的key</li>
+<li>EXISTS key         检查给定key是否存在</li>
+<li>TYPE  key           返回key所存储的值的类型</li>
+<li>TTL key               返回给定key的剩余生存时间（TTL，time to live），以秒为单位</li>
+<li>DEL key               该命令用于在key存在是删除key</li>
+<li>Select <bind>  切换到bind数据库</bind></li>
+</ol>
+<h3 id="spring-cache注解："><a href="#spring-cache注解：" class="headerlink" title="spring cache注解："></a>spring cache注解：</h3><p>cacheManger是spring提供的各种缓存技术抽象接口 可以用autowired自动注入</p>
+<p>注解可以用#result.id   或#p0.id   或 #user.id或#root.args[0].id    参数需要和参数名相同 如 #id</p>
+<p>yml文件中cache redis time to live可以设置缓存过期时间</p>
+<p>返回结果集需要实现序列化接口才可以被放到redis中</p>
+<ol>
+<li>@EnableCaching          开启注解功能，放在启动类上</li>
+<li>@Cacheable                       在方法执行前spring先查看缓存中是否有数据，如果有数据，则直接返回缓存数据；若没有数据，调用方法并将方法返回值放到缓存中</li>
+<li>@CachePut                    将方法的返回值放到缓存中</li>
+<li>@CacheEvict                 将一条或多条数据从缓存中删除</li>
+</ol>
+<h4 id="CachePut"><a href="#CachePut" class="headerlink" title="@CachePut:"></a>@CachePut:</h4><ol>
+<li><p>value:缓存的名字，每个缓存名称下面可以有多个key</p>
+</li>
+<li><p>key:缓存的key	</p>
+<p>​</p>
+</li>
+</ol>
+<p>	</p>
+<h4 id="CacheEvict"><a href="#CacheEvict" class="headerlink" title="@CacheEvict:"></a>@CacheEvict:</h4><p>​		注解中可以使用#result</p>
+<ol>
+<li>value:要删除value</li>
+<li>key:删除value下指定的key</li>
+<li>allEntries:true  删除value下的所有cache</li>
+<li>beforeInvocation:在方法执行前清除缓存</li>
+</ol>
+<h4 id="Cacheable"><a href="#Cacheable" class="headerlink" title="@Cacheable:"></a>@Cacheable:</h4><ol>
+<li><p>value:缓存的名字，每个缓存名称下面可以有多个key</p>
+</li>
+<li><p>key:缓存的key		</p>
+</li>
+<li><p>condition:当满足条件时缓存数据</p>
+</li>
+<li><p>unless:当满足条件时不缓存数据</p>
+</li>
+</ol>
+<h2 id="MySql主从复制"><a href="#MySql主从复制" class="headerlink" title="MySql主从复制"></a>MySql主从复制</h2><p>mysql主从复制是一个异步的复制过程，底层是基于mysql数据库自带的二进制日志功能。就是一台或多台mysql数据库（slave，即从库）从另一台mysql数据库（master，即主库）进行日志的复制然后再解析日志并应用到自身，最中实现从库和主库的数据保持一致。mysql’主从复制是mysql’数据库自带功能，无需借助第三方工具</p>
+<h3 id="配置-主库MMaster"><a href="#配置-主库MMaster" class="headerlink" title="配置-主库MMaster"></a>配置-主库MMaster</h3><p>​		第一步：修改msysql数据库的配置文件&#x2F;etc&#x2F;my.cnf</p>
+<p>​			[mysqld]</p>
+<p>​			log-bin &#x3D; mysql-bin    #[必须]启用二进制日志</p>
+<p>​			server-id&#x3D;100			#[必须]服务器唯一ID</p>
+<p>​		第二步：重启mysql服务</p>
+<p>​			systemctl restart mysqld</p>
+<p>​		第三步：登录mysql数据库，执行以下sql</p>
+<p>​			GRANT REPLICATION SLAVE ON  * . *  to ‘xiaoming‘@’%’ identified by 			‘Root@123456’</p>
+<p>​			注：上面sql的作用是创建一个用户xiaoming，密码为Root@123456，并且			给xiaoming用户授权PERLICATION SLAVE 权限。常用于建立复制时所需要			用到的用户权限，也就是slave必须被master授权具有该权限的用户，才能通			过该用户复制。密码需要数字，大小写，特殊字符长度8位</p>
+<p>​		第四步：登录mysql数据库，执行下面sql，记录结果中File和Position的值</p>
+<p>​			show master status</p>
+<p>​			注：上面sql的作用时查看master的状态，执行完此sql 后不要再执行任何操作</p>
+<h3 id="配置-从库Slave"><a href="#配置-从库Slave" class="headerlink" title="配置-从库Slave"></a>配置-从库Slave</h3><p>​			第一步：修改mysql数据库的配置文件&#x2F;etc&#x2F;my.cnf</p>
+<p>​				[mysqld]</p>
+<p>​				server-id&#x3D;101  #[必须]	服务器唯一ID</p>
+<p>​			第二步：重启mysql服务</p>
+<p>​				systemctl restart mysqld</p>
+<p>​			第三步：登录mysql数据库，执行下面sql</p>
+<p>​				change master to master_host&#x3D;’192.168.138.100’,master_user&#x3D;’xiaoming’,master_password&#x3D;‘Root@123456’,master_log_file&#x3D;’mysql-bin.000001’,master_log_pos&#x3D;439;</p>
+<p>​				start slave;</p>
+<p>​				注：master_host:主服务器IP地址，master_user：授权的用户名，master_password授权的用户的密码，master_log_file：master的状态中file的值，</p>
+<p>master_log_pos:mster的状态中position中的值</p>
+<p>​			第四步：登录mysql数据库，执行下面sql，查看从库状态</p>
+<p>​				show slave status;</p>
+<h2 id="Springboot拦截器使用redis"><a href="#Springboot拦截器使用redis" class="headerlink" title="Springboot拦截器使用redis"></a>Springboot拦截器使用redis</h2><p>pom依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>拦截器实现HandlerInterceptor</li>
+<li>配置文件添加拦截器</li>
+<li>拦截器中的RedisTemplate不用@autowired注解用@Resource</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>Redis</tag>
+        <tag>缓存</tag>
       </tags>
   </entry>
   <entry>
