@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://rosevvi.cn/2023/07/18/13-36-02/Hexo-Blog/source_posts/Redis%E5%AD%A6%E4%B9%A0/20230718.png">
 <meta property="article:published_time" content="2023-07-18T05:36:02.000Z">
-<meta property="article:modified_time" content="2023-07-18T11:37:51.639Z">
+<meta property="article:modified_time" content="2023-07-22T11:20:30.014Z">
 <meta property="article:author" content="rosevvi">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="缓存">
@@ -144,7 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5"><span class="nav-number">1.</span> <span class="nav-text">Redis缓存更新策略</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis%E7%BC%93%E5%AD%98%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5"><span class="nav-number">1.</span> <span class="nav-text">Redis缓存更新策略</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F"><span class="nav-number">1.1.</span> <span class="nav-text">Redis缓存穿透</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF"><span class="nav-number">1.2.</span> <span class="nav-text">Redis缓存击穿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9"><span class="nav-number">1.3.</span> <span class="nav-text">Redis缓存雪崩</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -159,13 +159,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -228,9 +228,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-07-18 13:36:02 / 修改时间：19:37:51" itemprop="dateCreated datePublished" datetime="2023-07-18T13:36:02+08:00">2023-07-18</time>
+      <time title="创建时间：2023-07-18 13:36:02" itemprop="dateCreated datePublished" datetime="2023-07-18T13:36:02+08:00">2023-07-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-22 19:20:30" itemprop="dateModified" datetime="2023-07-22T19:20:30+08:00">2023-07-22</time>
     </span>
 
   
@@ -240,14 +246,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>559</span>
+      <span>1.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -310,6 +316,34 @@
 <p><img src="/2023/07/18/13-36-02/Hexo-Blog\source_posts\Redis学习\20230718.png"></p>
 </li>
 </ol>
+<h2 id="Redis缓存穿透"><a href="#Redis缓存穿透" class="headerlink" title="Redis缓存穿透"></a>Redis缓存穿透</h2><p><strong>redis缓存穿透</strong>：指在使用redis缓存数据时，用户以某种不存在的key访问redis缓存，缓存中不存在就会请求到数据库，一些不法分子掌握这种规律后使用大量的无效key来发起请求，这些请求都会打到数据库中，给数据库造成压力。</p>
+<p><strong>解决方案：</strong> </p>
+<ol>
+<li>缓存空值，当不存在的key访问到数据库时，将该key缓存起来，value设为空。下次收到这个请求时就不会访问到数据库。<ul>
+<li>缺点：该不存在的key可能在后续因为用户添加或某种方式，以正确的方式存在，这时候缓存中为空，这时就出现缓存与数据库不一致问题。</li>
+<li>解决方案：给该key设置超时时间，到期自动清除。一般设置的时间短一点，防止出现上述缺点长时间数据不一致。</li>
+</ul>
+</li>
+<li>布隆过滤器：自己实现比较困难，建议需要时自行百度。</li>
+<li>接口校验：对传递过来的key进行合法性校验。</li>
+</ol>
+<h2 id="Redis缓存击穿"><a href="#Redis缓存击穿" class="headerlink" title="Redis缓存击穿"></a>Redis缓存击穿</h2><p><strong>redis缓存击穿：</strong>指某一些超级热点key，在缓存失效时间到期时，出现大量的请求访问到数据库，给数据库造成压力的情况。</p>
+<p><strong>解决方案：</strong></p>
+<ol>
+<li><p>互斥锁：通过给热点key加锁的形式解决问题，当多个线程的请求到达时，线程1查询缓存时缓存超时时间到期给清除了，这是线程1去获取锁，并执行查询数据库更新缓存的步骤，线程2到达时尝试获取锁失败，就继续回调该方法，直到线程1释放锁。可以尝试使用redis的setnx来进行设置，因为setnx在key如果存在时就设置不进去，不存在时才能设置。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">tryLock</span><span class="params">(String key)</span>&#123;</span><br><span class="line">        <span class="comment">// 尝试获取互斥锁</span></span><br><span class="line">        <span class="type">Boolean</span> <span class="variable">isLock</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().setIfAbsent(key, <span class="string">&quot;1&quot;</span>, RedisConstants.LOCK_SHOP_TTL, TimeUnit.SECONDS);</span><br><span class="line">        <span class="keyword">return</span> BooleanUtil.isTrue(isLock);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">unLock</span><span class="params">(String key)</span>&#123;</span><br><span class="line">        stringRedisTemplate.delete(key);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分布式锁：牵扯到集群式，有时间再研究</p>
+</li>
+<li><p>定时任务：设置热点数据库不过期，由定时任务来定时更新缓存。</p>
+</li>
+</ol>
+<h2 id="Redis缓存雪崩"><a href="#Redis缓存雪崩" class="headerlink" title="Redis缓存雪崩"></a>Redis缓存雪崩</h2><p><strong>redis缓存雪崩：</strong>指在某一时刻，大量key同时失效，使后续请求全部访问到数据库，redis宕机也有可能出现这种问题。</p>
+<p><strong>解决方案：</strong></p>
+<ol>
+<li>随机超时时间：由于批量操作时可能会出现大量数据的超时时间是相同的，我们可以将超时时间用随机数来代替，用随机时间将他们的超时时间打散来解决问题。</li>
+<li>多重缓存：redis的哨兵模式可以解决某一个redis节点宕机的问题。</li>
+</ol>
 
     </div>
 
@@ -357,6 +391,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2023/08/23/16-22-50/" rel="next" title="Lable">
+                  Lable <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -388,13 +425,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">100k</span>
+    <span title="站点总字数">102k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:03</span>
+    <span title="站点阅读时长">3:06</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
