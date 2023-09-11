@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Linux安装Redis</title>
+    <url>/2023/05/29/15-32-51/</url>
+    <content><![CDATA[<h1 id="Linux下安装Redis"><a href="#Linux下安装Redis" class="headerlink" title="Linux下安装Redis"></a>Linux下安装Redis</h1><h2 id="1、下载Redis安装包"><a href="#1、下载Redis安装包" class="headerlink" title="1、下载Redis安装包"></a>1、下载Redis安装包</h2><p><strong>下载链接：<a href="https://redis.io/download/">下载 |雷迪斯 (redis.io)</a></strong></p>
+<span id="more"></span>
+
+<p>选择下载的版本，这里以最新版为例。默认下载就是linux下的安装包。</p>
+<img src="/2023/05/29/15-32-51/redis.png" style="zoom:25%;">
+
+<h2 id="2、上传到linux下"><a href="#2、上传到linux下" class="headerlink" title="2、上传到linux下"></a>2、上传到linux下</h2><p>上传到linux下的usr&#x2F;local&#x2F;bin目录。这里使用FinalShell，直接从本地文件拖到目录下即可。</p>
+<img src="/2023/05/29/15-32-51/redis2.png" style="zoom:45%;">
+
+<h2 id="3、解压Redis"><a href="#3、解压Redis" class="headerlink" title="3、解压Redis"></a>3、解压Redis</h2><p>执行命令<code>tar -zxvf redis-7.0.11.tar.gz</code></p>
+<h2 id="4、安装环境依赖"><a href="#4、安装环境依赖" class="headerlink" title="4、安装环境依赖"></a>4、安装环境依赖</h2><p>因为redis需要c++的依赖支持，所以先安装依赖。</p>
+<p>在&#x2F;usr&#x2F;local&#x2F;bin目录下执行命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装依赖</span></span><br><span class="line">yum install gcc-c++</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看依赖安装是否成功gcc-v 最后一行出现gcc版本号即是安装成功</span></span><br><span class="line">gcc -v</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置所有文件</span></span><br><span class="line">make</span><br><span class="line">make PREFIX=/usr/local/bin install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="5、启动redis"><a href="#5、启动redis" class="headerlink" title="5、启动redis"></a>5、启动redis</h2><p>进入redis目录下的src下执行命令<code>redis-server</code>即可启动Redis。</p>
+<h2 id="6、设置密码"><a href="#6、设置密码" class="headerlink" title="6、设置密码"></a>6、设置密码</h2><p>修改Redis目录下的redis.conf文件<code>ctrl+f</code>查找requirepass。</p>
+<p>将requirepass取消注释，设置自己的密码，比如<code>requirepass  root</code></p>
+<h2 id="7、设置后台启动"><a href="#7、设置后台启动" class="headerlink" title="7、设置后台启动"></a>7、设置后台启动</h2><p>修改Redis目录下的redis.conf文件ctrl+f查找daemonize。</p>
+<p>将<code>daemonize no</code> 改为<code>daemonize yes</code></p>
+<h2 id="8、根据配置文件启动Redis"><a href="#8、根据配置文件启动Redis" class="headerlink" title="8、根据配置文件启动Redis"></a>8、根据配置文件启动Redis</h2><p>定位到Redis目录下的src目录下,执行<code>redis-server ../redis.conf</code></p>
+<h2 id="9、启动redis-cli"><a href="#9、启动redis-cli" class="headerlink" title="9、启动redis.cli"></a>9、启动redis.cli</h2><p>定位到Redis目录下的src目录下,执行<code>redis-cli</code></p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>InterView</title>
     <url>/2023/05/28/14-22-49/</url>
     <content><![CDATA[<h1 id="Java面试题整理"><a href="#Java面试题整理" class="headerlink" title="Java面试题整理"></a>Java面试题整理</h1><span id="more"></span>
@@ -280,36 +310,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux安装Redis</title>
-    <url>/2023/05/29/15-32-51/</url>
-    <content><![CDATA[<h1 id="Linux下安装Redis"><a href="#Linux下安装Redis" class="headerlink" title="Linux下安装Redis"></a>Linux下安装Redis</h1><h2 id="1、下载Redis安装包"><a href="#1、下载Redis安装包" class="headerlink" title="1、下载Redis安装包"></a>1、下载Redis安装包</h2><p><strong>下载链接：<a href="https://redis.io/download/">下载 |雷迪斯 (redis.io)</a></strong></p>
-<span id="more"></span>
-
-<p>选择下载的版本，这里以最新版为例。默认下载就是linux下的安装包。</p>
-<img src="/2023/05/29/15-32-51/redis.png" style="zoom:25%;">
-
-<h2 id="2、上传到linux下"><a href="#2、上传到linux下" class="headerlink" title="2、上传到linux下"></a>2、上传到linux下</h2><p>上传到linux下的usr&#x2F;local&#x2F;bin目录。这里使用FinalShell，直接从本地文件拖到目录下即可。</p>
-<img src="/2023/05/29/15-32-51/redis2.png" style="zoom:45%;">
-
-<h2 id="3、解压Redis"><a href="#3、解压Redis" class="headerlink" title="3、解压Redis"></a>3、解压Redis</h2><p>执行命令<code>tar -zxvf redis-7.0.11.tar.gz</code></p>
-<h2 id="4、安装环境依赖"><a href="#4、安装环境依赖" class="headerlink" title="4、安装环境依赖"></a>4、安装环境依赖</h2><p>因为redis需要c++的依赖支持，所以先安装依赖。</p>
-<p>在&#x2F;usr&#x2F;local&#x2F;bin目录下执行命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装依赖</span></span><br><span class="line">yum install gcc-c++</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看依赖安装是否成功gcc-v 最后一行出现gcc版本号即是安装成功</span></span><br><span class="line">gcc -v</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置所有文件</span></span><br><span class="line">make</span><br><span class="line">make PREFIX=/usr/local/bin install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="5、启动redis"><a href="#5、启动redis" class="headerlink" title="5、启动redis"></a>5、启动redis</h2><p>进入redis目录下的src下执行命令<code>redis-server</code>即可启动Redis。</p>
-<h2 id="6、设置密码"><a href="#6、设置密码" class="headerlink" title="6、设置密码"></a>6、设置密码</h2><p>修改Redis目录下的redis.conf文件<code>ctrl+f</code>查找requirepass。</p>
-<p>将requirepass取消注释，设置自己的密码，比如<code>requirepass  root</code></p>
-<h2 id="7、设置后台启动"><a href="#7、设置后台启动" class="headerlink" title="7、设置后台启动"></a>7、设置后台启动</h2><p>修改Redis目录下的redis.conf文件ctrl+f查找daemonize。</p>
-<p>将<code>daemonize no</code> 改为<code>daemonize yes</code></p>
-<h2 id="8、根据配置文件启动Redis"><a href="#8、根据配置文件启动Redis" class="headerlink" title="8、根据配置文件启动Redis"></a>8、根据配置文件启动Redis</h2><p>定位到Redis目录下的src目录下,执行<code>redis-server ../redis.conf</code></p>
-<h2 id="9、启动redis-cli"><a href="#9、启动redis-cli" class="headerlink" title="9、启动redis.cli"></a>9、启动redis.cli</h2><p>定位到Redis目录下的src目录下,执行<code>redis-cli</code></p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo+Github搭建个人博客</title>
     <url>/2023/05/25/14-22-46/</url>
     <content><![CDATA[<h1 id="Hexo-GitHub搭建个人博客"><a href="#Hexo-GitHub搭建个人博客" class="headerlink" title="Hexo+GitHub搭建个人博客"></a>Hexo+GitHub搭建个人博客</h1><span id="more"></span>
@@ -378,97 +378,6 @@
       <tags>
         <tag>Hexo</tag>
         <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis缓存更新策略</title>
-    <url>/2023/07/18/13-36-02/</url>
-    <content><![CDATA[<h1 id="Redis缓存更新策略"><a href="#Redis缓存更新策略" class="headerlink" title="Redis缓存更新策略"></a>Redis缓存更新策略</h1><span id="more"></span>
-
-<p>在日常使用redis进行数据缓存的过程中，经常会遇到关于缓存更新策略的选择问题，简单记录下常用的更新策略。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>内存淘汰策略</th>
-<th>超时剔除策略</th>
-<th>主动更新策略</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>说明</td>
-<td>redis自带的内存淘汰策略，目的是当redis的内存不足时自动淘汰部分数据，这是redis自己的淘汰策略，不用我们设置。</td>
-<td>给缓存数据添加超时时间，到期自动清除数据。</td>
-<td>编写业务逻辑，在对数据库进行更新或者删除时，更新缓存。</td>
-</tr>
-<tr>
-<td>一致性</td>
-<td>差，淘汰机制不是我们能控制的，淘汰那些数据我们也不知道，所以一致性比较差。</td>
-<td>一般</td>
-<td>好</td>
-</tr>
-<tr>
-<td>维护成本</td>
-<td>无（redis自己的策略，不用维护）</td>
-<td>低（超时自动剔除，成本低）</td>
-<td>高（需要开发人员编写业务逻辑）</td>
-</tr>
-</tbody></table>
-<p>在日常开发中对于一些不常用的数据比较适合超时剔除策略，而对于一些热点数据主动更新策略更加合适，而主动更新策略又有以下问题存在：</p>
-<ol>
-<li><p>删除缓存还是更新缓存？</p>
-<ul>
-<li>删除缓存：每次对数据库的更删操作都把缓存删除。（每次删除完成后等别人访问再插入缓存，减少代码编写）</li>
-<li>更新缓存：每次对数据库的更删操作时一起更新缓存数据。</li>
-</ul>
-</li>
-<li><p>如何保证数据库与缓存数据的一致性？</p>
-<ul>
-<li>单体系统：可以使用事务来进行限制。</li>
-<li>分布式系统：需要用到分布式事务。</li>
-</ul>
-</li>
-<li><p>先操作缓存还是先操作数据库？</p>
-<ul>
-<li>先操作缓存：缓存操作是非常快的容易出现多线程安全问题。</li>
-<li>先操作数据库：操作数据库后也有可能出现线程安全问题，但可能性较小。</li>
-</ul>
-<p><img src="/2023/07/18/13-36-02/Hexo-Blog\source_posts\Redis学习\20230718.png"></p>
-</li>
-</ol>
-<h2 id="Redis缓存穿透"><a href="#Redis缓存穿透" class="headerlink" title="Redis缓存穿透"></a>Redis缓存穿透</h2><p><strong>redis缓存穿透</strong>：指在使用redis缓存数据时，用户以某种不存在的key访问redis缓存，缓存中不存在就会请求到数据库，一些不法分子掌握这种规律后使用大量的无效key来发起请求，这些请求都会打到数据库中，给数据库造成压力。</p>
-<p><strong>解决方案：</strong> </p>
-<ol>
-<li>缓存空值，当不存在的key访问到数据库时，将该key缓存起来，value设为空。下次收到这个请求时就不会访问到数据库。<ul>
-<li>缺点：该不存在的key可能在后续因为用户添加或某种方式，以正确的方式存在，这时候缓存中为空，这时就出现缓存与数据库不一致问题。</li>
-<li>解决方案：给该key设置超时时间，到期自动清除。一般设置的时间短一点，防止出现上述缺点长时间数据不一致。</li>
-</ul>
-</li>
-<li>布隆过滤器：自己实现比较困难，建议需要时自行百度。</li>
-<li>接口校验：对传递过来的key进行合法性校验。</li>
-</ol>
-<h2 id="Redis缓存击穿"><a href="#Redis缓存击穿" class="headerlink" title="Redis缓存击穿"></a>Redis缓存击穿</h2><p><strong>redis缓存击穿：</strong>指某一些超级热点key，在缓存失效时间到期时，出现大量的请求访问到数据库，给数据库造成压力的情况。</p>
-<p><strong>解决方案：</strong></p>
-<ol>
-<li><p>互斥锁：通过给热点key加锁的形式解决问题，当多个线程的请求到达时，线程1查询缓存时缓存超时时间到期给清除了，这是线程1去获取锁，并执行查询数据库更新缓存的步骤，线程2到达时尝试获取锁失败，就继续回调该方法，直到线程1释放锁。可以尝试使用redis的setnx来进行设置，因为setnx在key如果存在时就设置不进去，不存在时才能设置。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">tryLock</span><span class="params">(String key)</span>&#123;</span><br><span class="line">        <span class="comment">// 尝试获取互斥锁</span></span><br><span class="line">        <span class="type">Boolean</span> <span class="variable">isLock</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().setIfAbsent(key, <span class="string">&quot;1&quot;</span>, RedisConstants.LOCK_SHOP_TTL, TimeUnit.SECONDS);</span><br><span class="line">        <span class="keyword">return</span> BooleanUtil.isTrue(isLock);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">unLock</span><span class="params">(String key)</span>&#123;</span><br><span class="line">        stringRedisTemplate.delete(key);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>分布式锁：牵扯到集群式，有时间再研究</p>
-</li>
-<li><p>定时任务：设置热点数据库不过期，由定时任务来定时更新缓存。</p>
-</li>
-</ol>
-<h2 id="Redis缓存雪崩"><a href="#Redis缓存雪崩" class="headerlink" title="Redis缓存雪崩"></a>Redis缓存雪崩</h2><p><strong>redis缓存雪崩：</strong>指在某一时刻，大量key同时失效，使后续请求全部访问到数据库，redis宕机也有可能出现这种问题。</p>
-<p><strong>解决方案：</strong></p>
-<ol>
-<li>随机超时时间：由于批量操作时可能会出现大量数据的超时时间是相同的，我们可以将超时时间用随机数来代替，用随机时间将他们的超时时间打散来解决问题。</li>
-<li>多重缓存：redis的哨兵模式可以解决某一个redis节点宕机的问题。</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Redis</tag>
-        <tag>缓存</tag>
-        <tag>更新策略</tag>
       </tags>
   </entry>
   <entry>
@@ -616,9 +525,100 @@
 </ol>
 ]]></content>
       <tags>
+        <tag>Redis</tag>
         <tag>Java</tag>
+        <tag>缓存</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis缓存更新策略</title>
+    <url>/2023/07/18/13-36-02/</url>
+    <content><![CDATA[<h1 id="Redis缓存更新策略"><a href="#Redis缓存更新策略" class="headerlink" title="Redis缓存更新策略"></a>Redis缓存更新策略</h1><span id="more"></span>
+
+<p>在日常使用redis进行数据缓存的过程中，经常会遇到关于缓存更新策略的选择问题，简单记录下常用的更新策略。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>内存淘汰策略</th>
+<th>超时剔除策略</th>
+<th>主动更新策略</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>说明</td>
+<td>redis自带的内存淘汰策略，目的是当redis的内存不足时自动淘汰部分数据，这是redis自己的淘汰策略，不用我们设置。</td>
+<td>给缓存数据添加超时时间，到期自动清除数据。</td>
+<td>编写业务逻辑，在对数据库进行更新或者删除时，更新缓存。</td>
+</tr>
+<tr>
+<td>一致性</td>
+<td>差，淘汰机制不是我们能控制的，淘汰那些数据我们也不知道，所以一致性比较差。</td>
+<td>一般</td>
+<td>好</td>
+</tr>
+<tr>
+<td>维护成本</td>
+<td>无（redis自己的策略，不用维护）</td>
+<td>低（超时自动剔除，成本低）</td>
+<td>高（需要开发人员编写业务逻辑）</td>
+</tr>
+</tbody></table>
+<p>在日常开发中对于一些不常用的数据比较适合超时剔除策略，而对于一些热点数据主动更新策略更加合适，而主动更新策略又有以下问题存在：</p>
+<ol>
+<li><p>删除缓存还是更新缓存？</p>
+<ul>
+<li>删除缓存：每次对数据库的更删操作都把缓存删除。（每次删除完成后等别人访问再插入缓存，减少代码编写）</li>
+<li>更新缓存：每次对数据库的更删操作时一起更新缓存数据。</li>
+</ul>
+</li>
+<li><p>如何保证数据库与缓存数据的一致性？</p>
+<ul>
+<li>单体系统：可以使用事务来进行限制。</li>
+<li>分布式系统：需要用到分布式事务。</li>
+</ul>
+</li>
+<li><p>先操作缓存还是先操作数据库？</p>
+<ul>
+<li>先操作缓存：缓存操作是非常快的容易出现多线程安全问题。</li>
+<li>先操作数据库：操作数据库后也有可能出现线程安全问题，但可能性较小。</li>
+</ul>
+<p><img src="/2023/07/18/13-36-02/Hexo-Blog\source_posts\Redis学习\20230718.png"></p>
+</li>
+</ol>
+<h2 id="Redis缓存穿透"><a href="#Redis缓存穿透" class="headerlink" title="Redis缓存穿透"></a>Redis缓存穿透</h2><p><strong>redis缓存穿透</strong>：指在使用redis缓存数据时，用户以某种不存在的key访问redis缓存，缓存中不存在就会请求到数据库，一些不法分子掌握这种规律后使用大量的无效key来发起请求，这些请求都会打到数据库中，给数据库造成压力。</p>
+<p><strong>解决方案：</strong> </p>
+<ol>
+<li>缓存空值，当不存在的key访问到数据库时，将该key缓存起来，value设为空。下次收到这个请求时就不会访问到数据库。<ul>
+<li>缺点：该不存在的key可能在后续因为用户添加或某种方式，以正确的方式存在，这时候缓存中为空，这时就出现缓存与数据库不一致问题。</li>
+<li>解决方案：给该key设置超时时间，到期自动清除。一般设置的时间短一点，防止出现上述缺点长时间数据不一致。</li>
+</ul>
+</li>
+<li>布隆过滤器：自己实现比较困难，建议需要时自行百度。</li>
+<li>接口校验：对传递过来的key进行合法性校验。</li>
+</ol>
+<h2 id="Redis缓存击穿"><a href="#Redis缓存击穿" class="headerlink" title="Redis缓存击穿"></a>Redis缓存击穿</h2><p><strong>redis缓存击穿：</strong>指某一些超级热点key，在缓存失效时间到期时，出现大量的请求访问到数据库，给数据库造成压力的情况。</p>
+<p><strong>解决方案：</strong></p>
+<ol>
+<li><p>互斥锁：通过给热点key加锁的形式解决问题，当多个线程的请求到达时，线程1查询缓存时缓存超时时间到期给清除了，这是线程1去获取锁，并执行查询数据库更新缓存的步骤，线程2到达时尝试获取锁失败，就继续回调该方法，直到线程1释放锁。可以尝试使用redis的setnx来进行设置，因为setnx在key如果存在时就设置不进去，不存在时才能设置。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">tryLock</span><span class="params">(String key)</span>&#123;</span><br><span class="line">        <span class="comment">// 尝试获取互斥锁</span></span><br><span class="line">        <span class="type">Boolean</span> <span class="variable">isLock</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().setIfAbsent(key, <span class="string">&quot;1&quot;</span>, RedisConstants.LOCK_SHOP_TTL, TimeUnit.SECONDS);</span><br><span class="line">        <span class="keyword">return</span> BooleanUtil.isTrue(isLock);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">unLock</span><span class="params">(String key)</span>&#123;</span><br><span class="line">        stringRedisTemplate.delete(key);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分布式锁：牵扯到集群式，有时间再研究</p>
+</li>
+<li><p>定时任务：设置热点数据库不过期，由定时任务来定时更新缓存。</p>
+</li>
+</ol>
+<h2 id="Redis缓存雪崩"><a href="#Redis缓存雪崩" class="headerlink" title="Redis缓存雪崩"></a>Redis缓存雪崩</h2><p><strong>redis缓存雪崩：</strong>指在某一时刻，大量key同时失效，使后续请求全部访问到数据库，redis宕机也有可能出现这种问题。</p>
+<p><strong>解决方案：</strong></p>
+<ol>
+<li>随机超时时间：由于批量操作时可能会出现大量数据的超时时间是相同的，我们可以将超时时间用随机数来代替，用随机时间将他们的超时时间打散来解决问题。</li>
+<li>多重缓存：redis的哨兵模式可以解决某一个redis节点宕机的问题。</li>
+</ol>
+]]></content>
+      <tags>
         <tag>Redis</tag>
         <tag>缓存</tag>
+        <tag>更新策略</tag>
       </tags>
   </entry>
   <entry>
@@ -1117,6 +1117,31 @@
         <tag>Java</tag>
         <tag>腾讯云</tag>
         <tag>短信服务</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lable</title>
+    <url>/2023/08/23/16-22-50/</url>
+    <content><![CDATA[<h2 id="Java中的Lable"><a href="#Java中的Lable" class="headerlink" title="Java中的Lable"></a>Java中的Lable</h2><span id="more"></span>
+
+<p>今天在学习过程中无意间看到了一个之前没看到过的东西，就是java中的Lable，百度了下是这样说的“Java 中的标签是为循环设计的，是为了在多重循环中方便的使用 break 和continue。”</p>
+<p>也就是说他是为循环创造的，可以在多重循环下方便使用break和continue</p>
+<p>光看不做假把式，我们来尝试下。</p>
+<h3 id="单循环使用lable"><a href="#单循环使用lable" class="headerlink" title="单循环使用lable"></a>单循环使用lable</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LableTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        study:</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">2</span>)&#123;</span><br><span class="line">                <span class="keyword">continue</span> study;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/08/23/16-22-50/Hexo-Blog\source_posts\lable\two.png"></p>
+<p>单循环使用break配合lable似乎没有什么明显的作用。</p>
+<p>我们把break换为continue继续试下。也和正常使用continue没有什么变化，看来java中的标签并不适合单循环。</p>
+<p><img src="/2023/08/23/16-22-50/Hexo-Blog\source_posts\lable\three.png"></p>
+<h3 id="多循环使用lable"><a href="#多循环使用lable" class="headerlink" title="多循环使用lable"></a>多循环使用lable</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LableTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        study:</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j == <span class="number">2</span>)&#123;</span><br><span class="line">                    <span class="keyword">continue</span> study;</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(i+<span class="string">&quot;+&quot;</span>+j+<span class="string">&quot;=&quot;</span>+(i+j));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/08/23/16-22-50/Hexo-Blog\source_posts\lable\four.png"></p>
+<p><strong>明显这里双重循环可以利用lable来跳出</strong></p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>Lable</tag>
+        <tag>循环</tag>
       </tags>
   </entry>
   <entry>
@@ -2819,29 +2844,6 @@
       <tags>
         <tag>Java</tag>
         <tag>Spring Cloud</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Lable</title>
-    <url>/2023/08/23/16-22-50/</url>
-    <content><![CDATA[<h2 id="Lable"><a href="#Lable" class="headerlink" title="Lable"></a>Lable</h2><p>今天在学习过程中无意间看到了一个之前没看到过的东西，就是java中的Lable，百度了下是这样说的“Java 中的标签是为循环设计的，是为了在多重循环中方便的使用 break 和continue。”</p>
-<p>也就是说他是为循环创造的，可以在多重循环下方便使用break和continue</p>
-<p>光看不做假把式，我们来尝试下。</p>
-<h3 id="单循环使用lable"><a href="#单循环使用lable" class="headerlink" title="单循环使用lable"></a>单循环使用lable</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LableTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        study:</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">2</span>)&#123;</span><br><span class="line">                <span class="keyword">continue</span> study;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2023/08/23/16-22-50/Hexo-Blog\source_posts\lable\two.png"></p>
-<p>单循环使用break配合lable似乎没有什么明显的作用。</p>
-<p>我们把break换为continue继续试下。也和正常使用continue没有什么变化，看来java中的标签并不适合单循环。</p>
-<p><img src="/2023/08/23/16-22-50/Hexo-Blog\source_posts\lable\three.png"></p>
-<h3 id="多循环使用lable"><a href="#多循环使用lable" class="headerlink" title="多循环使用lable"></a>多循环使用lable</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LableTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        study:</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j == <span class="number">2</span>)&#123;</span><br><span class="line">                    <span class="keyword">continue</span> study;</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(i+<span class="string">&quot;+&quot;</span>+j+<span class="string">&quot;=&quot;</span>+(i+j));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2023/08/23/16-22-50/Hexo-Blog\source_posts\lable\four.png"></p>
-<p><strong>明显这里双重循环可以利用lable来跳出</strong></p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-        <tag>Lable</tag>
-        <tag>循环</tag>
       </tags>
   </entry>
 </search>
