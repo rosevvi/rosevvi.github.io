@@ -1,6 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Docker</title>
+    <url>/2023/05/28/14-22-50/</url>
+    <content><![CDATA[<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><span id="more"></span>
+
+
+<p>Docker是一个开源的引用容器引擎</p>
+<h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><p>Docker可以运行在mac、windows、centos、等操作系统中，这里以centos为例</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#1、yum包更新到最新</span><br><span class="line">yum update</span><br><span class="line">#2、安装需要的软件包，yum-util提供yum-config-manager功能，另外两个是devicemapper驱动依赖的</span><br><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">#3、设置yum源</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">#4、安装docker，出现输入的界面都按y</span><br><span class="line">yum install -y docker -ce</span><br><span class="line">#5、查看docker版本，验证是否安装成功</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="配置Docker镜像加速器"><a href="#配置Docker镜像加速器" class="headerlink" title="配置Docker镜像加速器"></a>配置Docker镜像加速器</h2><p>默认情况下将从dockerhub（<a href="https://hub.docker.com）上下载docker镜像，太慢。一般都会配置镜像加速器：">https://hub.docker.com）上下载docker镜像，太慢。一般都会配置镜像加速器：</a></p>
+<ul>
+<li><p>USTC：中科大镜像加速器</p>
+</li>
+<li><p>阿里云</p>
+</li>
+<li><p>网易云</p>
+</li>
+<li><p>腾讯云</p>
+<p>在阿里云控制台找镜像配置文件</p>
+</li>
+</ul>
+<h2 id="Docker命令"><a href="#Docker命令" class="headerlink" title="Docker命令"></a>Docker命令</h2><h3 id="Docker服务相关命令"><a href="#Docker服务相关命令" class="headerlink" title="Docker服务相关命令"></a>Docker服务相关命令</h3><ul>
+<li><p>启动docker服务		   systemctl start docker</p>
+</li>
+<li><p>停止docker服务           systemctl stop docker</p>
+</li>
+<li><p>重启docker服务           systemctl restart docker</p>
+</li>
+<li><p>查看docker服务状态  systemctl status  docker</p>
+</li>
+<li><p>开机启动kocker服务   systemctl enable docker</p>
+</li>
+</ul>
+<h3 id="Docker镜像相关命令"><a href="#Docker镜像相关命令" class="headerlink" title="Docker镜像相关命令"></a>Docker镜像相关命令</h3><ul>
+<li><p>查看镜像     docker images</p>
+</li>
+<li><p>搜索镜像     docker search redis</p>
+</li>
+<li><p>拉取镜像     docker pull redis:版本号  冒号后面为版本号不写默认官方</p>
+</li>
+<li><p>删除镜像     docker rmi  id    id为查看镜像中的id，也可以通过名字：版本来删</p>
+</li>
+<li><p>删除所有镜像  docker rmi <code>docker images -q</code></p>
+</li>
+</ul>
+<h3 id="Docker容器相关命令"><a href="#Docker容器相关命令" class="headerlink" title="Docker容器相关命令"></a>Docker容器相关命令</h3><ul>
+<li><p>查看容器            docker ps  -a</p>
+<p>-a：查看所有容器  不屑就只看正在运行的容器</p>
+</li>
+<li><p>创建容器            docker run -it –name &#x3D; c1  &#x2F;bin&#x2F;bash</p>
+<p>-i：一直运行  -t：给容器分配伪终端来可以输入命令  –name&#x3D;名字  -d:后端创建容器（不直接进入容器，需要命令来进入容器）</p>
+</li>
+<li><p>进入容器            docker exec -it c2   &#x2F;bin&#x2F;bash</p>
+</li>
+<li><p>启动容器            docker start c2</p>
+</li>
+<li><p>停止容器             docker stop c2</p>
+</li>
+<li><p>删除容器             docker rm  c1</p>
+</li>
+<li><p>查看容器信息    docker inspect</p>
+</li>
+</ul>
+<h2 id="Docker容器的数据卷"><a href="#Docker容器的数据卷" class="headerlink" title="Docker容器的数据卷"></a>Docker容器的数据卷</h2><p>数据卷：数据卷是宿主机中的一个目录或文，当容器目录和数据卷的目录绑定后，对方的修改会立即同步，一个数据卷可以被多个容器同时挂载，一个容器也可以被挂在多个数据卷</p>
+<h3 id="配饰数据卷"><a href="#配饰数据卷" class="headerlink" title="配饰数据卷"></a>配饰数据卷</h3><ul>
+<li><p>创建启动容器时，使用-v参数设置数据卷</p>
+<p>docker run    -v 宿主机目录: 容器内目录</p>
+<p>tip:目录必须是绝对路径，如果目录不存在，会自动创建，可以挂在多个数据卷</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Docker</tag>
+        <tag>Java</tag>
+        <tag>容器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux安装Redis</title>
+    <url>/2023/05/29/15-32-51/</url>
+    <content><![CDATA[<h1 id="Linux下安装Redis"><a href="#Linux下安装Redis" class="headerlink" title="Linux下安装Redis"></a>Linux下安装Redis</h1><h2 id="1、下载Redis安装包"><a href="#1、下载Redis安装包" class="headerlink" title="1、下载Redis安装包"></a>1、下载Redis安装包</h2><p><strong>下载链接：<a href="https://redis.io/download/">下载 |雷迪斯 (redis.io)</a></strong></p>
+<span id="more"></span>
+
+<p>选择下载的版本，这里以最新版为例。默认下载就是linux下的安装包。</p>
+<img src="/2023/05/29/15-32-51/redis.png" style="zoom:25%;">
+
+<h2 id="2、上传到linux下"><a href="#2、上传到linux下" class="headerlink" title="2、上传到linux下"></a>2、上传到linux下</h2><p>上传到linux下的usr&#x2F;local&#x2F;bin目录。这里使用FinalShell，直接从本地文件拖到目录下即可。</p>
+<img src="/2023/05/29/15-32-51/redis2.png" style="zoom:45%;">
+
+<h2 id="3、解压Redis"><a href="#3、解压Redis" class="headerlink" title="3、解压Redis"></a>3、解压Redis</h2><p>执行命令<code>tar -zxvf redis-7.0.11.tar.gz</code></p>
+<h2 id="4、安装环境依赖"><a href="#4、安装环境依赖" class="headerlink" title="4、安装环境依赖"></a>4、安装环境依赖</h2><p>因为redis需要c++的依赖支持，所以先安装依赖。</p>
+<p>在&#x2F;usr&#x2F;local&#x2F;bin目录下执行命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装依赖</span></span><br><span class="line">yum install gcc-c++</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看依赖安装是否成功gcc-v 最后一行出现gcc版本号即是安装成功</span></span><br><span class="line">gcc -v</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置所有文件</span></span><br><span class="line">make</span><br><span class="line">make PREFIX=/usr/local/bin install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="5、启动redis"><a href="#5、启动redis" class="headerlink" title="5、启动redis"></a>5、启动redis</h2><p>进入redis目录下的src下执行命令<code>redis-server</code>即可启动Redis。</p>
+<h2 id="6、设置密码"><a href="#6、设置密码" class="headerlink" title="6、设置密码"></a>6、设置密码</h2><p>修改Redis目录下的redis.conf文件<code>ctrl+f</code>查找requirepass。</p>
+<p>将requirepass取消注释，设置自己的密码，比如<code>requirepass  root</code></p>
+<h2 id="7、设置后台启动"><a href="#7、设置后台启动" class="headerlink" title="7、设置后台启动"></a>7、设置后台启动</h2><p>修改Redis目录下的redis.conf文件ctrl+f查找daemonize。</p>
+<p>将<code>daemonize no</code> 改为<code>daemonize yes</code></p>
+<h2 id="8、根据配置文件启动Redis"><a href="#8、根据配置文件启动Redis" class="headerlink" title="8、根据配置文件启动Redis"></a>8、根据配置文件启动Redis</h2><p>定位到Redis目录下的src目录下,执行<code>redis-server ../redis.conf</code></p>
+<h2 id="9、启动redis-cli"><a href="#9、启动redis-cli" class="headerlink" title="9、启动redis.cli"></a>9、启动redis.cli</h2><p>定位到Redis目录下的src目录下,执行<code>redis-cli</code></p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>InterView</title>
     <url>/2023/05/28/14-22-49/</url>
     <content><![CDATA[<h1 id="Java面试题整理"><a href="#Java面试题整理" class="headerlink" title="Java面试题整理"></a>Java面试题整理</h1><span id="more"></span>
@@ -121,118 +229,10 @@
 
 ]]></content>
       <tags>
-        <tag>面试题</tag>
         <tag>Java</tag>
+        <tag>面试题</tag>
         <tag>面试</tag>
         <tag>八股文</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker</title>
-    <url>/2023/05/28/14-22-50/</url>
-    <content><![CDATA[<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><span id="more"></span>
-
-
-<p>Docker是一个开源的引用容器引擎</p>
-<h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><p>Docker可以运行在mac、windows、centos、等操作系统中，这里以centos为例</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#1、yum包更新到最新</span><br><span class="line">yum update</span><br><span class="line">#2、安装需要的软件包，yum-util提供yum-config-manager功能，另外两个是devicemapper驱动依赖的</span><br><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">#3、设置yum源</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">#4、安装docker，出现输入的界面都按y</span><br><span class="line">yum install -y docker -ce</span><br><span class="line">#5、查看docker版本，验证是否安装成功</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="配置Docker镜像加速器"><a href="#配置Docker镜像加速器" class="headerlink" title="配置Docker镜像加速器"></a>配置Docker镜像加速器</h2><p>默认情况下将从dockerhub（<a href="https://hub.docker.com）上下载docker镜像，太慢。一般都会配置镜像加速器：">https://hub.docker.com）上下载docker镜像，太慢。一般都会配置镜像加速器：</a></p>
-<ul>
-<li><p>USTC：中科大镜像加速器</p>
-</li>
-<li><p>阿里云</p>
-</li>
-<li><p>网易云</p>
-</li>
-<li><p>腾讯云</p>
-<p>在阿里云控制台找镜像配置文件</p>
-</li>
-</ul>
-<h2 id="Docker命令"><a href="#Docker命令" class="headerlink" title="Docker命令"></a>Docker命令</h2><h3 id="Docker服务相关命令"><a href="#Docker服务相关命令" class="headerlink" title="Docker服务相关命令"></a>Docker服务相关命令</h3><ul>
-<li><p>启动docker服务		   systemctl start docker</p>
-</li>
-<li><p>停止docker服务           systemctl stop docker</p>
-</li>
-<li><p>重启docker服务           systemctl restart docker</p>
-</li>
-<li><p>查看docker服务状态  systemctl status  docker</p>
-</li>
-<li><p>开机启动kocker服务   systemctl enable docker</p>
-</li>
-</ul>
-<h3 id="Docker镜像相关命令"><a href="#Docker镜像相关命令" class="headerlink" title="Docker镜像相关命令"></a>Docker镜像相关命令</h3><ul>
-<li><p>查看镜像     docker images</p>
-</li>
-<li><p>搜索镜像     docker search redis</p>
-</li>
-<li><p>拉取镜像     docker pull redis:版本号  冒号后面为版本号不写默认官方</p>
-</li>
-<li><p>删除镜像     docker rmi  id    id为查看镜像中的id，也可以通过名字：版本来删</p>
-</li>
-<li><p>删除所有镜像  docker rmi <code>docker images -q</code></p>
-</li>
-</ul>
-<h3 id="Docker容器相关命令"><a href="#Docker容器相关命令" class="headerlink" title="Docker容器相关命令"></a>Docker容器相关命令</h3><ul>
-<li><p>查看容器            docker ps  -a</p>
-<p>-a：查看所有容器  不屑就只看正在运行的容器</p>
-</li>
-<li><p>创建容器            docker run -it –name &#x3D; c1  &#x2F;bin&#x2F;bash</p>
-<p>-i：一直运行  -t：给容器分配伪终端来可以输入命令  –name&#x3D;名字  -d:后端创建容器（不直接进入容器，需要命令来进入容器）</p>
-</li>
-<li><p>进入容器            docker exec -it c2   &#x2F;bin&#x2F;bash</p>
-</li>
-<li><p>启动容器            docker start c2</p>
-</li>
-<li><p>停止容器             docker stop c2</p>
-</li>
-<li><p>删除容器             docker rm  c1</p>
-</li>
-<li><p>查看容器信息    docker inspect</p>
-</li>
-</ul>
-<h2 id="Docker容器的数据卷"><a href="#Docker容器的数据卷" class="headerlink" title="Docker容器的数据卷"></a>Docker容器的数据卷</h2><p>数据卷：数据卷是宿主机中的一个目录或文，当容器目录和数据卷的目录绑定后，对方的修改会立即同步，一个数据卷可以被多个容器同时挂载，一个容器也可以被挂在多个数据卷</p>
-<h3 id="配饰数据卷"><a href="#配饰数据卷" class="headerlink" title="配饰数据卷"></a>配饰数据卷</h3><ul>
-<li><p>创建启动容器时，使用-v参数设置数据卷</p>
-<p>docker run    -v 宿主机目录: 容器内目录</p>
-<p>tip:目录必须是绝对路径，如果目录不存在，会自动创建，可以挂在多个数据卷</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-        <tag>Docker</tag>
-        <tag>容器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux安装Redis</title>
-    <url>/2023/05/29/15-32-51/</url>
-    <content><![CDATA[<h1 id="Linux下安装Redis"><a href="#Linux下安装Redis" class="headerlink" title="Linux下安装Redis"></a>Linux下安装Redis</h1><h2 id="1、下载Redis安装包"><a href="#1、下载Redis安装包" class="headerlink" title="1、下载Redis安装包"></a>1、下载Redis安装包</h2><p><strong>下载链接：<a href="https://redis.io/download/">下载 |雷迪斯 (redis.io)</a></strong></p>
-<span id="more"></span>
-
-<p>选择下载的版本，这里以最新版为例。默认下载就是linux下的安装包。</p>
-<img src="/2023/05/29/15-32-51/redis.png" style="zoom:25%;">
-
-<h2 id="2、上传到linux下"><a href="#2、上传到linux下" class="headerlink" title="2、上传到linux下"></a>2、上传到linux下</h2><p>上传到linux下的usr&#x2F;local&#x2F;bin目录。这里使用FinalShell，直接从本地文件拖到目录下即可。</p>
-<img src="/2023/05/29/15-32-51/redis2.png" style="zoom:45%;">
-
-<h2 id="3、解压Redis"><a href="#3、解压Redis" class="headerlink" title="3、解压Redis"></a>3、解压Redis</h2><p>执行命令<code>tar -zxvf redis-7.0.11.tar.gz</code></p>
-<h2 id="4、安装环境依赖"><a href="#4、安装环境依赖" class="headerlink" title="4、安装环境依赖"></a>4、安装环境依赖</h2><p>因为redis需要c++的依赖支持，所以先安装依赖。</p>
-<p>在&#x2F;usr&#x2F;local&#x2F;bin目录下执行命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装依赖</span></span><br><span class="line">yum install gcc-c++</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看依赖安装是否成功gcc-v 最后一行出现gcc版本号即是安装成功</span></span><br><span class="line">gcc -v</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置所有文件</span></span><br><span class="line">make</span><br><span class="line">make PREFIX=/usr/local/bin install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="5、启动redis"><a href="#5、启动redis" class="headerlink" title="5、启动redis"></a>5、启动redis</h2><p>进入redis目录下的src下执行命令<code>redis-server</code>即可启动Redis。</p>
-<h2 id="6、设置密码"><a href="#6、设置密码" class="headerlink" title="6、设置密码"></a>6、设置密码</h2><p>修改Redis目录下的redis.conf文件<code>ctrl+f</code>查找requirepass。</p>
-<p>将requirepass取消注释，设置自己的密码，比如<code>requirepass  root</code></p>
-<h2 id="7、设置后台启动"><a href="#7、设置后台启动" class="headerlink" title="7、设置后台启动"></a>7、设置后台启动</h2><p>修改Redis目录下的redis.conf文件ctrl+f查找daemonize。</p>
-<p>将<code>daemonize no</code> 改为<code>daemonize yes</code></p>
-<h2 id="8、根据配置文件启动Redis"><a href="#8、根据配置文件启动Redis" class="headerlink" title="8、根据配置文件启动Redis"></a>8、根据配置文件启动Redis</h2><p>定位到Redis目录下的src目录下,执行<code>redis-server ../redis.conf</code></p>
-<h2 id="9、启动redis-cli"><a href="#9、启动redis-cli" class="headerlink" title="9、启动redis.cli"></a>9、启动redis.cli</h2><p>定位到Redis目录下的src目录下,执行<code>redis-cli</code></p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
@@ -304,6 +304,230 @@
       <tags>
         <tag>Hexo</tag>
         <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nginx</title>
+    <url>/2023/05/28/14-22-38/</url>
+    <content><![CDATA[<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><span id="more"></span>
+
+<h2 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h2><p>​	nginx是一款轻量级的web服务器&#x2F;反向代理服务器及电子邮件代理服务器，其特点是占有内存少，并发能力强，事实上nginx的并发能力在同类型的网页服务器中表现较好。</p>
+<h2 id="Nginx命令-在sbin下"><a href="#Nginx命令-在sbin下" class="headerlink" title="Nginx命令(在sbin下)"></a>Nginx命令(在sbin下)</h2><h3 id="查看版本号"><a href="#查看版本号" class="headerlink" title="查看版本号"></a>查看版本号</h3><p>​	.&#x2F;nginx -v</p>
+<h3 id="检查配置文件正确性"><a href="#检查配置文件正确性" class="headerlink" title="检查配置文件正确性"></a>检查配置文件正确性</h3><p>​	在启动Nginx服务之前，可以先检查一下conf&#x2F;nginx.conf文件配置的是否有错误：.&#x2F;nginx -t</p>
+<h3 id="启动和停止"><a href="#启动和停止" class="headerlink" title="启动和停止"></a>启动和停止</h3><p>​	启动Nginx服务：.&#x2F;nginx</p>
+<p>​	停止Nginx服务：.&#x2F;nginx -s stop</p>
+<p>​	启动完成后查看nginx进程：ps -ef|grep nginx</p>
+<h3 id="重新加载配置文件"><a href="#重新加载配置文件" class="headerlink" title="重新加载配置文件"></a>重新加载配置文件</h3><p>​	当修改nginx配置文件后，需要重新加载才能生效：.&#x2F;nginx -s reload</p>
+<h3 id="Nginx配置文件结构"><a href="#Nginx配置文件结构" class="headerlink" title="Nginx配置文件结构"></a>Nginx配置文件结构</h3><h4 id="全局块"><a href="#全局块" class="headerlink" title="全局块"></a>全局块</h4><p>​		和nginx运行相关的全局配置</p>
+<h4 id="events块"><a href="#events块" class="headerlink" title="events块"></a>events块</h4><p>​		和网络连接相关的配置</p>
+<h4 id="http块"><a href="#http块" class="headerlink" title="http块"></a>http块</h4><p>​	http块中可以配置多个Server块，每个Server块中可以配置多个location块</p>
+<p>​		代理、缓存、日志文件、虚拟主机配置</p>
+<h5 id="http全局块"><a href="#http全局块" class="headerlink" title="http全局块"></a>http全局块</h5><h5 id="Server块"><a href="#Server块" class="headerlink" title="Server块"></a>Server块</h5><h6 id="Server全局块"><a href="#Server全局块" class="headerlink" title="Server全局块"></a>Server全局块</h6><h6 id="location块"><a href="#location块" class="headerlink" title="location块"></a>location块</h6><h2 id="Nginx具体应用"><a href="#Nginx具体应用" class="headerlink" title="Nginx具体应用"></a>Nginx具体应用</h2><h3 id="部署静态资源"><a href="#部署静态资源" class="headerlink" title="部署静态资源"></a>部署静态资源</h3><p>​	nginx可以作为静态web服务器来部署静态资源。如：css、html、js、图片、视频等资源</p>
+<p>​	相对于Tomcat，Nginx处理静态资源的能力更加高效，所以在生产环境下，一般都会将静态资源部署到nginx中</p>
+<p>​	将静态资源部署到Nginx非常简单，只需要将文件复制到Nginx安装目录下的html目录中即可。</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line">servet&#123;</span><br><span class="line">	<span class="attribute">listen</span> <span class="number">80</span>;    <span class="comment">#监听端口</span></span><br><span class="line">	<span class="attribute">server_name</span> localhost;	服务器名称 </span><br><span class="line">	<span class="section">location</span> /&#123;	<span class="comment">#匹配客户端请求url</span></span><br><span class="line">		<span class="attribute">root</span> html;	<span class="comment">#指定静态资源根目录</span></span><br><span class="line">		<span class="attribute">index</span> index.html;	<span class="comment">#指定默认首页</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3><p>​	</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">82</span>;</span><br><span class="line">    <span class="attribute">server_name</span> localhost;</span><br><span class="line">    <span class="section">location</span> /&#123;</span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^/api/(.*)$</span> /<span class="variable">$1</span> <span class="literal">break</span>; <span class="comment">#截取掉多余的路径</span></span><br><span class="line">        <span class="attribute">proxy_pass</span> http://ip地址; <span class="comment">#反向代理配置，将请求转发到指定服务</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>​	早期的网站流量和业务功能都比较简单，单台服务器就可以满足基本需求，但是随着互联网的发展，业务流量越来越大并且业务逻辑也越来越复杂，单台服务器的性能及单点故障问题就凸显出来了，因此需要多台服务器组成应用集群，进行性能的水平扩展以及避免单点故障出现。</p>
+<p>​	应用集群：将同一应用部署到多台机器上，组成应用集群，接受负载均衡器分发的请求，进行业务处理并返回响应数据</p>
+<p>​	负载均衡器：将用户请求根据对应的负载均衡算法分发到应用集群中的一台服务器进行处理。</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">upstream</span> targetserver&#123;	<span class="comment">#upstream指令可以定义一组服务器</span></span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.138.101:8080</span> weight=<span class="number">10</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.138.101:8081</span>;</span><br><span class="line">&#125;</span><br><span class="line">server&#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">8080</span>;</span><br><span class="line">    <span class="attribute">server_name</span> localhost;</span><br><span class="line">    <span class="section">location</span> /&#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://targetserver;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​	负载均衡策略：</p>
+<p>​		</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>轮询</td>
+<td>默认方式</td>
+</tr>
+<tr>
+<td>weight</td>
+<td>权重方式</td>
+</tr>
+<tr>
+<td>ip_hash</td>
+<td>依据ip分配方式</td>
+</tr>
+<tr>
+<td>least_conn</td>
+<td>一句最少连接方式</td>
+</tr>
+<tr>
+<td>url_hash</td>
+<td>一句url分配方式</td>
+</tr>
+<tr>
+<td>fair</td>
+<td>一句响应时间方式</td>
+</tr>
+</tbody></table>
+<p>​		</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>Nginx</tag>
+        <tag>反向代理</tag>
+        <tag>负载均衡</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis</title>
+    <url>/2023/05/28/14-22-22/</url>
+    <content><![CDATA[<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><span id="more"></span>
+
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Redis是一个基于内存的key—value结构数据库</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>基于内存存储读写性能高</li>
+<li>适合存储热点数据（频繁访问、读取）</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
+<li>字符串string</li>
+<li>哈希hash</li>
+<li>列表list</li>
+<li>集合set</li>
+<li>有序集合sorted set</li>
+</ul>
+<h3 id="字符串（常用命令）"><a href="#字符串（常用命令）" class="headerlink" title="字符串（常用命令）"></a>字符串（常用命令）</h3><ol>
+<li><p>Set key value                               设置指定key的值</p>
+</li>
+<li><p>Get key                                         获取指定key的值</p>
+</li>
+<li><p>SETEX key seconds value        设置指定key的值，并将key的过期时间设为seconds秒</p>
+</li>
+<li><p>SETNX  key value                      只有在key不存在时设置key的值</p>
+</li>
+</ol>
+<h3 id="哈希hash"><a href="#哈希hash" class="headerlink" title="哈希hash"></a>哈希hash</h3><p>​			Redis hash 是一个string类型的field和value的映射表，hash			特别适合用于存储对象，注：它一个key对应的一个value中			又是一个field对应一个value常用命令：	</p>
+<ol>
+<li><p>​	HSET key field value    将哈希表key中的字段field的值设为value</p>
+</li>
+<li><p>​    HGET key field    获取存储在哈希表中指定字段的值</p>
+</li>
+<li><p>​    HDEL key field    删除存储在哈希表中的指定字段</p>
+</li>
+<li><p>​    HKEYS key           获取哈希表中所有字段</p>
+</li>
+<li><p>​    Hvals key              获取哈希表中所有值</p>
+</li>
+<li><p>​    HGETALL key      获取在哈希表中指定key的所有字段和值</p>
+</li>
+</ol>
+<h3 id="列表List"><a href="#列表List" class="headerlink" title="列表List"></a>列表List</h3><p>​			Redis列表是最简单的字符串列表，按照插入顺序排序，常用命令：</p>
+<ol>
+<li>LPUSH key value1 [value2]    将一个或多个值插入到列表头部</li>
+<li>LRANGE key start stop            获取列表指定范围内的元素</li>
+<li>RPOP key                                    移除并获取列表最后一个元素</li>
+<li>LLEN key                                     获取列表长度</li>
+<li>BRPOP key1 [key2] timeout    移出并获取列表最后一个元素，如果列表没有元素会阻塞列表直到等到超时或发现可以弹出元素为止</li>
+</ol>
+<h3 id="集合set"><a href="#集合set" class="headerlink" title="集合set"></a>集合set</h3><p>Redis set是string类型的无序集合，集合成员是唯一的，这就意味着集合中不能出现重复的数据，常用命令：</p>
+<ol>
+<li>SADD key member1 [member2]   向集合添加一个或多个成员</li>
+<li>SMEMNERS key                               返回集合中的所有成员</li>
+<li>SCARD key                                        获取集合的成员数</li>
+<li>SINTER  key1 [key2]                        返回给定所有集合的交集</li>
+<li>SUNION key1 [key2]                       返回所有给定集合的并集</li>
+<li>SDIFF key1 [key2]                            返回所有给定集合的差集</li>
+<li>SREM key member1 [member2]   移除集合中一个或多个成员</li>
+</ol>
+<h3 id="sorted-set有序集合"><a href="#sorted-set有序集合" class="headerlink" title="sorted set有序集合"></a>sorted set有序集合</h3><p>Redis sorted set有序集合是string类型元素的集合，且不允许重复的成员。每个元素都会关联一个double类型的分数score，redis正是通过分数来为集合中的成员进行从小到大排序，有序集合的成员是唯一的，但分数却可以重复，常用命令：</p>
+<ol>
+<li>ZADD key score1 member1 [score2 member2]  向有序集合添加一个或多个成员，或者更新已存在成员的分数</li>
+<li>ZRANGE  key start stop [WITHSCORES]             通过索引区间返回有序集合中指定区间内的成员</li>
+<li>ZINCRBY key increment member                        有序集合中对指定成员的分数加上增量 increment</li>
+<li>ZREM key member [member…]                             移除有序集合中的一个或多个成员</li>
+</ol>
+<h3 id="通用命令"><a href="#通用命令" class="headerlink" title="通用命令"></a>通用命令</h3><ol>
+<li>KEYS pattern     查找所有符合给定模式pattern的key</li>
+<li>EXISTS key         检查给定key是否存在</li>
+<li>TYPE  key           返回key所存储的值的类型</li>
+<li>TTL key               返回给定key的剩余生存时间（TTL，time to live），以秒为单位</li>
+<li>DEL key               该命令用于在key存在是删除key</li>
+<li>Select <bind>  切换到bind数据库</bind></li>
+</ol>
+<h3 id="spring-cache注解："><a href="#spring-cache注解：" class="headerlink" title="spring cache注解："></a>spring cache注解：</h3><p>cacheManger是spring提供的各种缓存技术抽象接口 可以用autowired自动注入</p>
+<p>注解可以用#result.id   或#p0.id   或 #user.id或#root.args[0].id    参数需要和参数名相同 如 #id</p>
+<p>yml文件中cache redis time to live可以设置缓存过期时间</p>
+<p>返回结果集需要实现序列化接口才可以被放到redis中</p>
+<ol>
+<li>@EnableCaching          开启注解功能，放在启动类上</li>
+<li>@Cacheable                       在方法执行前spring先查看缓存中是否有数据，如果有数据，则直接返回缓存数据；若没有数据，调用方法并将方法返回值放到缓存中</li>
+<li>@CachePut                    将方法的返回值放到缓存中</li>
+<li>@CacheEvict                 将一条或多条数据从缓存中删除</li>
+</ol>
+<h4 id="CachePut"><a href="#CachePut" class="headerlink" title="@CachePut:"></a>@CachePut:</h4><ol>
+<li><p>value:缓存的名字，每个缓存名称下面可以有多个key</p>
+</li>
+<li><p>key:缓存的key	</p>
+<p>​</p>
+</li>
+</ol>
+<p>	</p>
+<h4 id="CacheEvict"><a href="#CacheEvict" class="headerlink" title="@CacheEvict:"></a>@CacheEvict:</h4><p>​		注解中可以使用#result</p>
+<ol>
+<li>value:要删除value</li>
+<li>key:删除value下指定的key</li>
+<li>allEntries:true  删除value下的所有cache</li>
+<li>beforeInvocation:在方法执行前清除缓存</li>
+</ol>
+<h4 id="Cacheable"><a href="#Cacheable" class="headerlink" title="@Cacheable:"></a>@Cacheable:</h4><ol>
+<li><p>value:缓存的名字，每个缓存名称下面可以有多个key</p>
+</li>
+<li><p>key:缓存的key		</p>
+</li>
+<li><p>condition:当满足条件时缓存数据</p>
+</li>
+<li><p>unless:当满足条件时不缓存数据</p>
+</li>
+</ol>
+<h2 id="MySql主从复制"><a href="#MySql主从复制" class="headerlink" title="MySql主从复制"></a>MySql主从复制</h2><p>mysql主从复制是一个异步的复制过程，底层是基于mysql数据库自带的二进制日志功能。就是一台或多台mysql数据库（slave，即从库）从另一台mysql数据库（master，即主库）进行日志的复制然后再解析日志并应用到自身，最中实现从库和主库的数据保持一致。mysql’主从复制是mysql’数据库自带功能，无需借助第三方工具</p>
+<h3 id="配置-主库MMaster"><a href="#配置-主库MMaster" class="headerlink" title="配置-主库MMaster"></a>配置-主库MMaster</h3><p>​		第一步：修改msysql数据库的配置文件&#x2F;etc&#x2F;my.cnf</p>
+<p>​			[mysqld]</p>
+<p>​			log-bin &#x3D; mysql-bin    #[必须]启用二进制日志</p>
+<p>​			server-id&#x3D;100			#[必须]服务器唯一ID</p>
+<p>​		第二步：重启mysql服务</p>
+<p>​			systemctl restart mysqld</p>
+<p>​		第三步：登录mysql数据库，执行以下sql</p>
+<p>​			GRANT REPLICATION SLAVE ON  * . *  to ‘xiaoming‘@’%’ identified by 			‘Root@123456’</p>
+<p>​			注：上面sql的作用是创建一个用户xiaoming，密码为Root@123456，并且			给xiaoming用户授权PERLICATION SLAVE 权限。常用于建立复制时所需要			用到的用户权限，也就是slave必须被master授权具有该权限的用户，才能通			过该用户复制。密码需要数字，大小写，特殊字符长度8位</p>
+<p>​		第四步：登录mysql数据库，执行下面sql，记录结果中File和Position的值</p>
+<p>​			show master status</p>
+<p>​			注：上面sql的作用时查看master的状态，执行完此sql 后不要再执行任何操作</p>
+<h3 id="配置-从库Slave"><a href="#配置-从库Slave" class="headerlink" title="配置-从库Slave"></a>配置-从库Slave</h3><p>​			第一步：修改mysql数据库的配置文件&#x2F;etc&#x2F;my.cnf</p>
+<p>​				[mysqld]</p>
+<p>​				server-id&#x3D;101  #[必须]	服务器唯一ID</p>
+<p>​			第二步：重启mysql服务</p>
+<p>​				systemctl restart mysqld</p>
+<p>​			第三步：登录mysql数据库，执行下面sql</p>
+<p>​				change master to master_host&#x3D;’192.168.138.100’,master_user&#x3D;’xiaoming’,master_password&#x3D;‘Root@123456’,master_log_file&#x3D;’mysql-bin.000001’,master_log_pos&#x3D;439;</p>
+<p>​				start slave;</p>
+<p>​				注：master_host:主服务器IP地址，master_user：授权的用户名，master_password授权的用户的密码，master_log_file：master的状态中file的值，</p>
+<p>master_log_pos:mster的状态中position中的值</p>
+<p>​			第四步：登录mysql数据库，执行下面sql，查看从库状态</p>
+<p>​				show slave status;</p>
+<h2 id="Springboot拦截器使用redis"><a href="#Springboot拦截器使用redis" class="headerlink" title="Springboot拦截器使用redis"></a>Springboot拦截器使用redis</h2><p>pom依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>拦截器实现HandlerInterceptor</li>
+<li>配置文件添加拦截器</li>
+<li>拦截器中的RedisTemplate不用@autowired注解用@Resource</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>Redis</tag>
+        <tag>缓存</tag>
       </tags>
   </entry>
   <entry>
@@ -786,230 +1010,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Redis</title>
-    <url>/2023/05/28/14-22-22/</url>
-    <content><![CDATA[<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><span id="more"></span>
-
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Redis是一个基于内存的key—value结构数据库</p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
-<li>基于内存存储读写性能高</li>
-<li>适合存储热点数据（频繁访问、读取）</li>
-</ul>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
-<li>字符串string</li>
-<li>哈希hash</li>
-<li>列表list</li>
-<li>集合set</li>
-<li>有序集合sorted set</li>
-</ul>
-<h3 id="字符串（常用命令）"><a href="#字符串（常用命令）" class="headerlink" title="字符串（常用命令）"></a>字符串（常用命令）</h3><ol>
-<li><p>Set key value                               设置指定key的值</p>
-</li>
-<li><p>Get key                                         获取指定key的值</p>
-</li>
-<li><p>SETEX key seconds value        设置指定key的值，并将key的过期时间设为seconds秒</p>
-</li>
-<li><p>SETNX  key value                      只有在key不存在时设置key的值</p>
-</li>
-</ol>
-<h3 id="哈希hash"><a href="#哈希hash" class="headerlink" title="哈希hash"></a>哈希hash</h3><p>​			Redis hash 是一个string类型的field和value的映射表，hash			特别适合用于存储对象，注：它一个key对应的一个value中			又是一个field对应一个value常用命令：	</p>
-<ol>
-<li><p>​	HSET key field value    将哈希表key中的字段field的值设为value</p>
-</li>
-<li><p>​    HGET key field    获取存储在哈希表中指定字段的值</p>
-</li>
-<li><p>​    HDEL key field    删除存储在哈希表中的指定字段</p>
-</li>
-<li><p>​    HKEYS key           获取哈希表中所有字段</p>
-</li>
-<li><p>​    Hvals key              获取哈希表中所有值</p>
-</li>
-<li><p>​    HGETALL key      获取在哈希表中指定key的所有字段和值</p>
-</li>
-</ol>
-<h3 id="列表List"><a href="#列表List" class="headerlink" title="列表List"></a>列表List</h3><p>​			Redis列表是最简单的字符串列表，按照插入顺序排序，常用命令：</p>
-<ol>
-<li>LPUSH key value1 [value2]    将一个或多个值插入到列表头部</li>
-<li>LRANGE key start stop            获取列表指定范围内的元素</li>
-<li>RPOP key                                    移除并获取列表最后一个元素</li>
-<li>LLEN key                                     获取列表长度</li>
-<li>BRPOP key1 [key2] timeout    移出并获取列表最后一个元素，如果列表没有元素会阻塞列表直到等到超时或发现可以弹出元素为止</li>
-</ol>
-<h3 id="集合set"><a href="#集合set" class="headerlink" title="集合set"></a>集合set</h3><p>Redis set是string类型的无序集合，集合成员是唯一的，这就意味着集合中不能出现重复的数据，常用命令：</p>
-<ol>
-<li>SADD key member1 [member2]   向集合添加一个或多个成员</li>
-<li>SMEMNERS key                               返回集合中的所有成员</li>
-<li>SCARD key                                        获取集合的成员数</li>
-<li>SINTER  key1 [key2]                        返回给定所有集合的交集</li>
-<li>SUNION key1 [key2]                       返回所有给定集合的并集</li>
-<li>SDIFF key1 [key2]                            返回所有给定集合的差集</li>
-<li>SREM key member1 [member2]   移除集合中一个或多个成员</li>
-</ol>
-<h3 id="sorted-set有序集合"><a href="#sorted-set有序集合" class="headerlink" title="sorted set有序集合"></a>sorted set有序集合</h3><p>Redis sorted set有序集合是string类型元素的集合，且不允许重复的成员。每个元素都会关联一个double类型的分数score，redis正是通过分数来为集合中的成员进行从小到大排序，有序集合的成员是唯一的，但分数却可以重复，常用命令：</p>
-<ol>
-<li>ZADD key score1 member1 [score2 member2]  向有序集合添加一个或多个成员，或者更新已存在成员的分数</li>
-<li>ZRANGE  key start stop [WITHSCORES]             通过索引区间返回有序集合中指定区间内的成员</li>
-<li>ZINCRBY key increment member                        有序集合中对指定成员的分数加上增量 increment</li>
-<li>ZREM key member [member…]                             移除有序集合中的一个或多个成员</li>
-</ol>
-<h3 id="通用命令"><a href="#通用命令" class="headerlink" title="通用命令"></a>通用命令</h3><ol>
-<li>KEYS pattern     查找所有符合给定模式pattern的key</li>
-<li>EXISTS key         检查给定key是否存在</li>
-<li>TYPE  key           返回key所存储的值的类型</li>
-<li>TTL key               返回给定key的剩余生存时间（TTL，time to live），以秒为单位</li>
-<li>DEL key               该命令用于在key存在是删除key</li>
-<li>Select <bind>  切换到bind数据库</bind></li>
-</ol>
-<h3 id="spring-cache注解："><a href="#spring-cache注解：" class="headerlink" title="spring cache注解："></a>spring cache注解：</h3><p>cacheManger是spring提供的各种缓存技术抽象接口 可以用autowired自动注入</p>
-<p>注解可以用#result.id   或#p0.id   或 #user.id或#root.args[0].id    参数需要和参数名相同 如 #id</p>
-<p>yml文件中cache redis time to live可以设置缓存过期时间</p>
-<p>返回结果集需要实现序列化接口才可以被放到redis中</p>
-<ol>
-<li>@EnableCaching          开启注解功能，放在启动类上</li>
-<li>@Cacheable                       在方法执行前spring先查看缓存中是否有数据，如果有数据，则直接返回缓存数据；若没有数据，调用方法并将方法返回值放到缓存中</li>
-<li>@CachePut                    将方法的返回值放到缓存中</li>
-<li>@CacheEvict                 将一条或多条数据从缓存中删除</li>
-</ol>
-<h4 id="CachePut"><a href="#CachePut" class="headerlink" title="@CachePut:"></a>@CachePut:</h4><ol>
-<li><p>value:缓存的名字，每个缓存名称下面可以有多个key</p>
-</li>
-<li><p>key:缓存的key	</p>
-<p>​</p>
-</li>
-</ol>
-<p>	</p>
-<h4 id="CacheEvict"><a href="#CacheEvict" class="headerlink" title="@CacheEvict:"></a>@CacheEvict:</h4><p>​		注解中可以使用#result</p>
-<ol>
-<li>value:要删除value</li>
-<li>key:删除value下指定的key</li>
-<li>allEntries:true  删除value下的所有cache</li>
-<li>beforeInvocation:在方法执行前清除缓存</li>
-</ol>
-<h4 id="Cacheable"><a href="#Cacheable" class="headerlink" title="@Cacheable:"></a>@Cacheable:</h4><ol>
-<li><p>value:缓存的名字，每个缓存名称下面可以有多个key</p>
-</li>
-<li><p>key:缓存的key		</p>
-</li>
-<li><p>condition:当满足条件时缓存数据</p>
-</li>
-<li><p>unless:当满足条件时不缓存数据</p>
-</li>
-</ol>
-<h2 id="MySql主从复制"><a href="#MySql主从复制" class="headerlink" title="MySql主从复制"></a>MySql主从复制</h2><p>mysql主从复制是一个异步的复制过程，底层是基于mysql数据库自带的二进制日志功能。就是一台或多台mysql数据库（slave，即从库）从另一台mysql数据库（master，即主库）进行日志的复制然后再解析日志并应用到自身，最中实现从库和主库的数据保持一致。mysql’主从复制是mysql’数据库自带功能，无需借助第三方工具</p>
-<h3 id="配置-主库MMaster"><a href="#配置-主库MMaster" class="headerlink" title="配置-主库MMaster"></a>配置-主库MMaster</h3><p>​		第一步：修改msysql数据库的配置文件&#x2F;etc&#x2F;my.cnf</p>
-<p>​			[mysqld]</p>
-<p>​			log-bin &#x3D; mysql-bin    #[必须]启用二进制日志</p>
-<p>​			server-id&#x3D;100			#[必须]服务器唯一ID</p>
-<p>​		第二步：重启mysql服务</p>
-<p>​			systemctl restart mysqld</p>
-<p>​		第三步：登录mysql数据库，执行以下sql</p>
-<p>​			GRANT REPLICATION SLAVE ON  * . *  to ‘xiaoming‘@’%’ identified by 			‘Root@123456’</p>
-<p>​			注：上面sql的作用是创建一个用户xiaoming，密码为Root@123456，并且			给xiaoming用户授权PERLICATION SLAVE 权限。常用于建立复制时所需要			用到的用户权限，也就是slave必须被master授权具有该权限的用户，才能通			过该用户复制。密码需要数字，大小写，特殊字符长度8位</p>
-<p>​		第四步：登录mysql数据库，执行下面sql，记录结果中File和Position的值</p>
-<p>​			show master status</p>
-<p>​			注：上面sql的作用时查看master的状态，执行完此sql 后不要再执行任何操作</p>
-<h3 id="配置-从库Slave"><a href="#配置-从库Slave" class="headerlink" title="配置-从库Slave"></a>配置-从库Slave</h3><p>​			第一步：修改mysql数据库的配置文件&#x2F;etc&#x2F;my.cnf</p>
-<p>​				[mysqld]</p>
-<p>​				server-id&#x3D;101  #[必须]	服务器唯一ID</p>
-<p>​			第二步：重启mysql服务</p>
-<p>​				systemctl restart mysqld</p>
-<p>​			第三步：登录mysql数据库，执行下面sql</p>
-<p>​				change master to master_host&#x3D;’192.168.138.100’,master_user&#x3D;’xiaoming’,master_password&#x3D;‘Root@123456’,master_log_file&#x3D;’mysql-bin.000001’,master_log_pos&#x3D;439;</p>
-<p>​				start slave;</p>
-<p>​				注：master_host:主服务器IP地址，master_user：授权的用户名，master_password授权的用户的密码，master_log_file：master的状态中file的值，</p>
-<p>master_log_pos:mster的状态中position中的值</p>
-<p>​			第四步：登录mysql数据库，执行下面sql，查看从库状态</p>
-<p>​				show slave status;</p>
-<h2 id="Springboot拦截器使用redis"><a href="#Springboot拦截器使用redis" class="headerlink" title="Springboot拦截器使用redis"></a>Springboot拦截器使用redis</h2><p>pom依赖</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>拦截器实现HandlerInterceptor</li>
-<li>配置文件添加拦截器</li>
-<li>拦截器中的RedisTemplate不用@autowired注解用@Resource</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-        <tag>Redis</tag>
-        <tag>缓存</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nginx</title>
-    <url>/2023/05/28/14-22-38/</url>
-    <content><![CDATA[<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><span id="more"></span>
-
-<h2 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h2><p>​	nginx是一款轻量级的web服务器&#x2F;反向代理服务器及电子邮件代理服务器，其特点是占有内存少，并发能力强，事实上nginx的并发能力在同类型的网页服务器中表现较好。</p>
-<h2 id="Nginx命令-在sbin下"><a href="#Nginx命令-在sbin下" class="headerlink" title="Nginx命令(在sbin下)"></a>Nginx命令(在sbin下)</h2><h3 id="查看版本号"><a href="#查看版本号" class="headerlink" title="查看版本号"></a>查看版本号</h3><p>​	.&#x2F;nginx -v</p>
-<h3 id="检查配置文件正确性"><a href="#检查配置文件正确性" class="headerlink" title="检查配置文件正确性"></a>检查配置文件正确性</h3><p>​	在启动Nginx服务之前，可以先检查一下conf&#x2F;nginx.conf文件配置的是否有错误：.&#x2F;nginx -t</p>
-<h3 id="启动和停止"><a href="#启动和停止" class="headerlink" title="启动和停止"></a>启动和停止</h3><p>​	启动Nginx服务：.&#x2F;nginx</p>
-<p>​	停止Nginx服务：.&#x2F;nginx -s stop</p>
-<p>​	启动完成后查看nginx进程：ps -ef|grep nginx</p>
-<h3 id="重新加载配置文件"><a href="#重新加载配置文件" class="headerlink" title="重新加载配置文件"></a>重新加载配置文件</h3><p>​	当修改nginx配置文件后，需要重新加载才能生效：.&#x2F;nginx -s reload</p>
-<h3 id="Nginx配置文件结构"><a href="#Nginx配置文件结构" class="headerlink" title="Nginx配置文件结构"></a>Nginx配置文件结构</h3><h4 id="全局块"><a href="#全局块" class="headerlink" title="全局块"></a>全局块</h4><p>​		和nginx运行相关的全局配置</p>
-<h4 id="events块"><a href="#events块" class="headerlink" title="events块"></a>events块</h4><p>​		和网络连接相关的配置</p>
-<h4 id="http块"><a href="#http块" class="headerlink" title="http块"></a>http块</h4><p>​	http块中可以配置多个Server块，每个Server块中可以配置多个location块</p>
-<p>​		代理、缓存、日志文件、虚拟主机配置</p>
-<h5 id="http全局块"><a href="#http全局块" class="headerlink" title="http全局块"></a>http全局块</h5><h5 id="Server块"><a href="#Server块" class="headerlink" title="Server块"></a>Server块</h5><h6 id="Server全局块"><a href="#Server全局块" class="headerlink" title="Server全局块"></a>Server全局块</h6><h6 id="location块"><a href="#location块" class="headerlink" title="location块"></a>location块</h6><h2 id="Nginx具体应用"><a href="#Nginx具体应用" class="headerlink" title="Nginx具体应用"></a>Nginx具体应用</h2><h3 id="部署静态资源"><a href="#部署静态资源" class="headerlink" title="部署静态资源"></a>部署静态资源</h3><p>​	nginx可以作为静态web服务器来部署静态资源。如：css、html、js、图片、视频等资源</p>
-<p>​	相对于Tomcat，Nginx处理静态资源的能力更加高效，所以在生产环境下，一般都会将静态资源部署到nginx中</p>
-<p>​	将静态资源部署到Nginx非常简单，只需要将文件复制到Nginx安装目录下的html目录中即可。</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line">servet&#123;</span><br><span class="line">	<span class="attribute">listen</span> <span class="number">80</span>;    <span class="comment">#监听端口</span></span><br><span class="line">	<span class="attribute">server_name</span> localhost;	服务器名称 </span><br><span class="line">	<span class="section">location</span> /&#123;	<span class="comment">#匹配客户端请求url</span></span><br><span class="line">		<span class="attribute">root</span> html;	<span class="comment">#指定静态资源根目录</span></span><br><span class="line">		<span class="attribute">index</span> index.html;	<span class="comment">#指定默认首页</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3><p>​	</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">82</span>;</span><br><span class="line">    <span class="attribute">server_name</span> localhost;</span><br><span class="line">    <span class="section">location</span> /&#123;</span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^/api/(.*)$</span> /<span class="variable">$1</span> <span class="literal">break</span>; <span class="comment">#截取掉多余的路径</span></span><br><span class="line">        <span class="attribute">proxy_pass</span> http://ip地址; <span class="comment">#反向代理配置，将请求转发到指定服务</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>​	早期的网站流量和业务功能都比较简单，单台服务器就可以满足基本需求，但是随着互联网的发展，业务流量越来越大并且业务逻辑也越来越复杂，单台服务器的性能及单点故障问题就凸显出来了，因此需要多台服务器组成应用集群，进行性能的水平扩展以及避免单点故障出现。</p>
-<p>​	应用集群：将同一应用部署到多台机器上，组成应用集群，接受负载均衡器分发的请求，进行业务处理并返回响应数据</p>
-<p>​	负载均衡器：将用户请求根据对应的负载均衡算法分发到应用集群中的一台服务器进行处理。</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">upstream</span> targetserver&#123;	<span class="comment">#upstream指令可以定义一组服务器</span></span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.138.101:8080</span> weight=<span class="number">10</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.138.101:8081</span>;</span><br><span class="line">&#125;</span><br><span class="line">server&#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">8080</span>;</span><br><span class="line">    <span class="attribute">server_name</span> localhost;</span><br><span class="line">    <span class="section">location</span> /&#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://targetserver;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​	负载均衡策略：</p>
-<p>​		</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>轮询</td>
-<td>默认方式</td>
-</tr>
-<tr>
-<td>weight</td>
-<td>权重方式</td>
-</tr>
-<tr>
-<td>ip_hash</td>
-<td>依据ip分配方式</td>
-</tr>
-<tr>
-<td>least_conn</td>
-<td>一句最少连接方式</td>
-</tr>
-<tr>
-<td>url_hash</td>
-<td>一句url分配方式</td>
-</tr>
-<tr>
-<td>fair</td>
-<td>一句响应时间方式</td>
-</tr>
-</tbody></table>
-<p>​		</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-        <tag>Nginx</tag>
-        <tag>反向代理</tag>
-        <tag>负载均衡</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Redis缓存更新策略</title>
     <url>/2023/07/18/13-36-02/</url>
     <content><![CDATA[<h1 id="Redis缓存更新策略"><a href="#Redis缓存更新策略" class="headerlink" title="Redis缓存更新策略"></a>Redis缓存更新策略</h1><span id="more"></span>
@@ -1098,31 +1098,6 @@
         <tag>Redis</tag>
         <tag>缓存</tag>
         <tag>更新策略</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Lable</title>
-    <url>/2023/08/23/16-22-50/</url>
-    <content><![CDATA[<h2 id="Java中的Lable"><a href="#Java中的Lable" class="headerlink" title="Java中的Lable"></a>Java中的Lable</h2><span id="more"></span>
-
-<p>今天在学习过程中无意间看到了一个之前没看到过的东西，就是java中的Lable，百度了下是这样说的“Java 中的标签是为循环设计的，是为了在多重循环中方便的使用 break 和continue。”</p>
-<p>也就是说他是为循环创造的，可以在多重循环下方便使用break和continue</p>
-<p>光看不做假把式，我们来尝试下。</p>
-<h3 id="单循环使用lable"><a href="#单循环使用lable" class="headerlink" title="单循环使用lable"></a>单循环使用lable</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LableTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        study:</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">2</span>)&#123;</span><br><span class="line">                <span class="keyword">continue</span> study;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2023/08/23/16-22-50/%5CHexo-Blog%5Csource_posts%5Clable%5Ctwo.png"></p>
-<p>单循环使用break配合lable似乎没有什么明显的作用。</p>
-<p>我们把break换为continue继续试下。也和正常使用continue没有什么变化，看来java中的标签并不适合单循环。</p>
-<p><img src="/2023/08/23/16-22-50/%5CHexo-Blog%5Csource_posts%5Clable%5Cthree.png"></p>
-<h3 id="多循环使用lable"><a href="#多循环使用lable" class="headerlink" title="多循环使用lable"></a>多循环使用lable</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LableTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        study:</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j == <span class="number">2</span>)&#123;</span><br><span class="line">                    <span class="keyword">continue</span> study;</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(i+<span class="string">&quot;+&quot;</span>+j+<span class="string">&quot;=&quot;</span>+(i+j));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2023/08/23/16-22-50/Hexo-Blog\source_posts\lable\four.png"></p>
-<p><strong>明显这里双重循环可以利用lable来跳出</strong></p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-        <tag>Lable</tag>
-        <tag>循环</tag>
       </tags>
   </entry>
   <entry>
@@ -2844,6 +2819,34 @@
       <tags>
         <tag>Java</tag>
         <tag>Spring Cloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lable</title>
+    <url>/2023/08/23/16-22-50/</url>
+    <content><![CDATA[<h2 id="Java中的Lable"><a href="#Java中的Lable" class="headerlink" title="Java中的Lable"></a>Java中的Lable</h2><span id="more"></span>
+
+<p>今天在学习过程中无意间看到了一个之前没看到过的东西，就是java中的Lable，百度了下是这样说的“Java 中的标签是为循环设计的，是为了在多重循环中方便的使用 break 和continue。”</p>
+<p>也就是说他是为循环创造的，可以在多重循环下方便使用break和continue</p>
+<p>光看不做假把式，我们来尝试下。</p>
+<h3 id="单循环使用lable"><a href="#单循环使用lable" class="headerlink" title="单循环使用lable"></a>单循环使用lable</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LableTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        study:</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">2</span>)&#123;</span><br><span class="line">                <span class="keyword">continue</span> study;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/08/23/16-22-50/four.png">
+
+<p>单循环使用break配合lable似乎没有什么明显的作用。</p>
+<p>我们把break换为continue继续试下。也和正常使用continue没有什么变化，看来java中的标签并不适合单循环。</p>
+<img src="/2023/08/23/16-22-50/three.png">
+
+<h3 id="多循环使用lable"><a href="#多循环使用lable" class="headerlink" title="多循环使用lable"></a>多循环使用lable</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LableTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        study:</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j == <span class="number">2</span>)&#123;</span><br><span class="line">                    <span class="keyword">continue</span> study;</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(i+<span class="string">&quot;+&quot;</span>+j+<span class="string">&quot;=&quot;</span>+(i+j));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2023/08/23/16-22-50/four.png">
+
+<p><strong>明显这里双重循环可以利用lable来跳出</strong></p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>Lable</tag>
+        <tag>循环</tag>
       </tags>
   </entry>
 </search>
